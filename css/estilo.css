@@ -1,0 +1,517 @@
+/* =========================================================
+   VARIÁVEIS DE COR E FONTE — TEMA ARCADE (DARK MODE + LATÃO)
+   ========================================================= */
+:root {
+  --fundo:        #121214;  /* Dark Mode Base (cinza quase preto) */
+  --superficie:   #1D1E22;  /* Superfícies e cards */
+  --superficie-2: #27282D;  /* Variação sutil para hovers */
+  --ambar:        #D4AF37;  /* Accent principal (Ouro Velho / Latão) */
+  --ambar-forte:  #C5A059;  /* Variação tom suave/ouro clássico */
+  --texto:        #E1E1E6;  /* Texto principal legível e confortável */
+  --texto-fraco:  #A8A8B3;  /* Texto secundário */
+  --borda:        rgba(212, 175, 55, 0.15); /* Borda sutil em tom dourado */
+
+  --fonte-titulo: "Cinzel", "Playfair Display", Georgia, serif;
+  --fonte-texto:  "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+}
+
+/* =========================================================
+   RESET BÁSICO
+   ========================================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--fonte-texto);
+  background-color: var(--fundo);
+  color: var(--texto);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+/* =========================================================
+   BARRA DE NAVEGAÇÃO (topo)
+   ========================================================= */
+.topo {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 16px 48px;
+  background-color: rgba(29, 30, 34, 0.85); /* Tom da superfície translúcido */
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--borda);
+}
+
+.logo {
+  font-family: var(--fonte-titulo);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--ambar);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.menu {
+  display: flex;
+  gap: 24px;
+}
+
+.menu a {
+  color: var(--texto-fraco);
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.menu a:hover,
+.menu a.ativo {
+  color: var(--ambar);
+}
+
+.botao-busca {
+  margin-left: auto;
+  padding: 9px 18px;
+  border: 1px solid var(--ambar);
+  border-radius: 999px;
+  color: var(--ambar);
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.botao-busca:hover {
+  background-color: var(--ambar);
+  color: #121214;
+}
+
+/* =========================================================
+   DESTAQUE (hero) — O filme grande do topo
+   ========================================================= */
+.destaque {
+  position: relative;
+  min-height: 78vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 48px;
+  background-size: cover;
+  background-position: center;
+}
+
+.destaque::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    var(--fundo) 5%,
+    rgba(18, 18, 20, 0.6) 50%,
+    rgba(18, 18, 20, 0.2) 100%
+  );
+}
+
+.destaque-conteudo {
+  position: relative;
+  z-index: 2;
+  max-width: 620px;
+}
+
+.destaque-eyebrow {
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ambar);
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.destaque-titulo {
+  font-family: var(--fonte-titulo);
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1.05;
+  margin-bottom: 16px;
+  color: #FFFFFF;
+}
+
+.destaque-sinopse {
+  font-size: 17px;
+  color: var(--texto-fraco);
+  margin-bottom: 24px;
+}
+
+.destaque-botoes {
+  display: flex;
+  gap: 12px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 26px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: transform 0.15s, background 0.2s;
+}
+
+.btn:hover { transform: translateY(-2px); }
+
+.btn-principal {
+  background-color: var(--ambar);
+  color: #121214;
+}
+
+.btn-principal:hover { background-color: var(--ambar-forte); }
+
+.btn-secundario {
+  background-color: var(--superficie);
+  color: var(--texto);
+  border: 1px solid var(--borda);
+}
+
+.btn-secundario:hover { background-color: var(--superficie-2); }
+
+/* =========================================================
+   FILEIRAS DE FILMES
+   ========================================================= */
+.fileiras {
+  padding: 40px 48px 20px;
+}
+
+.fileira {
+  margin-bottom: 44px;
+}
+
+.fileira-titulo {
+  font-family: var(--fonte-titulo);
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #FFFFFF;
+}
+
+.fileira-lista {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scroll-behavior: smooth;
+}
+
+/* =========================================================
+   CARD DE FILME
+   ========================================================= */
+.card {
+  flex: 0 0 200px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--superficie);
+  border: 1px solid var(--borda);
+  transition: transform 0.2s, background-color 0.2s;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  background-color: var(--superficie-2);
+}
+
+.card-capa {
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+
+.card-info {
+  padding: 12px;
+}
+
+.card-titulo {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-meta {
+  font-size: 12px;
+  color: var(--texto-fraco);
+}
+
+/* =========================================================
+   RODAPÉ
+   ========================================================= */
+.rodape {
+  padding: 40px 48px;
+  background-color: var(--superficie);
+  border-top: 1px solid var(--borda);
+  color: var(--texto-fraco);
+  font-size: 14px;
+}
+
+.rodape-fraco {
+  margin-top: 4px;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
+@media (max-width: 640px) {
+  .topo      { padding: 12px 20px; gap: 16px; }
+  .destaque  { padding: 24px; min-height: 70vh; }
+  .destaque-titulo { font-size: 40px; }
+  .fileiras  { padding: 24px 20px; }
+  .card      { flex-basis: 150px; }
+  .menu      { display: none; }
+}
+
+/* =========================================================
+   PÁGINA DO FILME (detalhes)
+   ========================================================= */
+.detalhe-banner {
+  position: relative;
+  min-height: 60vh;
+  background-size: cover;
+  background-position: center;
+}
+
+.detalhe-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--fundo) 2%, transparent 70%);
+}
+
+.detalhe-conteudo {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 48px 60px;
+  margin-top: -120px;
+  position: relative;
+  z-index: 2;
+}
+
+.detalhe-titulo {
+  font-family: var(--fonte-titulo);
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1.05;
+  margin-bottom: 12px;
+}
+
+.detalhe-meta {
+  color: var(--ambar);
+  font-size: 15px;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+}
+
+.detalhe-botoes {
+  margin-bottom: 40px;
+}
+
+.detalhe-secao-titulo {
+  font-family: var(--fonte-titulo);
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.detalhe-texto {
+  color: var(--texto-fraco);
+  font-size: 16px;
+  margin-bottom: 32px;
+  max-width: 680px;
+}
+
+.contexto-box {
+  background-color: var(--superficie);
+  border-left: 3px solid var(--ambar);
+  border-radius: 6px;
+  padding: 20px 24px;
+  margin-bottom: 32px;
+  max-width: 680px;
+}
+
+.contexto-box .detalhe-secao-titulo {
+  color: var(--ambar);
+  margin-bottom: 8px;
+}
+
+.contexto-box p {
+  color: var(--texto-fraco);
+  font-size: 15px;
+}
+
+.voltar {
+  display: inline-block;
+  padding: 20px 48px 0;
+  color: var(--texto-fraco);
+  font-size: 14px;
+}
+.voltar:hover { color: var(--texto); }
+
+/* =========================================================
+   PÁGINA DE CATÁLOGO
+   ========================================================= */
+.catalogo {
+  padding: 40px 48px 60px;
+}
+
+.catalogo-titulo {
+  font-family: var(--fonte-titulo);
+  font-size: 34px;
+  font-weight: 700;
+  margin-bottom: 28px;
+}
+
+.filtro-grupo {
+  margin-bottom: 18px;
+}
+
+.filtro-label {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--texto-fraco);
+  margin-bottom: 10px;
+}
+
+.filtro-botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filtro-botao {
+  padding: 7px 16px;
+  border: 1px solid var(--borda);
+  border-radius: 999px;
+  background-color: var(--superficie);
+  color: var(--texto-fraco);
+  font-size: 14px;
+  font-family: var(--fonte-texto);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filtro-botao:hover {
+  color: var(--texto);
+  border-color: var(--ambar);
+}
+
+.filtro-botao.ativo {
+  background-color: var(--ambar);
+  border-color: var(--ambar);
+  color: #121214;
+  font-weight: 600;
+}
+
+.grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+  margin-top: 32px;
+}
+
+.sem-resultado {
+  color: var(--texto-fraco);
+  margin-top: 32px;
+  font-size: 16px;
+}
+
+/* =========================================================
+   PÁGINA DO PLAYER
+   ========================================================= */
+.player-tela {
+  min-height: 100vh;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.player-caixa {
+  width: 100%;
+  max-width: 1100px;
+  aspect-ratio: 16 / 9;
+  background-color: #000;
+}
+
+.player-caixa iframe,
+.player-caixa video {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.player-titulo {
+  color: var(--texto);
+  font-family: var(--fonte-titulo);
+  font-size: 20px;
+}
+
+.player-voltar {
+  color: var(--ambar);
+  font-size: 14px;
+}
+.player-voltar:hover { color: var(--ambar-forte); }
+/* =========================================================
+   MELHORIAS ESPECÍFICAS DO CATÁLOGO
+   ========================================================= */
+
+.catalogo-cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.campo-busca {
+  background-color: var(--superficie);
+  border: 1px solid var(--borda);
+  color: var(--texto);
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-family: var(--fonte-texto);
+  font-size: 14px;
+  width: 260px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.campo-busca:focus {
+  border-color: var(--ambar);
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
+}
+
+.painel-filtros {
+  background-color: var(--superficie);
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 32px;
+}

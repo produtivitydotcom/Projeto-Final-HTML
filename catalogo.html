@@ -1,0 +1,76 @@
+//página com todos os filmes disponíveis
+//Com um filteo de países/linguas e genêro do filme
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo — Arcade</title>
+
+  <!-- Fontes do Google: Cinzel (títulos) e Plus Jakarta Sans (texto/interface) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Arquivo de estilos unificado -->
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+
+  <!-- ===== BARRA DE NAVEGAÇÃO (topo) ===== -->
+  <header class="topo">
+    <a href="index.html" class="logo">Arcade</a>
+    
+    <nav class="menu">
+      <a href="index.html">Início</a>
+      <a href="catalogo.html" class="ativo">Catálogo</a>
+    </nav>
+    
+    <a href="catalogo.html" class="botao-busca">Explorar filmes</a>
+  </header>
+
+  <!-- ===== CONTEÚDO PRINCIPAL DO CATÁLOGO ===== -->
+  <main class="catalogo">
+    <div class="catalogo-cabecalho">
+      <h1 class="catalogo-titulo">Acervo de Filmes</h1>
+      
+      <!-- Campo de Busca Direta -->
+      <div class="busca-container">
+        <input 
+          type="text" 
+          id="campo-busca" 
+          placeholder="Buscar por título..." 
+          class="campo-busca"
+        >
+      </div>
+    </div>
+
+    <!-- Área de Filtros -->
+    <div class="painel-filtros">
+      <!-- Filtro por PAÍS (preenchido pelo JS) -->
+      <div class="filtro-grupo">
+        <p class="filtro-label">País / Idioma</p>
+        <div class="filtro-botoes" id="filtros-pais"></div>
+      </div>
+
+      <!-- Filtro por GÊNERO (preenchido pelo JS) -->
+      <div class="filtro-grupo">
+        <p class="filtro-label">Gênero</p>
+        <div class="filtro-botoes" id="filtros-genero"></div>
+      </div>
+    </div>
+
+    <!-- Grade onde as capas dos filmes aparecem -->
+    <div class="grade" id="grade"></div>
+  </main>
+
+  <!-- ===== RODAPÉ ===== -->
+  <footer class="rodape">
+    <p>Arcade — cinema clássico e cult em domínio público.</p>
+    <p class="rodape-fraco">Conheça outras culturas assistindo.</p>
+  </footer>
+
+  <!-- Script do Catálogo -->
+  <script src="js/catalogo.js"></script>
+</body>
+</html>
