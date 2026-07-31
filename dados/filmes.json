@@ -1,0 +1,212 @@
+[
+  {
+    "id": "1",
+    "titulo": "Metropolis",
+    "genero": "Ficção Científica",
+    "pais": "Alemanha",
+    "capa": "https://upload.wikimedia.org/wikipedia/commons/0/06/Metropolis_poster_no-text.jpg"
+  },
+  {
+    "id": "2",
+    "titulo": "Nosferatu",
+    "genero": "Terror",
+    "pais": "Alemanha",
+    "capa": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Nosferatu_poster.jpg"
+  },
+  {
+    "id": "3",
+    "titulo": "A General",
+    "genero": "Comédia",
+    "pais": "Estados Unidos",
+    "capa": "https://upload.wikimedia.org/wikipedia/commons/1/1a/The_General_poster_1926.jpg"
+  },
+  {
+    "id": "4",
+    "titulo": "O Gabinete do Dr. Caligari",
+    "genero": "Suspense",
+    "pais": "Alemanha",
+    "capa": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Das_Cabinet_des_Dr._Caligari_poster.jpg"
+  },
+  {
+    "id": "5",
+    "titulo": "O Encouraçado Potemkin",
+    "genero": "Drama",
+    "pais": "União Soviética",
+    "capa": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Battleship_Potemkin_poster.jpg"
+  },
+  {
+    "id": "6",
+    "titulo": "Limite",
+    "genero": "Vanguarda",
+    "pais": "Brasil",
+    "capa": "https://upload.wikimedia.org/wikipedia/pt/a/a9/Limite_poster.jpg"
+  },
+  {
+    "id": "7",
+    "titulo": "Viagem à Lua",
+    "genero": "Ficção Científica",
+    "pais": "França",
+    "capa": "https://upload.wikimedia.org/wikipedia/commons/0/04/Le_Voyage_dans_la_lune.jpg"
+  },
+  {
+    "id": "8",
+    "titulo": "O Garoto",
+    "genero": "Comédia",
+    "pais": "Estados Unidos",
+    "capa": "https://upload.wikimedia.org/wikipedia/commons/7/77/The_Kid_1921_poster.jpg"
+  },
+  {
+    "id": "9",
+    "titulo": "Rashomon",
+    "genero": "Drama",
+    "pais": "Japão",
+    "capa": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Rashomon_poster.jpg"
+  },
+  {
+    "id": "10",
+    "titulo": "Ladrões de Bicicleta",
+    "genero": "Drama",
+    "pais": "Itália",
+    "capa": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Bicycle_thieves_poster.jpg"
+  },
+  {
+    "id": "11",
+    "titulo": "Um Cão Andaluz",
+    "genero": "Vanguarda",
+    "pais": "França",
+    "capa": "https://upload.wikimedia.org/wikipedia/commons/1/16/Un_chien_andalou.jpg"
+  },
+  {
+    "id": "12",
+    "titulo": "O Vampiro de Düsseldorf (M)",
+    "genero": "Suspense",
+    "pais": "Alemanha",
+    "capa": "https://upload.wikimedia.org/wikipedia/commons/2/22/M_poster.jpg"
+  },
+  {
+    "id": "13",
+    "titulo": "A Carroça Fantasma",
+    "genero": "Fantasia",
+    "pais": "Suécia",
+    "capa": "https://upload.wikimedia.org/wikipedia/commons/7/77/Korkarlen.jpg"
+  },
+  {
+    "id": "14",
+    "titulo": "As Aventuras do Príncipe Achmed",
+    "genero": "Animação",
+    "pais": "Alemanha",
+    "capa": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Prinz_Achmed.jpg"
+  },
+  {
+    "id": "15",
+    "titulo": "O Inquilino",
+    "genero": "Suspense",
+    "pais": "Reino Unido",
+    "capa": "https://upload.wikimedia.org/wikipedia/commons/4/46/The_Lodger_poster.jpg"
+  },
+  {
+    "id": "16",
+    "titulo": "Tempos Modernos",
+    "genero": "Comédia",
+    "pais": "Estados Unidos",
+    "capa": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Modern_Times_poster.jpg"
+  },
+  {
+    "id": "17",
+    "titulo": "O Sétimo Selo",
+    "genero": "Drama",
+    "pais": "Suécia",
+    "capa": "https://upload.wikimedia.org/wikipedia/commons/e/eb/The_Seventh_Seal_poster.jpg"
+  },
+  {
+    "id": "18",
+    "titulo": "Os Sete Samurais",
+    "genero": "Ação",
+    "pais": "Japão",
+    "capa": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Seven_Samurai_Japanese_poster.jpg"
+  },
+  {
+    "id": "19",
+    "titulo": "Godzilla",
+    "genero": "Ficção Científica",
+    "pais": "Japão",
+    "capa": "https://upload.wikimedia.org/wikipedia/commons/8/81/Godzilla_1954_Japanese_poster.jpg"
+  },
+  {
+    "id": "20",
+    "titulo": "A Paixão de Joana d'Arc",
+    "genero": "Drama",
+    "pais": "França",
+    "capa": "https://upload.wikimedia.org/wikipedia/commons/3/39/The_Passion_of_Joan_of_Arc_poster.jpg"
+  },
+  {
+    "id": "21",
+    "titulo": "O Homem com a Câmera de Filmagem",
+    "genero": "Documentário",
+    "pais": "União Soviética",
+    "capa": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Man_With_A_Movie_Camera_poster.jpg"
+  },
+  {
+    "id": "22",
+    "titulo": "O Cangaceiro",
+    "genero": "Ação",
+    "pais": "Brasil",
+    "capa": "https://upload.wikimedia.org/wikipedia/pt/2/2f/O_Cangaceiro_Cartaz.jpg"
+  },
+  {
+    "id": "23",
+    "titulo": "Drácula",
+    "genero": "Terror",
+    "pais": "Estados Unidos",
+    "capa": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Dracula_1931_poster.jpg"
+  },
+  {
+    "id": "24",
+    "titulo": "Frankenstein",
+    "genero": "Terror",
+    "pais": "Estados Unidos",
+    "capa": "https://upload.wikimedia.org/wikipedia/commons/8/85/Frankenstein_1931_poster.jpg"
+  },
+  {
+    "id": "25",
+    "titulo": "A Doce Vida (La Dolce Vita)",
+    "genero": "Drama",
+    "pais": "Itália",
+    "capa": "https://upload.wikimedia.org/wikipedia/commons/c/c5/La_dolce_vita_poster.jpg"
+  },
+  {
+    "id": "26",
+    "titulo": "Cozinha Zero",
+    "genero": "Comédia",
+    "pais": "França",
+    "capa": "https://upload.wikimedia.org/wikipedia/commons/f/f6/L%27Arroseur_arros%C3%A9_poster.jpg"
+  },
+  {
+    "id": "27",
+    "titulo": "O Vampiro (Nosferatu, a Noite do Vampiro)",
+    "genero": "Terror",
+    "pais": "França",
+    "capa": "https://upload.wikimedia.org/wikipedia/commons/0/07/Vampyr_poster.jpg"
+  },
+  {
+    "id": "28",
+    "titulo": "King Kong",
+    "genero": "Fantasia",
+    "pais": "Estados Unidos",
+    "capa": "https://upload.wikimedia.org/wikipedia/commons/c/c2/King_Kong_1933_style_A_poster.jpg"
+  },
+  {
+    "id": "29",
+    "titulo": "A Regra do Jogo",
+    "genero": "Drama",
+    "pais": "França",
+    "capa": "https://upload.wikimedia.org/wikipedia/commons/c/c3/La_R%C3%A8gle_du_Jeu_poster.jpg"
+  },
+  {
+    "id": "30",
+    "titulo": "O Pavor (Blackmail)",
+    "genero": "Suspense",
+    "pais": "Reino Unido",
+    "capa": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Blackmail_1929_poster.jpg"
+  }
+]
