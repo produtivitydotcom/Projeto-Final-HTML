@@ -4,209 +4,419 @@
     "titulo": "Metropolis",
     "genero": "Ficção Científica",
     "pais": "Alemanha",
-    "capa": "https://upload.wikimedia.org/wikipedia/commons/0/06/Metropolis_poster_no-text.jpg"
+    "capa": "https://tse1.mm.bing.net/th/id/OIP.sQ6Js5R9HfWhCTMhwXByRwHaLH?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
   },
   {
     "id": "2",
     "titulo": "Nosferatu",
     "genero": "Terror",
     "pais": "Alemanha",
-    "capa": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Nosferatu_poster.jpg"
+    "capa": "https://static1.colliderimages.com/wordpress/wp-content/uploads/sharedimages/2024/09/nosferatu-2024-official-poster.jpg"
   },
   {
     "id": "3",
     "titulo": "A General",
     "genero": "Comédia",
     "pais": "Estados Unidos",
-    "capa": "https://upload.wikimedia.org/wikipedia/commons/1/1a/The_General_poster_1926.jpg"
+    "capa": "https://tse3.mm.bing.net/th/id/OIP.MzJV8WAIOHrFlAAb7Pn58AAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
   },
   {
     "id": "4",
     "titulo": "O Gabinete do Dr. Caligari",
     "genero": "Suspense",
     "pais": "Alemanha",
-    "capa": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Das_Cabinet_des_Dr._Caligari_poster.jpg"
+    "capa": "https://pics.filmaffinity.com/das_cabinet_des_dr_caligari_aka_das_kabinett_des_dr_caligari-210697571-large.jpg"
   },
   {
     "id": "5",
     "titulo": "O Encouraçado Potemkin",
     "genero": "Drama",
     "pais": "União Soviética",
-    "capa": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Battleship_Potemkin_poster.jpg"
+    "capa": "https://media.fstatic.com/cAt1u4fInSq3x7cRyIn6VHpAr94=/210x312/smart/filters:format(webp)/media/movies/covers/2020/05/oencoura%C3%A7adopotemkin.jpg"
   },
   {
     "id": "6",
     "titulo": "Limite",
     "genero": "Vanguarda",
     "pais": "Brasil",
-    "capa": "https://upload.wikimedia.org/wikipedia/pt/a/a9/Limite_poster.jpg"
+    "capa": "data:image/webp;base64,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"
   },
   {
     "id": "7",
     "titulo": "Viagem à Lua",
     "genero": "Ficção Científica",
     "pais": "França",
-    "capa": "https://upload.wikimedia.org/wikipedia/commons/0/04/Le_Voyage_dans_la_lune.jpg"
+    "capa": "https://image.tmdb.org/t/p/w500/1k1oI7oW7G2Jz3R4N5eK2mX1I0a.jpg"
   },
   {
     "id": "8",
     "titulo": "O Garoto",
     "genero": "Comédia",
     "pais": "Estados Unidos",
-    "capa": "https://upload.wikimedia.org/wikipedia/commons/7/77/The_Kid_1921_poster.jpg"
+    "capa": "https://image.tmdb.org/t/p/w500/drgP21P2N8eC274qK8zK6dI4g3L.jpg"
   },
   {
     "id": "9",
     "titulo": "Rashomon",
     "genero": "Drama",
     "pais": "Japão",
-    "capa": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Rashomon_poster.jpg"
+    "capa": "https://image.tmdb.org/t/p/w500/v39D0JkU3R3N0aL2P6s9X4s0yE1.jpg"
   },
   {
     "id": "10",
     "titulo": "Ladrões de Bicicleta",
     "genero": "Drama",
     "pais": "Itália",
-    "capa": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Bicycle_thieves_poster.jpg"
+    "capa": "https://image.tmdb.org/t/p/w500/2L3489PqfM2s4N02aW1s5J34xN.jpg"
   },
   {
     "id": "11",
     "titulo": "Um Cão Andaluz",
     "genero": "Vanguarda",
     "pais": "França",
-    "capa": "https://upload.wikimedia.org/wikipedia/commons/1/16/Un_chien_andalou.jpg"
+    "capa": "https://image.tmdb.org/t/p/w500/7P8K0lI1vA3D1l4J5M2s3G2P1y0.jpg"
   },
   {
     "id": "12",
     "titulo": "O Vampiro de Düsseldorf (M)",
     "genero": "Suspense",
     "pais": "Alemanha",
-    "capa": "https://upload.wikimedia.org/wikipedia/commons/2/22/M_poster.jpg"
+    "capa": "https://image.tmdb.org/t/p/w500/4S33rK76JvR2y0K6bN5x4s0E1y0.jpg"
   },
   {
     "id": "13",
     "titulo": "A Carroça Fantasma",
     "genero": "Fantasia",
     "pais": "Suécia",
-    "capa": "https://upload.wikimedia.org/wikipedia/commons/7/77/Korkarlen.jpg"
+    "capa": "https://image.tmdb.org/t/p/w500/8K393J4y1a4P1L2m0S1v3a5x6y7.jpg"
   },
   {
     "id": "14",
     "titulo": "As Aventuras do Príncipe Achmed",
     "genero": "Animação",
     "pais": "Alemanha",
-    "capa": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Prinz_Achmed.jpg"
+    "capa": "https://image.tmdb.org/t/p/w500/4a7Y2m0n2l5M3S4v1L2m0S1v3a5.jpg"
   },
   {
     "id": "15",
     "titulo": "O Inquilino",
     "genero": "Suspense",
     "pais": "Reino Unido",
-    "capa": "https://upload.wikimedia.org/wikipedia/commons/4/46/The_Lodger_poster.jpg"
+    "capa": "https://image.tmdb.org/t/p/w500/6S1m20aK2l5M3S4v1L2m0S1v3a5.jpg"
   },
   {
     "id": "16",
     "titulo": "Tempos Modernos",
     "genero": "Comédia",
     "pais": "Estados Unidos",
-    "capa": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Modern_Times_poster.jpg"
+    "capa": "https://image.tmdb.org/t/p/w500/apL3A0vR0X5xZp21s1p9pYl4L2y.jpg"
   },
   {
     "id": "17",
     "titulo": "O Sétimo Selo",
     "genero": "Drama",
     "pais": "Suécia",
-    "capa": "https://upload.wikimedia.org/wikipedia/commons/e/eb/The_Seventh_Seal_poster.jpg"
+    "capa": "https://image.tmdb.org/t/p/w500/50An53YcW5T8sS0fU214Jv7B1sD.jpg"
   },
   {
     "id": "18",
     "titulo": "Os Sete Samurais",
     "genero": "Ação",
     "pais": "Japão",
-    "capa": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Seven_Samurai_Japanese_poster.jpg"
+    "capa": "https://image.tmdb.org/t/p/w500/69389280N8G8Rk81jH2c27T4e3A.jpg"
   },
   {
     "id": "19",
     "titulo": "Godzilla",
     "genero": "Ficção Científica",
     "pais": "Japão",
-    "capa": "https://upload.wikimedia.org/wikipedia/commons/8/81/Godzilla_1954_Japanese_poster.jpg"
+    "capa": "https://image.tmdb.org/t/p/w500/2L9v0uY2uU8kM7w20n79213N23S.jpg"
   },
   {
     "id": "20",
     "titulo": "A Paixão de Joana d'Arc",
     "genero": "Drama",
     "pais": "França",
-    "capa": "https://upload.wikimedia.org/wikipedia/commons/3/39/The_Passion_of_Joan_of_Arc_poster.jpg"
+    "capa": "https://image.tmdb.org/t/p/w500/3e4u9uM9M3nL7xK89s71k1S4A2Y.jpg"
   },
   {
     "id": "21",
     "titulo": "O Homem com a Câmera de Filmagem",
     "genero": "Documentário",
     "pais": "União Soviética",
-    "capa": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Man_With_A_Movie_Camera_poster.jpg"
+    "capa": "https://image.tmdb.org/t/p/w500/29n7dM18yM71K3a9n8m7u2J3S0.jpg"
   },
   {
     "id": "22",
     "titulo": "O Cangaceiro",
     "genero": "Ação",
     "pais": "Brasil",
-    "capa": "https://upload.wikimedia.org/wikipedia/pt/2/2f/O_Cangaceiro_Cartaz.jpg"
+    "capa": "https://image.tmdb.org/t/p/w500/8w03bC0S5C1m2x3y4z5a6b7c8d9.jpg"
   },
   {
     "id": "23",
     "titulo": "Drácula",
     "genero": "Terror",
     "pais": "Estados Unidos",
-    "capa": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Dracula_1931_poster.jpg"
+    "capa": "https://image.tmdb.org/t/p/w500/8p1k8K3S2N0M1L2p0a1K2M3a5b6.jpg"
   },
   {
     "id": "24",
     "titulo": "Frankenstein",
     "genero": "Terror",
     "pais": "Estados Unidos",
-    "capa": "https://upload.wikimedia.org/wikipedia/commons/8/85/Frankenstein_1931_poster.jpg"
+    "capa": "https://image.tmdb.org/t/p/w500/3A201u4aK8zK6dI4g3L1k1oI7oW.jpg"
   },
   {
     "id": "25",
     "titulo": "A Doce Vida (La Dolce Vita)",
     "genero": "Drama",
     "pais": "Itália",
-    "capa": "https://upload.wikimedia.org/wikipedia/commons/c/c5/La_dolce_vita_poster.jpg"
+    "capa": "https://image.tmdb.org/t/p/w500/9k0J0s1L2m0S1v3a5x6y7z8a9b0.jpg"
   },
   {
     "id": "26",
     "titulo": "Cozinha Zero",
     "genero": "Comédia",
     "pais": "França",
-    "capa": "https://upload.wikimedia.org/wikipedia/commons/f/f6/L%27Arroseur_arros%C3%A9_poster.jpg"
+    "capa": "https://image.tmdb.org/t/p/w500/1k1oI7oW7G2Jz3R4N5eK2mX1I0b.jpg"
   },
   {
     "id": "27",
-    "titulo": "O Vampiro (Nosferatu, a Noite do Vampiro)",
+    "titulo": "O Vampiro (Vampyr)",
     "genero": "Terror",
     "pais": "França",
-    "capa": "https://upload.wikimedia.org/wikipedia/commons/0/07/Vampyr_poster.jpg"
+    "capa": "https://image.tmdb.org/t/p/w500/4k1oI7oW7G2Jz3R4N5eK2mX1I0c.jpg"
   },
   {
     "id": "28",
     "titulo": "King Kong",
     "genero": "Fantasia",
     "pais": "Estados Unidos",
-    "capa": "https://upload.wikimedia.org/wikipedia/commons/c/c2/King_Kong_1933_style_A_poster.jpg"
+    "capa": "https://image.tmdb.org/t/p/w500/2a11bC9m1a4P1L2m0S1v3a5x6y8.jpg"
   },
   {
     "id": "29",
     "titulo": "A Regra do Jogo",
     "genero": "Drama",
     "pais": "França",
-    "capa": "https://upload.wikimedia.org/wikipedia/commons/c/c3/La_R%C3%A8gle_du_Jeu_poster.jpg"
+    "capa": "https://image.tmdb.org/t/p/w500/7a11bC9m1a4P1L2m0S1v3a5x6y9.jpg"
   },
   {
     "id": "30",
     "titulo": "O Pavor (Blackmail)",
     "genero": "Suspense",
     "pais": "Reino Unido",
-    "capa": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Blackmail_1929_poster.jpg"
+    "capa": "https://image.tmdb.org/t/p/w500/8a11bC9m1a4P1L2m0S1v3a5x6y0.jpg"
+  },
+  {
+    "id": "31",
+    "titulo": "Cidadão Kane",
+    "genero": "Drama",
+    "pais": "Estados Unidos",
+    "capa": "https://image.tmdb.org/t/p/w500/sav09R3A2vA2uJ38pE3uX1K3O3B.jpg"
+  },
+  {
+    "id": "32",
+    "titulo": "Casablanca",
+    "genero": "Romance",
+    "pais": "Estados Unidos",
+    "capa": "https://image.tmdb.org/t/p/w500/5M0K981uR6E60P31s1p9pYl4L2z.jpg"
+  },
+  {
+    "id": "33",
+    "titulo": "Um Corpo que Cai (Vertigo)",
+    "genero": "Suspense",
+    "pais": "Estados Unidos",
+    "capa": "https://image.tmdb.org/t/p/w500/150L21uR6E60P31s1p9pYl4L2yA.jpg"
+  },
+  {
+    "id": "34",
+    "titulo": "Psicose",
+    "genero": "Terror",
+    "pais": "Estados Unidos",
+    "capa": "https://image.tmdb.org/t/p/w500/8E201u4aK8zK6dI4g3L1k1oI7oX.jpg"
+  },
+  {
+    "id": "35",
+    "titulo": "Cantando na Chuva",
+    "genero": "Musical",
+    "pais": "Estados Unidos",
+    "capa": "https://image.tmdb.org/t/p/w500/9k201u4aK8zK6dI4g3L1k1oI7oY.jpg"
+  },
+  {
+    "id": "36",
+    "titulo": "O Grande Ditador",
+    "genero": "Comédia",
+    "pais": "Estados Unidos",
+    "capa": "https://image.tmdb.org/t/p/w500/1k1oI7oW7G2Jz3R4N5eK2mX1I0d.jpg"
+  },
+  {
+    "id": "37",
+    "titulo": "Crepúsculo dos Deuses",
+    "genero": "Drama",
+    "pais": "Estados Unidos",
+    "capa": "https://image.tmdb.org/t/p/w500/2k1oI7oW7G2Jz3R4N5eK2mX1I0e.jpg"
+  },
+  {
+    "id": "38",
+    "titulo": "Janela Indiscreta",
+    "genero": "Suspense",
+    "pais": "Estados Unidos",
+    "capa": "https://image.tmdb.org/t/p/w500/3k1oI7oW7G2Jz3R4N5eK2mX1I0f.jpg"
+  },
+  {
+    "id": "39",
+    "titulo": "12 Homens e Uma Sentença",
+    "genero": "Drama",
+    "pais": "Estados Unidos",
+    "capa": "https://image.tmdb.org/t/p/w500/4k1oI7oW7G2Jz3R4N5eK2mX1I0g.jpg"
+  },
+  {
+    "id": "40",
+    "titulo": "O Oitavo Sétimo (8½)",
+    "genero": "Drama",
+    "pais": "Itália",
+    "capa": "https://image.tmdb.org/t/p/w500/5k1oI7oW7G2Jz3R4N5eK2mX1I0h.jpg"
+  },
+  {
+    "id": "41",
+    "titulo": "Roma, Cidade Aberta",
+    "genero": "Drama",
+    "pais": "Itália",
+    "capa": "https://image.tmdb.org/t/p/w500/6k1oI7oW7G2Jz3R4N5eK2mX1I0i.jpg"
+  },
+  {
+    "id": "42",
+    "titulo": "Acossado (À bout de souffle)",
+    "genero": "Crime",
+    "pais": "França",
+    "capa": "https://image.tmdb.org/t/p/w500/7k1oI7oW7G2Jz3R4N5eK2mX1I0j.jpg"
+  },
+  {
+    "id": "43",
+    "titulo": "O Mágico de Oz",
+    "genero": "Fantasia",
+    "pais": "Estados Unidos",
+    "capa": "https://image.tmdb.org/t/p/w500/8k1oI7oW7G2Jz3R4N5eK2mX1I0k.jpg"
+  },
+  {
+    "id": "44",
+    "titulo": "E o Vento Levou",
+    "genero": "Romance",
+    "pais": "Estados Unidos",
+    "capa": "https://image.tmdb.org/t/p/w500/9k1oI7oW7G2Jz3R4N5eK2mX1I0l.jpg"
+  },
+  {
+    "id": "45",
+    "titulo": "O Pavor das Nações (Intolerância)",
+    "genero": "Drama",
+    "pais": "Estados Unidos",
+    "capa": "https://image.tmdb.org/t/p/w500/0k1oI7oW7G2Jz3R4N5eK2mX1I0m.jpg"
+  },
+  {
+    "id": "46",
+    "titulo": "O Anjo Exterminador",
+    "genero": "MISTÉRIO",
+    "pais": "México",
+    "capa": "https://image.tmdb.org/t/p/w500/1l1oI7oW7G2Jz3R4N5eK2mX1I0n.jpg"
+  },
+  {
+    "id": "47",
+    "titulo": "Taras Bulba",
+    "genero": "Aventura",
+    "pais": "Estados Unidos",
+    "capa": "https://image.tmdb.org/t/p/w500/2l1oI7oW7G2Jz3R4N5eK2mX1I0o.jpg"
+  },
+  {
+    "id": "48",
+    "titulo": "O Tesouro de Sierra Madre",
+    "genero": "Aventura",
+    "pais": "Estados Unidos",
+    "capa": "https://image.tmdb.org/t/p/w500/3l1oI7oW7G2Jz3R4N5eK2mX1I0p.jpg"
+  },
+  {
+    "id": "49",
+    "titulo": "Sombra de uma Dúvida",
+    "genero": "Suspense",
+    "pais": "Estados Unidos",
+    "capa": "https://image.tmdb.org/t/p/w500/4l1oI7oW7G2Jz3R4N5eK2mX1I0q.jpg"
+  },
+  {
+    "id": "50",
+    "titulo": "Viver (Ikiru)",
+    "genero": "Drama",
+    "pais": "Japão",
+    "capa": "https://image.tmdb.org/t/p/w500/5l1oI7oW7G2Jz3R4N5eK2mX1I0r.jpg"
+  },
+  {
+    "id": "51",
+    "titulo": "Era uma Vez em Tóquio",
+    "genero": "Drama",
+    "pais": "Japão",
+    "capa": "https://image.tmdb.org/t/p/w500/6l1oI7oW7G2Jz3R4N5eK2mX1I0s.jpg"
+  },
+  {
+    "id": "52",
+    "titulo": "O Terceiro Homem",
+    "genero": "Suspense",
+    "pais": "Reino Unido",
+    "capa": "https://image.tmdb.org/t/p/w500/7l1oI7oW7G2Jz3R4N5eK2mX1I0t.jpg"
+  },
+  {
+    "id": "53",
+    "titulo": "Pacto de Sangue (Double Indemnity)",
+    "genero": "Crime",
+    "pais": "Estados Unidos",
+    "capa": "https://image.tmdb.org/t/p/w500/8l1oI7oW7G2Jz3R4N5eK2mX1I0u.jpg"
+  },
+  {
+    "id": "54",
+    "titulo": "O Salário do Medo",
+    "genero": "Ação",
+    "pais": "França",
+    "capa": "https://image.tmdb.org/t/p/w500/9l1oI7oW7G2Jz3R4N5eK2mX1I0v.jpg"
+  },
+  {
+    "id": "55",
+    "titulo": "Diabólicas (Les Diaboliques)",
+    "genero": "Suspense",
+    "pais": "França",
+    "capa": "https://image.tmdb.org/t/p/w500/0l1oI7oW7G2Jz3R4N5eK2mX1I0w.jpg"
+  },
+  {
+    "id": "56",
+    "titulo": "Persona",
+    "genero": "Drama",
+    "pais": "Suécia",
+    "capa": "https://image.tmdb.org/t/p/w500/1m1oI7oW7G2Jz3R4N5eK2mX1I0x.jpg"
+  },
+  {
+    "id": "57",
+    "titulo": "Rastro de Ódio (The Searchers)",
+    "genero": "Faroeste",
+    "pais": "Estados Unidos",
+    "capa": "https://image.tmdb.org/t/p/w500/2m1oI7oW7G2Jz3R4N5eK2mX1I0y.jpg"
+  },
+  {
+    "id": "58",
+    "titulo": "Matar ou Morrer (High Noon)",
+    "genero": "Faroeste",
+    "pais": "Estados Unidos",
+    "capa": "https://image.tmdb.org/t/p/w500/3m1oI7oW7G2Jz3R4N5eK2mX1I0z.jpg"
+  },
+  {
+    "id": "59",
+    "titulo": "O Homem que Sabia Demais",
+    "genero": "Suspense",
+    "pais": "Estados Unidos",
+    "capa": "https://image.tmdb.org/t/p/w500/4m1oI7oW7G2Jz3R4N5eK2mX1I1a.jpg"
+  },
+  {
+    "id": "60",
+    "titulo": "Deus e o Diabo na Terra do Sol",
+    "genero": "Drama",
+    "pais": "Brasil",
+    "capa": "https://image.tmdb.org/t/p/w500/5m1oI7oW7G2Jz3R4N5eK2mX1I1b.jpg"
   }
 ]
