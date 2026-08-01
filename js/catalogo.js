@@ -62,14 +62,14 @@ function montarFiltros() {
 // Altera o filtro de País ao clicar no botão
 function filtrarPorPais(pais) {
   filtroPaisAtivo = pais;
-  montarFiltros();     // Atualiza a cor/destaque do botão ativo
+  montarFiltros();    // Atualiza a cor/destaque do botão ativo
   renderizarFilmes();  // Atualiza a grade com a nova filtragem
 }
 
 // Altera o filtro de Gênero ao clicar no botão
 function filtrarPorGenero(genero) {
   filtroGeneroAtivo = genero;
-  montarFiltros();     // Atualiza a cor/destaque do botão ativo
+  montarFiltros();    // Atualiza a cor/destaque do botão ativo
   renderizarFilmes();  // Atualiza a grade com a nova filtragem
 }
 
@@ -102,16 +102,23 @@ function renderizarFilmes() {
     return;
   }
 
-  // Renderiza os filmes filtrados na grade
-  grade.innerHTML = filmesFiltrados.map(filme => `
-    <div class="card-filme">
-      <img src="${filme.capa}" alt="${filme.titulo}">
-      <div class="card-filme-info">
-        <h3>${filme.titulo}</h3>
-        <span class="meta">${filme.genero} • ${filme.pais}</span>
-      </div>
-    </div>
-  `).join('');
+  // Renderiza os filmes filtrados na grade envelopados em um link <a>
+  grade.innerHTML = filmesFiltrados.map(filme => {
+    // Se no JSON houver a chave "link", usará ela; caso contrário, vai para player.html ou #
+    const linkAssistir = filme.link ? filme.link : `player.html?id=${filme.id}`;
+
+    return `
+      <a href="${linkAssistir}" target="_blank" class="card-filme-link" style="text-decoration: none; color: inherit;">
+        <div class="card-filme">
+          <img src="${filme.capa}" alt="${filme.titulo}">
+          <div class="card-filme-info">
+            <h3>${filme.titulo}</h3>
+            <span class="meta">${filme.genero} • ${filme.pais}</span>
+          </div>
+        </div>
+      </a>
+    `;
+  }).join('');
 }
 
 // Executa a carga do catálogo ao abrir a página

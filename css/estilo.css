@@ -735,3 +735,8 @@ h1, h2, h3, .logo {
     transform: translateY(0);
   }
 }
+.card-filme-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
