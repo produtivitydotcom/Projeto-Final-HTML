@@ -6,7 +6,7 @@ let termoBusca = '';
 
 async function carregarCatalogo() {
   try {
-    // 1. Busca os dados na pasta 'dados/' (Ajuste se filmes.json estiver em outro diretório)
+    // 1. Busca os dados na pasta 'dados/' (Ajuste o caminho se filmes.json estiver na raiz)
     const resposta = await fetch('dados/filmes.json');
     todosOsFilmes = await resposta.json();
 
@@ -156,12 +156,10 @@ function renderizarFilmes() {
     return;
   }
 
-  // Renderiza os filmes filtrados na grade envelopados em um link <a>
+  // Renderiza os filmes na grade direcionando para a página de detalhes (filme.html)
   grade.innerHTML = filmesFiltrados.map(filme => {
-    const linkAssistir = filme.link ? filme.link : `player.html?id=${filme.id}`;
-
     return `
-      <a href="${linkAssistir}" target="_blank" class="card-filme-link" style="text-decoration: none; color: inherit;">
+      <a href="filme.html?id=${filme.id}" class="card-filme-link" style="text-decoration: none; color: inherit;">
         <div class="card-filme">
           <img src="${filme.capa}" alt="${filme.titulo}">
           <div class="card-filme-info">
