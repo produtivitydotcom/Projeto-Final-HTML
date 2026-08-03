@@ -1,0 +1,324 @@
+/* ==========================================
+   ANIMAÇÕES DINÂMICAS DE GÊNEROS DE FILMES
+   ========================================== */
+
+/* Container do Efeito que cobre a tela */
+.efeito-genero-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  pointer-events: none !important;
+  z-index: 99999 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 7rem;
+  animation: animarEntradaSaida 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Base dos Emojis/Ícones */
+.efeito-genero-overlay::after {
+  display: inline-block;
+}
+
+/* Animação Principal de Entrada, Destaque e Saída */
+@keyframes animarEntradaSaida {
+  0% {
+    opacity: 0;
+    transform: scale(0.2) rotate(-10deg);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1.3) rotate(5deg);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.1) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.8) rotate(10deg);
+  }
+}
+
+/* --- ANIMAÇÕES ESPECÍFICAS DE CADA GÊNERO --- */
+
+/* 💖 ROMANCE: Corações Flutuantes e Rosados */
+.efeito-romance {
+  background: radial-gradient(circle, rgba(255, 105, 180, 0.35) 0%, transparent 75%);
+}
+.efeito-romance::after {
+  content: '💖 ✨ 💋';
+  filter: drop-shadow(0 0 25px #ff1493);
+  animation: pulsarCoracao 0.6s infinite alternate;
+}
+@keyframes pulsarCoracao {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.25); }
+}
+
+/* 👻 TERROR: Tremor Sombrio e Sangrento */
+.efeito-terror {
+  background: rgba(0, 0, 0, 0.88);
+  box-shadow: inset 0 0 120px #ff0000;
+}
+.efeito-terror::after {
+  content: '👻 🩸 💀';
+  filter: drop-shadow(0 0 25px #ff0000);
+  animation: tremerTerror 0.1s infinite;
+}
+@keyframes tremerTerror {
+  0% { transform: translate(3px, 3px) rotate(0deg); }
+  50% { transform: translate(-3px, -3px) rotate(-2deg); }
+  100% { transform: translate(3px, -3px) rotate(2deg); }
+}
+
+/* 😂 COMÉDIA: Explosão Alegre e Divertida */
+.efeito-comedia {
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.4) 0%, transparent 75%);
+}
+.efeito-comedia::after {
+  content: '😂 🎭 🤪';
+  filter: drop-shadow(0 0 20px #ffd700);
+  animation: balancarComedia 0.3s infinite alternate ease-in-out;
+}
+@keyframes balancarComedia {
+  0% { transform: rotate(-15deg) scale(1); }
+  100% { transform: rotate(15deg) scale(1.2); }
+}
+
+/* 🏰 DISNEY / ANIMAÇÃO: Brilho Mágico */
+.efeito-disney, .efeito-animacao {
+  background: radial-gradient(circle, rgba(0, 191, 255, 0.4) 0%, transparent 75%);
+}
+.efeito-disney::after, .efeito-animacao::after {
+  content: '🐭 ✨ 🏰';
+  filter: drop-shadow(0 0 30px #00bfff);
+  animation: giroMagico 1.2s ease-in-out;
+}
+@keyframes giroMagico {
+  0% { transform: rotate(0deg) scale(0.5); }
+  50% { transform: rotate(180deg) scale(1.3); }
+  100% { transform: rotate(360deg) scale(1.6); }
+}
+
+/* 🚀 FICÇÃO CIENTÍFICA: Portal Alienígena/Neon */
+.efeito-ficcao-cientifica {
+  background: radial-gradient(circle, rgba(0, 255, 204, 0.35) 0%, transparent 75%);
+}
+.efeito-ficcao-cientifica::after {
+  content: '🛸 🪐 👾';
+  filter: drop-shadow(0 0 25px #00ffcc);
+  animation: flutuarAlien 0.8s infinite alternate ease-in-out;
+}
+@keyframes flutuarAlien {
+  0% { transform: translateY(-15px); }
+  100% { transform: translateY(15px); }
+}
+
+/* 🔍 SUSPENSE: Lupa e Olho Vigilante */
+.efeito-suspense {
+  background: rgba(15, 23, 42, 0.85);
+}
+.efeito-suspense::after {
+  content: '🔍 👁️ 🕵️';
+  filter: drop-shadow(0 0 15px #94a3b8);
+}
+
+/* 💥 AÇÃO: Explosão de Impacto */
+.efeito-acao {
+  background: radial-gradient(circle, rgba(255, 69, 0, 0.4) 0%, transparent 75%);
+}
+.efeito-acao::after {
+  content: '💥 💣 ⚡';
+  filter: drop-shadow(0 0 30px #ff4500);
+  animation: impactoAcao 0.2s ease-out;
+}
+@keyframes impactoAcao {
+  0% { transform: scale(0.1); }
+  50% { transform: scale(1.5); }
+  100% { transform: scale(1.1); }
+}
+
+/* 🤠 FAROESTE: Poeira e Duelo no Deserto */
+.efeito-faroeste {
+  background: radial-gradient(circle, rgba(210, 105, 30, 0.4) 0%, transparent 75%);
+}
+.efeito-faroeste::after {
+  content: '🤠 🌵 🌵';
+  filter: drop-shadow(0 0 20px #d2691e);
+  animation: rolarFaroeste 1.2s linear;
+}
+@keyframes rolarFaroeste {
+  0% { transform: translateX(-100px) rotate(0deg); }
+  100% { transform: translateX(100px) rotate(360deg); }
+}
+
+/* 🎵 MUSICAL: Notas Dançantes */
+.efeito-musical {
+  background: radial-gradient(circle, rgba(147, 112, 219, 0.4) 0%, transparent 75%);
+}
+.efeito-musical::after {
+  content: '🎶 🎼 🎤';
+  filter: drop-shadow(0 0 20px #9370db);
+  animation: dancaNotas 0.5s infinite alternate ease-in-out;
+}
+@keyframes dancaNotas {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-20px) scale(1.2); }
+}
+
+/* 🐉 ANIME / FANTASIA: Poder Mágico/Dragon */
+.efeito-anime, .efeito-fantasia {
+  background: radial-gradient(circle, rgba(255, 0, 128, 0.35) 0%, transparent 75%);
+}
+.efeito-anime::after, .efeito-fantasia::after {
+  content: '⚡ 🔮 🐉';
+  filter: drop-shadow(0 0 25px #ff0080);
+  animation: brilhoPoder 0.4s infinite alternate;
+}
+@keyframes brilhoPoder {
+  0% { filter: drop-shadow(0 0 10px #ff0080); }
+  100% { filter: drop-shadow(0 0 35px #00ffff); }
+}
+
+/* 🚨 CRIME: Sirene Policial */
+.efeito-crime {
+  background: rgba(0, 0, 0, 0.8);
+  animation: sirenePolicia 0.4s infinite alternate, animarEntradaSaida 1.2s forwards;
+}
+.efeito-crime::after {
+  content: '🚨 🔫 🏎️';
+  filter: drop-shadow(0 0 20px #ff0000);
+}
+@keyframes sirenePolicia {
+  0% { box-shadow: inset 0 0 80px #ff0000; }
+  100% { box-shadow: inset 0 0 80px #0000ff; }
+}
+
+/* 🎭 DRAMA: Máscaras e Emoção */
+.efeito-drama {
+  background: radial-gradient(circle, rgba(100, 116, 139, 0.4) 0%, transparent 75%);
+}
+.efeito-drama::after {
+  content: '🎭 💔 🥀';
+  filter: drop-shadow(0 0 20px #cbd5e1);
+}
+
+/* 🎬 DOCUMENTÁRIO: Filmadora em Ação */
+.efeito-documentario {
+  background: radial-gradient(circle, rgba(234, 179, 8, 0.35) 0%, transparent 75%);
+}
+.efeito-documentario::after {
+  content: '📹 🌍 📜';
+  filter: drop-shadow(0 0 20px #eab308);
+}
+
+/* 🎨 VANGUARDA: Arte Abstrata e Psicodélica */
+.efeito-vanguarda {
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, transparent 75%);
+}
+.efeito-vanguarda::after {
+  content: '🎨 🌀 👁️‍🗨️';
+  filter: drop-shadow(0 0 25px #a855f7);
+  animation: giroPsicodelico 1.2s infinite linear;
+}
+@keyframes giroPsicodelico {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 🧭 AVENTURA: Mapa e Exploração */
+.efeito-aventura {
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.35) 0%, transparent 75%);
+}
+.efeito-aventura::after {
+  content: '🗺️ 🧭 🤠';
+  filter: drop-shadow(0 0 20px #22c55e);
+}
+/* ==========================================
+   ANIMAÇÕES DE PAÍSES / BANDEIRAS
+   ========================================== */
+
+/* 🇧🇷 BRASIL: Verde e Amarelo */
+.efeito-brasil {
+  background: linear-gradient(135deg, rgba(0, 156, 59, 0.5) 0%, rgba(255, 223, 0, 0.5) 100%);
+}
+.efeito-brasil::after {
+  content: '🇧🇷 💚 💛';
+  filter: drop-shadow(0 0 20px #009c3b);
+}
+
+/* 🇩🇪 ALEMANHA: Preto, Vermelho e Amarelo */
+.efeito-alemanha {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 33%, rgba(221, 0, 0, 0.5) 33%, rgba(221, 0, 0, 0.5) 66%, rgba(255, 206, 0, 0.5) 66%);
+}
+.efeito-alemanha::after {
+  content: '🇩🇪 🦅 🖤';
+  filter: drop-shadow(0 0 20px #ffce00);
+}
+
+/* 🇺🇸 ESTADOS UNIDOS: Azul e Vermelho com Brilho */
+.efeito-estados-unidos {
+  background: linear-gradient(135deg, rgba(10, 49, 97, 0.6) 0%, rgba(179, 25, 66, 0.6) 100%);
+}
+.efeito-estados-unidos::after {
+  content: '🇺🇸 ⭐ 🗽';
+  filter: drop-shadow(0 0 20px #b31942);
+}
+
+/* 🇫🇷 FRANÇA: Azul, Branco e Vermelho */
+.efeito-franca {
+  background: linear-gradient(90deg, rgba(0, 35, 149, 0.5) 33%, rgba(255, 255, 255, 0.3) 33%, rgba(255, 255, 255, 0.3) 66%, rgba(237, 41, 57, 0.5) 66%);
+}
+.efeito-franca::after {
+  content: '🇫🇷 🥖 🗼';
+  filter: drop-shadow(0 0 20px #002395);
+}
+
+/* 🇯🇵 JAPÃO: Vermelho e Branco (Sol Nascente) */
+.efeito-japao {
+  background: radial-gradient(circle, rgba(188, 0, 45, 0.6) 35%, rgba(255, 255, 255, 0.2) 70%);
+}
+.efeito-japao::after {
+  content: '🇯🇵 🌸 ⛩️';
+  filter: drop-shadow(0 0 25px #bc002d);
+}
+
+/* 🇮🇹 ITÁLIA: Verde, Branco e Vermelho */
+.efeito-italia {
+  background: linear-gradient(90deg, rgba(0, 146, 70, 0.5) 33%, rgba(255, 255, 255, 0.3) 33%, rgba(255, 255, 255, 0.3) 66%, rgba(206, 43, 55, 0.5) 66%);
+}
+.efeito-italia::after {
+  content: '🇮🇹 🍕 🏛️';
+  filter: drop-shadow(0 0 20px #009246);
+}
+
+/* 🇬🇧 REINO UNIDO: Azul e Vermelho */
+.efeito-reino-unido {
+  background: radial-gradient(circle, rgba(200, 16, 46, 0.5) 0%, rgba(1, 33, 105, 0.6) 80%);
+}
+.efeito-reino-unido::after {
+  content: '🇬🇧 👑 ☕';
+  filter: drop-shadow(0 0 20px #c8102e);
+}
+
+/* 🇸🇪 SUÉCIA: Azul e Amarelo */
+.efeito-suecia {
+  background: linear-gradient(135deg, rgba(0, 106, 167, 0.6) 0%, rgba(254, 204, 0, 0.5) 100%);
+}
+.efeito-suecia::after {
+  content: '🇸🇪 ❄️ 👑';
+  filter: drop-shadow(0 0 20px #fecc00);
+}
+
+/* 🛠️ UNIÃO SOVIÉTICA (RÚSSIA HISTÓRICA): Vermelho Marcante */
+.efeito-uniao-sovietica {
+  background: radial-gradient(circle, rgba(205, 0, 0, 0.7) 0%, rgba(120, 0, 0, 0.8) 80%);
+}
+.efeito-uniao-sovietica::after {
+  content: '🚩 🪆 ⭐️';
+  filter: drop-shadow(0 0 25px #ff0000);
+}

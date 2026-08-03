@@ -6,7 +6,7 @@ let termoBusca = '';
 
 async function carregarCatalogo() {
   try {
-    // 1. Busca os dados na pasta 'dados/'
+    // 1. Busca os dados na pasta 'dados/' (Ajuste se filmes.json estiver em outro diretório)
     const resposta = await fetch('dados/filmes.json');
     todosOsFilmes = await resposta.json();
 
@@ -59,18 +59,72 @@ function montarFiltros() {
   }
 }
 
-// Altera o filtro de País ao clicar no botão
+// Altera o filtro de País ao clicar no botão e dispara a animação de bandeira
 function filtrarPorPais(pais) {
   filtroPaisAtivo = pais;
   montarFiltros();    // Atualiza a cor/destaque do botão ativo
   renderizarFilmes();  // Atualiza a grade com a nova filtragem
+
+  // Dispara o efeito visual temático das cores da bandeira
+  dispararAnimacaoPais(pais);
 }
 
-// Altera o filtro de Gênero ao clicar no botão
+// Altera o filtro de Gênero ao clicar no botão e dispara a animação
 function filtrarPorGenero(genero) {
   filtroGeneroAtivo = genero;
   montarFiltros();    // Atualiza a cor/destaque do botão ativo
   renderizarFilmes();  // Atualiza a grade com a nova filtragem
+
+  // Dispara o efeito visual temático do gênero
+  dispararAnimacaoGenero(genero);
+}
+
+// Expõe as funções para garantir o funcionamento com o atributo onclick do HTML
+window.filtrarPorPais = filtrarPorPais;
+window.filtrarPorGenero = filtrarPorGenero;
+
+// --- ANIMAÇÃO DE GÊNEROS ---
+function dispararAnimacaoGenero(genero) {
+  if (!genero || genero === 'Todos') return;
+
+  // Normaliza o nome do gênero (ex: "Ficção Científica" -> "ficcao-cientifica")
+  const classeGenero = 'efeito-' + genero
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+/g, '-');
+
+  // Cria o overlay temporário na página
+  const overlay = document.createElement('div');
+  overlay.className = `efeito-genero-overlay ${classeGenero}`;
+  document.body.appendChild(overlay);
+
+  // Remove o elemento da tela após 1.2s para manter a aplicação leve
+  setTimeout(() => {
+    overlay.remove();
+  }, 1200);
+}
+
+// --- ANIMAÇÃO DE PAÍSES (BANDEIRAS) ---
+function dispararAnimacaoPais(pais) {
+  if (!pais || pais === 'Todos') return;
+
+  // Normaliza o nome do país (ex: "União Soviética" -> "uniao-sovietica")
+  const classePais = 'efeito-' + pais
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+/g, '-');
+
+  // Cria o overlay temporário na página
+  const overlay = document.createElement('div');
+  overlay.className = `efeito-genero-overlay ${classePais}`;
+  document.body.appendChild(overlay);
+
+  // Remove o elemento da tela após 1.2s
+  setTimeout(() => {
+    overlay.remove();
+  }, 1200);
 }
 
 // Filtra a lista completa de filmes e desenha os cards na div#grade
@@ -104,7 +158,6 @@ function renderizarFilmes() {
 
   // Renderiza os filmes filtrados na grade envelopados em um link <a>
   grade.innerHTML = filmesFiltrados.map(filme => {
-    // Se no JSON houver a chave "link", usará ela; caso contrário, vai para player.html ou #
     const linkAssistir = filme.link ? filme.link : `player.html?id=${filme.id}`;
 
     return `
