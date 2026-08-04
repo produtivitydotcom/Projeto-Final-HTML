@@ -1,67 +1,91 @@
 <!DOCTYPE html>
 
-//teste teste teste 
-<html lang="pt-BR">
+  <html lang="pt-BR">
 
-  <head>
+    <head>
+      <!-- tamanho da tela adaptável -->
+      <meta charset="UTF-8">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arcade — clássicos do mundo</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Fontes do Google -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+      <title>ARCADE — Filmes para todos</title>
 
-    <!-- Seu CSS -->
-    <link rel="stylesheet" href="css/estilo.css">
+      <!--importando as fontes -->
+
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+      <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" 
+      rel="stylesheet">
+
+
+
+      <!-- conecta css-->
+
+      <link rel="stylesheet" href="css/estilo.css">
 
   </head>
 
   <body>
 
-    <!-- ===== BARRA DE NAVEGAÇÃO (topo) ===== -->
+
+
+    <!--  MENU -->
+
     <header class="topo">
 
-      <a href="index.html" class="logo">Arcade</a>
 
-      <nav class="menu"> 
+      <a href="index.html" class="logo">ARCADE</a>
+
+
+      <nav class="menu">
 
         <a href="index.html" class="ativo">Início</a>
+
         <a href="catalogo.html">Catálogo</a>
+
+        <a href = "sobre.html">Missão</a>
+        
 
       </nav>
 
+
       <a href="catalogo.html" class="botao-busca">Explorar filmes</a>
+
 
     </header>
 
-    <!-- ===== DESTAQUE (hero) — preenchido pelo JavaScript ===== -->
-    <section id="destaque" class="destaque">
 
 
-    </section>
+    <!--  HERO — preenchido pelo JavaScript  -->
+
+    <section id="destaque" class="destaque"></section>
+
+
 
     <!-- ===== FILEIRAS DE FILMES — preenchidas pelo JavaScript ===== -->
-    <main id="fileiras" class="fileiras">
+
+    <main id="fileiras" class="fileiras"></main>
 
 
-    </main>
 
     <!-- ===== RODAPÉ ===== -->
+
     <footer class="rodape">
 
-      <p>Arcade — cinema clássico e cult em domínio público.</p>
+      <p>Cinemateca — cinema clássico e cult em domínio público.</p>
+
       <p class="rodape-fraco">Conheça outras culturas assistindo.</p>
 
     </footer>
 
-    <!-- Nosso JavaScript -->
+
+
+    <!-- Nosso JavaScript (fica por último, para o HTML já existir quando ele rodar) -->
+
     <script src="js/home.js"></script>
 
   </body>
-
-
 
 </html>
