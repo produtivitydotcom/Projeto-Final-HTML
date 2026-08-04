@@ -21,7 +21,7 @@
     <nav class="menu">
       <a href="index.html" class="ativo">Início</a>
       <a href="catalogo.html">Catálogo</a>
-      <a href="perfil.html">Minha Conta</a>
+      <a href="sobre.html">Missão</a>
     </nav>
     <a href="catalogo.html" class="botao-busca">Explorar filmes</a>
   </header>
@@ -38,31 +38,90 @@
     <p class="rodape-fraco">Conheça outras culturas assistindo.</p>
   </footer>
 
-  <!-- carrega o catálogo (o mesmo dados/filmes.json usado por catalogo.html e filme.html)
-       e adapta os campos que o home.js espera antes de chamá-lo -->
+  <!-- monta a home usando dados/filmes.json (mesma fonte de dados do catálogo e da página de filme) -->
   <script>
-    async function carregarFilmes() {
-      const resposta = await fetch('dados/filmes.json');
-      const filmes = await resposta.json();
+    async function iniciarHome() {
+      try {
+        const resposta = await fetch('dados/filmes.json');
+        const filmes = await resposta.json();
 
-      return filmes.map(filme => ({
-        ...filme,
-        generos: [filme.genero],
-        banner: filme.banner || filme.capa,
-        ano: filme.ano || 'Clássico',
-        sinopse: filme.sinopse || `Acompanhe a obra clássica "${filme.titulo}", um marco do cinema.`
-      }));
+        montarDestaque(filmes);
+        montarFileiras(filmes);
+      } catch (erro) {
+        console.error('Não consegui carregar os filmes:', erro);
+      }
     }
 
-    function mostrarErro(container, erro) {
-      console.error('Erro ao carregar o catálogo:', erro);
-      container.innerHTML = `
-        <p style="padding: 40px 48px; color: var(--texto-fraco);">
-          Não foi possível carregar o catálogo agora. Tente novamente mais tarde.
-        </p>
+    // DESTAQUE (hero): escolhe um filme e desenha o topo grande
+    function montarDestaque(filmes) {
+      const filme = filmes.find(f => f.titulo === 'Metropolis') || filmes[0];
+      const destaque = document.getElementById('destaque');
+
+      destaque.style.backgroundImage = `url('${filme.capa}')`;
+
+      destaque.innerHTML = `
+        <div class="destaque-conteudo">
+          <p class="destaque-eyebrow">${filme.pais} · ${filme.genero}</p>
+          <h1 class="destaque-titulo">${filme.titulo}</h1>
+          <p class="destaque-sinopse">Acompanhe a obra clássica "${filme.titulo}", um marco do cinema em domínio público.</p>
+          <div class="destaque-botoes">
+            <a href="player.html?id=${filme.id}" class="btn btn-principal">Assistir</a>
+            <a href="filme.html?id=${filme.id}" class="btn btn-secundario">Mais detalhes</a>
+          </div>
+        </div>
       `;
     }
+
+    // FILEIRAS: cria várias linhas de filmes por país e gênero
+    function montarFileiras(filmes) {
+      const container = document.getElementById('fileiras');
+
+      const fileiras = [
+        { titulo: 'Cinema alemão',     filtro: f => f.pais === 'Alemanha' },
+        { titulo: 'Cinema francês',    filtro: f => f.pais === 'França' },
+        { titulo: 'Cinema soviético',  filtro: f => f.pais === 'União Soviética' },
+        { titulo: 'Terror',            filtro: f => f.genero === 'Terror' },
+        { titulo: 'Ficção científica', filtro: f => f.genero === 'Ficção Científica' },
+        { titulo: 'Drama',             filtro: f => f.genero === 'Drama' },
+        { titulo: 'Comédia',           filtro: f => f.genero === 'Comédia' },
+      ];
+
+      fileiras.forEach(item => {
+        const selecionados = filmes.filter(item.filtro);
+        if (selecionados.length === 0) return;
+        container.appendChild(criarFileira(item.titulo, selecionados));
+      });
+    }
+
+    // cria UMA fileira (título + lista de cards) e devolve o elemento pronto
+    function criarFileira(titulo, filmes) {
+      const secao = document.createElement('section');
+      secao.className = 'fileira';
+
+      const cards = filmes.map(criarCard).join('');
+
+      secao.innerHTML = `
+        <h2 class="fileira-titulo">${titulo}</h2>
+        <div class="fileira-lista">${cards}</div>
+      `;
+
+      return secao;
+    }
+
+    // cria o HTML de UM card de filme, ligando para a página de detalhes
+    function criarCard(filme) {
+      return `
+        <a class="card" href="filme.html?id=${filme.id}">
+          <img class="card-capa" src="${filme.capa}" alt="Capa de ${filme.titulo}">
+          <div class="card-info">
+            <p class="card-titulo">${filme.titulo}</p>
+            <p class="card-meta">${filme.pais} · ${filme.genero}</p>
+          </div>
+        </a>
+      `;
+    }
+
+    iniciarHome();
   </script>
-  <script src="js/home.js"></script>
 </body>
 </html>
