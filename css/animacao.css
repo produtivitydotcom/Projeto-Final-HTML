@@ -24,37 +24,119 @@
 }
 
 /* ==========================================
-   DISNEY - VÍDEO OFICIAL INCORPORADO
+   CONTAINER BASE DA ANIMAÇÃO (OVERLAY)
    ========================================== */
-.efeito-disney-video {
-  background: #000000 !important;
-  transition: opacity 0.5s ease-in-out;
+.efeito-genero-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  pointer-events: none !important;
+  z-index: 99999 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
 }
 
-/* Esconde as bordas e barras para parecer um overlay nativo */
-.video-container-disney {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none; /* Impede que o usuário clique no vídeo */
+/* ==========================================
+   DISNEY (Apresentação Completa com Fogos e Arco Duplo)
+   ========================================== */
+.efeito-disney {
+  background: radial-gradient(circle at 50% 55%, #1e40af 0%, #0d1b2a 45%, #020617 90%) !important;
+  animation: animarOverlayDisney 3.5s ease-in-out forwards !important;
 }
 
-.video-container-disney iframe {
-  width: 100vw;
-  height: 56.25vw; /* Proporção 16:9 em tela cheia */
-  min-height: 100vh;
-  min-width: 177.77vh; /* Mantém preenchimento responsivo */
-  object-fit: cover;
-  transform: scale(1.15); /* Esconde pequenas bordas de branding do YouTube */
+/* 1. CASTELO DISNEY + LOGO SURGINDO */
+.efeito-disney::before {
+  content: '';
+  position: absolute;
+  width: 460px;
+  height: 460px;
+  /* Castelo com silhueta refinada */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' fill='%23ffffff'%3E%3Cpath d='M100 15 L92 35 L108 35 Z M96 35 H104 V60 H96 Z M75 45 L68 60 L82 60 Z M70 60 H80 V95 H70 Z M125 45 L118 60 L132 60 Z M120 60 H130 V95 H120 Z M45 70 L38 88 L52 88 Z M40 88 H50 V130 H40 Z M155 70 L148 88 L162 88 Z M150 88 H160 V130 H150 Z M50 90 H150 V130 H50 Z M80 100 H120 V130 H80 Z M88 110 H112 V130 H88 Z'/%3E%3C/svg%3E") no-repeat center/contain;
+  filter: drop-shadow(0 0 25px #60a5fa) drop-shadow(0 0 50px #1d4ed8) drop-shadow(0 0 90px #3b82f6);
+  animation: surgimentoCasteloDisney 3.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
-/* Transição de fechamento suave */
-.fechando-overlay {
-  opacity: 0 !important;
+/* 2. ARCO DOURADO DUPLO COM RASTRO */
+.efeito-disney::after {
+  content: '';
+  position: absolute;
+  width: 580px;
+  height: 400px;
+  border-top: 6px solid #fef08a;
+  border-radius: 50% 50% 0 0;
+  box-shadow: 0 -10px 25px #facc15, inset 0 10px 30px #60a5fa;
+  animation: desenharArcoMagico 3.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* 3. FOGOS DE ARTIFÍCIO E PARTÍCULAS MÁGICAS (Efeito Extra no Overlay) */
+.efeito-disney {
+  box-shadow: inset 0 0 100px rgba(56, 189, 248, 0.3);
+}
+
+/* --- ANIMAÇÕES DE CINEMA --- */
+
+@keyframes animarOverlayDisney {
+  0% { opacity: 0; }
+  8% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* O castelo surge, ganha foco, brilha intensamente no ápice e desvanece suavemente */
+@keyframes surgimentoCasteloDisney {
+  0% { 
+    transform: scale(0.6) translateY(60px); 
+    opacity: 0; 
+    filter: brightness(0) drop-shadow(0 0 0px transparent); 
+  }
+  25% { 
+    transform: scale(0.95) translateY(0); 
+    opacity: 1; 
+    filter: drop-shadow(0 0 20px #60a5fa) brightness(1); 
+  }
+  50% { 
+    transform: scale(1) translateY(-5px); 
+    filter: drop-shadow(0 0 60px #93c5fd) drop-shadow(0 0 110px #2563eb) brightness(1.5); 
+  }
+  80% {
+    transform: scale(1.02) translateY(-8px); 
+    opacity: 1;
+    filter: drop-shadow(0 0 40px #60a5fa) brightness(1.2);
+  }
+  100% { 
+    transform: scale(1.08) translateY(-15px); 
+    opacity: 0; 
+  }
+}
+
+/* O arco inicia na esquerda, cruza o céu formando uma parábola e brilha ao redor do castelo */
+@keyframes desenharArcoMagico {
+  0% { 
+    clip-path: inset(0 100% 0 0); 
+    transform: scale(0.7) translateY(30px); 
+    opacity: 0; 
+  }
+  15% { 
+    opacity: 1; 
+  }
+  70% { 
+    clip-path: inset(0 0 0 0); 
+    transform: scale(1.05) translateY(0); 
+    opacity: 1; 
+  }
+  88% {
+    clip-path: inset(0 0 0 0);
+    opacity: 0.8;
+  }
+  100% { 
+    clip-path: inset(0 0 0 0); 
+    transform: scale(1.15) translateY(-10px); 
+    opacity: 0; 
+  }
 }
 /* ==========================================
    2. TERROR (Mantido - Excelente)
