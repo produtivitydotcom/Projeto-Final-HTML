@@ -139,6 +139,1796 @@
   }
 }
 /* ==========================================
+   ANIMAÇÃO / CARTOON (Estilo Divertido Pop & Pop-out)
+   ========================================== */
+.efeito-animacao {
+  /* Fundo com efeito Sunburst (Raios de Sol Divertidos) */
+  background: repeating-conic-gradient(
+    from 0deg,
+    #ffb703 0deg 15deg,
+    #fb8500 15deg 30deg
+  ) !important;
+  animation: girarFundoCartoon 3.5s linear forwards, animarOverlayCartoon 3.5s ease-in-out forwards !important;
+}
+
+/* 1. TÚNEL DE CÍRCULOS (Estilo "Looney Tunes / That's All Folks") */
+.efeito-animacao::before {
+  content: '';
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  /* Círculos concêntricos de desenho animado em SVG */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='90' fill='%23ffb703' stroke='%23d00000' stroke-width='12'/%3E%3Ccircle cx='100' cy='100' r='65' fill='%23ff0054' stroke='%23ffb703' stroke-width='10'/%3E%3Ccircle cx='100' cy='100' r='40' fill='%239e2a2b' stroke='%23ff0054' stroke-width='8'/%3E%3C/svg%3E") no-repeat center/contain;
+  filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.4));
+  animation: zoomTunelCartoon 3.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+/* 2. EXPLOSÃO DE ESTRELAS E NUVENS POPPING */
+.efeito-animacao::after {
+  content: '';
+  position: absolute;
+  width: 550px;
+  height: 550px;
+  /* Estrela Divertida + Nuvem em SVG */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' fill='%23ffffff'%3E%3Cpath d='M100 20 L115 65 L160 65 L123 92 L138 137 L100 110 L62 137 L77 92 L40 65 L85 65 Z' fill='%23ffea00' stroke='%23000000' stroke-width='4'/%3E%3C/svg%3E") no-repeat center/contain;
+  filter: drop-shadow(0 0 20px #ffea00);
+  animation: estrelaSaltando Cartoon 3.5s ease-in-out forwards;
+}
+
+/* ==========================================
+   ANIMAÇÃO / CARTOON (Tema Tom & Jerry / O Máscara - Tela Cheia)
+   ========================================== */
+.efeito-animacao {
+  /* Fundo de Raios Radiais em Tela Cheia (Estilo Abertura de Desenho) */
+  background: repeating-conic-gradient(
+    from 0deg,
+    #ff0054 0deg 15deg,
+    #ffb703 15deg 30deg
+  ) !important;
+  animation: girarFundoCartoon 3.5s linear infinite, animarOverlayCartoon 3.5s ease-in-out forwards !important;
+}
+
+/* 1. MOLDURA DE CÍRCULOS (Abertura estilo Looney Tunes/Tom & Jerry) */
+.efeito-animacao::before {
+  content: '';
+  position: absolute;
+  inset: 0; /* Preenche a tela inteira */
+  width: 100vw;
+  height: 100vh;
+  /* Anéis Concêntricos de Desenho Animado em Tela Cheia */
+  background: radial-gradient(circle at center, 
+    transparent 20%, 
+    #ff0054 21%, #ff0054 35%, 
+    #ffb703 36%, #ffb703 50%, 
+    #00b4d8 51%, #00b4d8 65%, 
+    #0d1b2a 66%
+  );
+  animation: pulsoMolduraCartoon 3.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* 2. EXPLOSÃO POPUP "BAM!" / "POW!" NO CENTRO DA TELA */
+.efeito-animacao::after {
+  content: '';
+  position: absolute;
+  width: 90vw;
+  max-width: 650px;
+  height: 500px;
+  /* SVG de Estrela de Impacto Amarela com Bordas Pretas Estilo HQ/Cartoon */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath d='M100 10 L120 65 L175 40 L145 90 L195 125 L135 135 L145 190 L95 150 L50 185 L65 130 L10 120 L60 85 L25 45 L80 60 Z' fill='%23ffea00' stroke='%23000000' stroke-width='6' stroke-linejoin='round'/%3E%3Ctext x='100' y='115' font-family='Impact, Arial Black' font-size='42' font-weight='bold' fill='%23ff0054' stroke='%23000000' stroke-width='2' text-anchor='middle' transform='rotate(-5 100 115)'%3ECARTOON!%3C/text%3E%3C/svg%3E") no-repeat center/contain;
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.6));
+  animation: explosaoComicCartoon 3.5s cubic-bezier(0.68, -0.6, 0.32, 1.6) forwards;
+}
+
+/* --- ANIMAÇÕES EM TELA CHEIA --- */
+
+@keyframes animarOverlayCartoon {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Fundo espiral girando */
+@keyframes girarFundoCartoon {
+  0% { transform: scale(1.5) rotate(0deg); }
+  100% { transform: scale(1.5) rotate(360deg); }
+}
+
+/* Anéis do centro expandindo e preenchendo a tela */
+@keyframes pulsoMolduraCartoon {
+  0% { transform: scale(0.2); opacity: 0; }
+  25% { transform: scale(1.1); opacity: 1; }
+  40% { transform: scale(1); }
+  80% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+/* Efeito de elasticidade extrema (Squash & Stretch) no logotipo "CARTOON!" */
+@keyframes explosaoComicCartoon {
+  0% { transform: scale(0) rotate(-30deg); opacity: 0; }
+  20% { transform: scale(1.4) rotate(15deg); opacity: 1; }
+  35% { transform: scale(0.85) rotate(-8deg); }
+  50% { transform: scale(1.1) rotate(3deg); }
+  65% { transform: scale(0.98) rotate(0deg); }
+  85% { transform: scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: scale(2.5) rotate(-15deg); opacity: 0; }
+}
+/* ==========================================
+   1. ANIME / SHONEN (One Piece / Haki - 4.5s)
+   ========================================== */
+.efeito-animacao {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 999999 !important;
+  pointer-events: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  background: radial-gradient(circle at center, #991b1b 0%, #450a0a 45%, #020617 90%) !important;
+  animation: flashHakiAnime 4.5s ease-out forwards, sumirOverlayAuto 4.5s ease-in-out forwards !important;
+}
+
+/* Chapéu de Palha e Raios de Haki */
+.efeito-animacao::before {
+  content: '';
+  position: absolute;
+  width: 85vw;
+  max-width: 500px;
+  height: 500px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath d='M30 110 C30 110 50 80 100 80 C150 80 170 110 170 110 C185 110 195 125 180 130 C150 140 50 140 20 130 C5 125 15 110 30 110 Z' fill='%23facc15' stroke='%237f1d1d' stroke-width='5'/%3E%3Cpath d='M60 102 C60 102 70 93 100 93 C130 93 140 102 140 102' fill='none' stroke='%23dc2626' stroke-width='9'/%3E%3Cpath d='M10 10 L45 45 M190 10 L155 45 M10 190 L50 150 M190 190 L150 150' stroke='%23ef4444' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center/contain;
+  filter: drop-shadow(0 0 30px #ef4444) drop-shadow(0 0 60px #facc15);
+  animation: impactoHakiEChapeu 4.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Onda de Choque do Haki */
+.efeito-animacao::after {
+  content: '';
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at center, transparent 25%, rgba(239, 68, 68, 0.5) 35%, transparent 45%, rgba(250, 204, 21, 0.4) 55%, transparent 70%);
+  animation: megaOndaAnime 4.5s ease-out forwards;
+}
+
+/* --- KEYFRAMES DA ANIMAÇÃO DE ANIME --- */
+@keyframes sumirOverlayAuto {
+  0% { opacity: 0; visibility: visible; }
+  8% { opacity: 1; visibility: visible; }
+  85% { opacity: 1; visibility: visible; }
+  99% { opacity: 0; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+@keyframes flashHakiAnime {
+  0% { filter: brightness(1); }
+  4% { filter: brightness(3.5) contrast(2); }
+  8% { filter: brightness(1); }
+  14% { filter: brightness(3) contrast(2.5); }
+  20% { filter: brightness(1.2); }
+}
+
+@keyframes impactoHakiEChapeu {
+  0% { transform: scale(0.1) rotate(-45deg); opacity: 0; }
+  15% { transform: scale(1.3) rotate(5deg); opacity: 1; }
+  30% { transform: scale(0.95) rotate(-2deg); }
+  45% { transform: scale(1.08) rotate(2deg); }
+  75% { transform: scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: scale(2.2) rotate(15deg); opacity: 0; }
+}
+
+@keyframes megaOndaAnime {
+  0% { transform: scale(0.2); opacity: 0; }
+  20% { opacity: 1; }
+  60% { transform: scale(1.8); opacity: 0.8; }
+  100% { transform: scale(3.5); opacity: 0; }
+}
+/* ==========================================
+   CATEGORIA CRIME / INVESTIGAÇÃO (3.5s)
+   ========================================== */
+.efeito-crime {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 999999 !important;
+  pointer-events: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  background: radial-gradient(circle at center, #111827 0%, #030712 60%, #000000 100%) !important;
+  animation: girofledoPolicia 3.5s infinite, sumirOverlayAutoCrime 3.5s ease-in-out forwards !important;
+}
+
+/* 1. SILHUETA DE DISTINTIVO / CRIME SCENE NO CENTRO */
+.efeito-crime::before {
+  content: '';
+  position: absolute;
+  width: 85vw;
+  max-width: 480px;
+  height: 480px;
+  /* SVG de Distintivo Policial / Lupa de Investigação */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath d='M100 20 L160 50 V100 C160 140 100 180 100 180 C100 180 40 140 40 100 V50 Z' fill='none' stroke='%23f3f4f6' stroke-width='6'/%3E%3Ccircle cx='100' cy='90' r='30' fill='none' stroke='%23ef4444' stroke-width='8'/%3E%3Cpath d='M120 110 L145 135' stroke='%23ef4444' stroke-width='8' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center/contain;
+  filter: drop-shadow(0 0 25px #ef4444) drop-shadow(0 0 50px #3b82f6);
+  animation: impactoCrime 3.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 2. FASTRAS / FITAS DE ISOLAMENTO EM CRUS */
+.efeito-crime::after {
+  content: 'CRIME SCENE - DO NOT CROSS';
+  position: absolute;
+  width: 140vw;
+  height: 45px;
+  background: #facc15;
+  color: #000000;
+  font-family: 'Impact', 'Arial Black', sans-serif;
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  border-top: 4px solid #000;
+  border-bottom: 4px solid #000;
+  transform: rotate(-12deg);
+  animation: fitaPolicial 3.5s ease-out forwards;
+}
+
+/* --- KEYFRAMES CRIME --- */
+
+/* Faz a animação sumir sozinha no final */
+@keyframes sumirOverlayAutoCrime {
+  0% { opacity: 0; visibility: visible; }
+  8% { opacity: 1; visibility: visible; }
+  85% { opacity: 1; visibility: visible; }
+  99% { opacity: 0; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* Simula o piscar da sirene de polícia (Vermelho e Azul) */
+@keyframes girofledoPolicia {
+  0%, 100% { box-shadow: inset 0 0 100px rgba(239, 68, 68, 0.4); }
+  50% { box-shadow: inset 0 0 100px rgba(59, 130, 246, 0.4); }
+}
+
+/* Animação do Distintivo surgindo com impacto */
+@keyframes impactoCrime {
+  0% { transform: scale(0.3) rotate(-10deg); opacity: 0; }
+  18% { transform: scale(1.1) rotate(2deg); opacity: 1; }
+  30% { transform: scale(0.95); }
+  75% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+/* Entrada rápida da fita de isolamento cruza a tela */
+@keyframes fitaPolicial {
+  0% { transform: scaleX(0) rotate(-12deg); opacity: 0; }
+  15% { transform: scaleX(1) rotate(-12deg); opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+/* ==========================================
+   CATEGORIA COMÉDIA (Divertida & Pop - 3.5s)
+   ========================================== */
+.efeito-comedia {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 999999 !important;
+  pointer-events: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  background: radial-gradient(circle at center, #fbbf24 0%, #d97706 50%, #451a03 95%) !important;
+  animation: pulsoFundoComedia 3.5s ease-in-out infinite, sumirOverlayAutoComedia 3.5s ease-in-out forwards !important;
+}
+
+/* 1. MÁSCARA SORRIDENTE / SMILEY ELASTICO NO CENTRO */
+.efeito-comedia::before {
+  content: '';
+  position: absolute;
+  width: 85vw;
+  max-width: 480px;
+  height: 480px;
+  /* SVG de Emoticon de Risada / Máscara de Comédia */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='80' fill='%23fef08a' stroke='%2378350f' stroke-width='8'/%3E%3Cpath d='M65 75 C65 65 80 65 80 75' stroke='%2378350f' stroke-width='8' stroke-linecap='round' fill='none'/%3E%3Cpath d='M120 75 C120 65 135 65 135 75' stroke='%2378350f' stroke-width='8' stroke-linecap='round' fill='none'/%3E%3Cpath d='M55 110 C55 160 145 160 145 110 Z' fill='%2378350f'/%3E%3Cpath d='M70 115 C70 130 130 130 130 115' fill='%23ef4444'/%3E%3C/svg%3E") no-repeat center/contain;
+  filter: drop-shadow(0 15px 25px rgba(120, 53, 15, 0.4)) drop-shadow(0 0 40px #fef08a);
+  animation: saltoComedia 3.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+/* 2. EXPLOSÃO DE CONFETIS / RISADAS (ANÉIS POP) */
+.efeito-comedia::after {
+  content: '';
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at center, transparent 30%, rgba(254, 240, 138, 0.5) 35%, transparent 45%, rgba(245, 158, 11, 0.4) 60%, transparent 75%);
+  animation: expansaoRisada 3.5s ease-out forwards;
+}
+
+/* --- KEYFRAMES COMÉDIA --- */
+
+/* Sumir automaticamente no final da animação */
+@keyframes sumirOverlayAutoComedia {
+  0% { opacity: 0; visibility: visible; }
+  8% { opacity: 1; visibility: visible; }
+  85% { opacity: 1; visibility: visible; }
+  99% { opacity: 0; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* Fundo oscilando levemente em tom e brilho */
+@keyframes pulsoFundoComedia {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.15) contrast(1.05); }
+}
+
+/* Animação com efeito de mola e gargalhada */
+@keyframes saltoComedia {
+  0% { transform: scale(0) rotate(-20deg); opacity: 0; }
+  18% { transform: scale(1.25) rotate(10deg); opacity: 1; }
+  32% { transform: scale(0.85) rotate(-5deg); }
+  48% { transform: scale(1.1) rotate(4deg); }
+  62% { transform: scale(0.95) rotate(-2deg); }
+  78% { transform: scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: scale(2) rotate(15deg); opacity: 0; }
+}
+
+/* Expansão das ondas de gargalhada */
+@keyframes expansaoRisada {
+  0% { transform: scale(0.2); opacity: 0; }
+  20% { opacity: 1; }
+  60% { transform: scale(1.5); opacity: 0.7; }
+  100% { transform: scale(3); opacity: 0; }
+}
+/* ==========================================
+   CATEGORIA DRAMA (Teatral & Cinema Grandioso - 4.0s)
+   ========================================== */
+.efeito-drama {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 999999 !important;
+  pointer-events: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  /* Fundo Vinho/Dourado Estilo Cortina de Teatro e Tapete Vermelho */
+  background: radial-gradient(circle at 50% 30%, #581c87 0%, #31081f 45%, #0f0208 90%) !important;
+  animation: brilhoHolofoteDrama 4.0s ease-in-out infinite, sumirOverlayAutoDrama 4.0s ease-in-out forwards !important;
+}
+
+/* 1. CLAQUETE DE CINEMA E FOCO DE HOLOFOTE DOURADO */
+.efeito-drama::before {
+  content: '';
+  position: absolute;
+  width: 85vw;
+  max-width: 480px;
+  height: 480px;
+  /* SVG de Claquete de Cinema Teatral em Ouro Elegante */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect x='25' y='65' width='150' height='100' rx='8' fill='%2318181b' stroke='%23facc15' stroke-width='6'/%3E%3Cpath d='M25 65 L175 65 L165 35 L15 35 Z' fill='%23facc15' stroke='%2318181b' stroke-width='4'/%3E%3Cpath d='M50 35 L70 65 M90 35 L110 65 M130 35 L150 65' stroke='%2318181b' stroke-width='6' stroke-linecap='square'/%3E%3Cpolygon points='100,85 115,115 145,115 120,135 130,165 100,145 70,165 80,135 55,115 85,115' fill='%23facc15'/%3E%3C/svg%3E") no-repeat center/contain;
+  filter: drop-shadow(0 0 35px #facc15) drop-shadow(0 0 70px #9333ea);
+  animation: entradaClaqueteDrama 4.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 2. CORTINAS / FEIXES DE LUZ VERTICAIS DE PALCO */
+.efeito-drama::after {
+  content: '';
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  /* Feixes verticais simulando cortinas de luz dramáticas */
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(250, 204, 21, 0.08) 0px,
+    rgba(250, 204, 21, 0.08) 40px,
+    transparent 40px,
+    transparent 80px
+  );
+  animation: feixesTeatro 4.0s linear forwards;
+}
+
+/* --- KEYFRAMES DRAMA --- */
+
+/* Sumir automaticamente no final */
+@keyframes sumirOverlayAutoDrama {
+  0% { opacity: 0; visibility: visible; }
+  10% { opacity: 1; visibility: visible; }
+  82% { opacity: 1; visibility: visible; }
+  99% { opacity: 0; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* Efeito de iluminação de holofote piscando suavemente no fundo */
+@keyframes brilhoHolofoteDrama {
+  0%, 100% { filter: brightness(1) contrast(1.1); }
+  50% { filter: brightness(1.3) contrast(1.2); }
+}
+
+/* A Claquete entra com impacto de revelação dramática */
+@keyframes entradaClaqueteDrama {
+  0% { transform: scale(0.2) rotate(-15deg); opacity: 0; }
+  20% { transform: scale(1.15) rotate(3deg); opacity: 1; }
+  35% { transform: scale(0.95) rotate(-1deg); }
+  50% { transform: scale(1.05) rotate(0deg); filter: drop-shadow(0 0 50px #fde047) drop-shadow(0 0 90px #c084fc); }
+  75% { transform: scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: scale(1.8) rotate(10deg); opacity: 0; }
+}
+
+/* Movimento dos feixes de luz no fundo */
+@keyframes feixesTeatro {
+  0% { transform: scale(1) translateY(-20px); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 0.8; }
+  100% { transform: scale(1.2) translateY(20px); opacity: 0; }
+}
+/* ==========================================
+   CATEGORIA SUSPENSE (Névoa Translucida & Tensão - 4.0s)
+   ========================================== */
+.efeito-suspense {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 999999 !important;
+  pointer-events: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  /* Fundo Translucido Escuro com Névoa Esmeralda/Cinza */
+  background: radial-gradient(circle at center, rgba(6, 78, 59, 0.75) 0%, rgba(15, 23, 42, 0.88) 55%, rgba(2, 6, 23, 0.96) 90%) !important;
+  backdrop-filter: blur(8px) !important; /* Desfoca suavemente o site ao fundo */
+  animation: pulsoEfeitoNevoa 4.0s ease-in-out infinite, sumirOverlayAutoSuspense 4.0s ease-in-out forwards !important;
+}
+
+/* 1. SILHUETA DE OLHO / LENTE DE TENSÃO NO CENTRO */
+.efeito-suspense::before {
+  content: '';
+  position: absolute;
+  width: 85vw;
+  max-width: 500px;
+  height: 500px;
+  /* SVG de Olho Observador / Enquadramento de Suspense em Verde Neon e Prata */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath d='M10 100 C40 40 160 40 190 100 C160 160 40 160 10 100 Z' fill='none' stroke='%2334d399' stroke-width='6' stroke-linecap='round'/%3E%3Ccircle cx='100' cy='100' r='35' fill='none' stroke='%2334d399' stroke-width='6'/%3E%3Ccircle cx='100' cy='100' r='15' fill='%2310b981'/%3E%3Cpath d='M10 10 L40 10 M10 10 L10 40 M190 10 L160 10 M190 10 L190 40 M10 190 L40 190 M10 190 L10 160 M190 190 L160 190 M190 190 L190 160' stroke='%23ec4899' stroke-width='4' fill='none'/%3E%3C/svg%3E") no-repeat center/contain;
+  filter: drop-shadow(0 0 30px #10b981) drop-shadow(0 0 60px #047857) drop-shadow(0 0 90px #022c22);
+  animation: revelacaoSuspense 4.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 2. CAMADA DE NÉVOA EM MOVIMENTO & ANÉIS DE PULSATORIOS */
+.efeito-suspense::after {
+  content: '';
+  position: absolute;
+  width: 120vw;
+  height: 120vh;
+  /* Granulação e feixes de névoa translúcida */
+  background: radial-gradient(circle at center, transparent 20%, rgba(52, 211, 153, 0.15) 35%, transparent 50%, rgba(15, 23, 42, 0.6) 80%);
+  animation: nevoaDinamica 4.0s ease-out forwards;
+}
+
+/* --- KEYFRAMES SUSPENSE --- */
+
+/* Sumir automaticamente no final */
+@keyframes sumirOverlayAutoSuspense {
+  0% { opacity: 0; visibility: visible; }
+  8% { opacity: 1; visibility: visible; }
+  85% { opacity: 1; visibility: visible; }
+  99% { opacity: 0; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* Névoa pulsando com variação de opacidade e tensão */
+@keyframes pulsoEfeitoNevoa {
+  0%, 100% { filter: brightness(1) contrast(1.2); }
+  25% { filter: brightness(1.25) contrast(1.4); }
+  50% { filter: brightness(0.9) contrast(1.1); }
+  75% { filter: brightness(1.3) contrast(1.5); }
+}
+
+/* Olho de tensão surge cortando a névoa com pulso cardíaco */
+@keyframes revelacaoSuspense {
+  0% { transform: scale(0.3) rotate(-10deg); opacity: 0; filter: blur(12px); }
+  15% { transform: scale(1.2) rotate(2deg); opacity: 1; filter: blur(0px); }
+  28% { transform: scale(0.92) rotate(-1deg); }
+  42% { transform: scale(1.08) rotate(1deg); filter: drop-shadow(0 0 45px #34d399); }
+  60% { transform: scale(0.98); }
+  78% { transform: scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: scale(2.2) rotate(8deg); opacity: 0; filter: blur(10px); }
+}
+
+/* Movimento da camada de névoa translúcida */
+@keyframes nevoaDinamica {
+  0% { transform: scale(0.8) rotate(0deg); opacity: 0; }
+  20% { opacity: 1; }
+  60% { transform: scale(1.4) rotate(10deg); opacity: 0.8; }
+  100% { transform: scale(2) rotate(20deg); opacity: 0; }
+}
+/* ==========================================
+   CATEGORIA FANTASIA (Noite Mágica & Névoa Encantada - 4.0s)
+   ========================================== */
+.efeito-fantasia {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 999999 !important;
+  pointer-events: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  /* Fundo Translucido de Noite Mágica (Roxo Violeta / Azul Profundo) */
+  background: radial-gradient(circle at center, rgba(88, 28, 135, 0.75) 0%, rgba(30, 27, 75, 0.88) 55%, rgba(15, 23, 42, 0.96) 90%) !important;
+  backdrop-filter: blur(8px) !important; /* Desfoca suavemente o site ao fundo */
+  animation: pulsoNevoaMagica 4.0s ease-in-out infinite, sumirOverlayAutoFantasia 4.0s ease-in-out forwards !important;
+}
+
+/* 1. SILHUETA DE ESTRELA E LUA MAGICA NO CENTRO */
+.efeito-fantasia::before {
+  content: '';
+  position: absolute;
+  width: 85vw;
+  max-width: 500px;
+  height: 500px;
+  /* SVG de Estrela Cadente e Lua de Cristal */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath d='M100 15 L122 72 L183 72 L134 108 L152 165 L100 130 L48 165 L66 108 L17 72 L78 72 Z' fill='none' stroke='%23fde047' stroke-width='6' stroke-linejoin='round'/%3E%3Cpath d='M125 45 A45 45 0 1 1 155 115 A35 35 0 1 0 125 45 Z' fill='%23c084fc' stroke='%23fef08a' stroke-width='3'/%3E%3Ccircle cx='40' cy='40' r='3' fill='%23ffffff'/%3E%3Ccircle cx='160' cy='160' r='4' fill='%23ffffff'/%3E%3Ccircle cx='170' cy='40' r='2' fill='%23ffffff'/%3E%3C/svg%3E") no-repeat center/contain;
+  filter: drop-shadow(0 0 35px #facc15) drop-shadow(0 0 70px #a855f7) drop-shadow(0 0 100px #3b82f6);
+  animation: surgimentoFantasia 4.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 2. ONDA DE POEIRA ESTELAR E NEVOA EM EXPANSÃO */
+.efeito-fantasia::after {
+  content: '';
+  position: absolute;
+  width: 120vw;
+  height: 120vh;
+  /* Anéis de brilho místico e aura mágica */
+  background: radial-gradient(circle at center, transparent 20%, rgba(250, 204, 21, 0.25) 35%, transparent 50%, rgba(168, 85, 247, 0.3) 70%, transparent 85%);
+  animation: expansaoNevoaMagica 4.0s ease-out forwards;
+}
+
+/* --- KEYFRAMES FANTASIA --- */
+
+/* Sumir automaticamente no final */
+@keyframes sumirOverlayAutoFantasia {
+  0% { opacity: 0; visibility: visible; }
+  8% { opacity: 1; visibility: visible; }
+  85% { opacity: 1; visibility: visible; }
+  99% { opacity: 0; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* Oscilação e brilho da névoa de fundo */
+@keyframes pulsoNevoaMagica {
+  0%, 100% { filter: brightness(1) contrast(1.1); }
+  50% { filter: brightness(1.3) contrast(1.25); }
+}
+
+/* A estrela mágica entra girando suavemente com brilho de feitiço */
+@keyframes surgimentoFantasia {
+  0% { transform: scale(0.2) rotate(-30deg); opacity: 0; filter: blur(10px); }
+  18% { transform: scale(1.2) rotate(8deg); opacity: 1; filter: blur(0px); }
+  32% { transform: scale(0.92) rotate(-3deg); }
+  48% { transform: scale(1.08) rotate(3deg); filter: drop-shadow(0 0 50px #fde047) drop-shadow(0 0 90px #c084fc); }
+  65% { transform: scale(0.98); }
+  80% { transform: scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: scale(2.2) rotate(20deg); opacity: 0; filter: blur(12px); }
+}
+
+/* Expansão da névoa e aura brilhante */
+@keyframes expansaoNevoaMagica {
+  0% { transform: scale(0.5) rotate(0deg); opacity: 0; }
+  20% { opacity: 1; }
+  60% { transform: scale(1.5) rotate(-10deg); opacity: 0.8; }
+  100% { transform: scale(2.5) rotate(-20deg); opacity: 0; }
+}
+/* ==========================================
+   CATEGORIA DOCUMENTÁRIO / HISTÓRIA (4.0s)
+   ========================================== */
+.efeito-documentario {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 999999 !important;
+  pointer-events: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  /* Fundo Translucido de Papiro / Tom de Ouro Antigo e Areias do Tempo */
+  background: radial-gradient(circle at center, rgba(120, 53, 15, 0.8) 0%, rgba(69, 26, 3, 0.9) 55%, rgba(15, 23, 42, 0.96) 90%) !important;
+  backdrop-filter: blur(8px) !important; /* Desfoca suavemente o site ao fundo */
+  animation: luzHistoria 4.0s ease-in-out infinite, sumirOverlayAutoDocumentario 4.0s ease-in-out forwards !important;
+}
+
+/* 1. SILHUETA DA PIRÂMIDE DOURADA & BÚSSOLA HISTÓRICA NO CENTRO */
+.efeito-documentario::before {
+  content: '';
+  position: absolute;
+  width: 85vw;
+  max-width: 500px;
+  height: 500px;
+  /* SVG de Pirâmide Sagrada com Sol e Bússola de Navegação Antiga */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpolygon points='100,30 30,150 170,150' fill='none' stroke='%23facc15' stroke-width='6' stroke-linejoin='round'/%3E%3Cline x1='100' y1='30' x2='100' y2='150' stroke='%23facc15' stroke-width='4'/%3E%3Ccircle cx='100' cy='30' r='10' fill='%23fef08a'/%3E%3Ccircle cx='100' cy='105' r='55' fill='none' stroke='%23d97706' stroke-width='3' stroke-dasharray='6 4'/%3E%3Cpolygon points='100,60 108,100 100,95 92,100' fill='%23facc15'/%3E%3C/svg%3E") no-repeat center/contain;
+  filter: drop-shadow(0 0 35px #facc15) drop-shadow(0 0 70px #b45309);
+  animation: revelacaoHistorica 4.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 2. ONDA DE POEIRA DE PAPIRO E ANÉIS DE EXPANSÃO TEMPORAL */
+.efeito-documentario::after {
+  content: '';
+  position: absolute;
+  width: 120vw;
+  height: 120vh;
+  /* Anéis de luz e feixes dourados de grande descoberta */
+  background: radial-gradient(circle at center, transparent 20%, rgba(250, 204, 21, 0.25) 35%, transparent 50%, rgba(180, 83, 9, 0.3) 70%, transparent 85%);
+  animation: expansaoTemporal 4.0s ease-out forwards;
+}
+
+/* --- KEYFRAMES DOCUMENTÁRIO / HISTÓRIA --- */
+
+/* Sumir automaticamente no final */
+@keyframes sumirOverlayAutoDocumentario {
+  0% { opacity: 0; visibility: visible; }
+  8% { opacity: 1; visibility: visible; }
+  85% { opacity: 1; visibility: visible; }
+  99% { opacity: 0; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* Oscilação e brilho arqueológico no fundo */
+@keyframes luzHistoria {
+  0%, 100% { filter: brightness(1) contrast(1.1); }
+  50% { filter: brightness(1.25) contrast(1.2); }
+}
+
+/* A Pirâmide e Bússola emergem como uma grande descoberta arqueológica */
+@keyframes revelacaoHistorica {
+  0% { transform: scale(0.3) rotate(-15deg); opacity: 0; filter: blur(10px); }
+  18% { transform: scale(1.15) rotate(3deg); opacity: 1; filter: blur(0px); }
+  32% { transform: scale(0.95) rotate(-1deg); }
+  48% { transform: scale(1.05) rotate(1deg); filter: drop-shadow(0 0 50px #fde047) drop-shadow(0 0 90px #d97706); }
+  65% { transform: scale(0.98); }
+  80% { transform: scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: scale(2.2) rotate(10deg); opacity: 0; filter: blur(12px); }
+}
+
+/* Expansão das ondas do tempo */
+@keyframes expansaoTemporal {
+  0% { transform: scale(0.5) rotate(0deg); opacity: 0; }
+  20% { opacity: 1; }
+  60% { transform: scale(1.5) rotate(10deg); opacity: 0.8; }
+  100% { transform: scale(2.5) rotate(20deg); opacity: 0; }
+}
+/* ==========================================
+   CATEGORIA VANGUARDA / EXPERIMENTAL (4.0s)
+   ========================================== */
+.efeito-vanguarda {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 999999 !important;
+  pointer-events: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  /* Fundo Translucido Escuro com Distorção Experimental (Branco, Cinza e Vermelho Neon) */
+  background: radial-gradient(circle at center, rgba(24, 24, 27, 0.85) 0%, rgba(9, 9, 11, 0.92) 60%, rgba(0, 0, 0, 0.98) 100%) !important;
+  backdrop-filter: blur(10px) contrast(1.2) !important; /* Desfoca e aumenta o contraste da página ao fundo */
+  animation: fickerVanguarda 4.0s ease-in-out infinite, sumirOverlayAutoVanguarda 4.0s ease-in-out forwards !important;
+}
+
+/* 1. COMPOSIÇÃO GEOMÉTRICA ASSIMÉTRICA NO CENTRO */
+.efeito-vanguarda::before {
+  content: '';
+  position: absolute;
+  width: 85vw;
+  max-width: 480px;
+  height: 480px;
+  /* SVG Abstrato com Cubos Desconstruídos, Círculos e Linhas de Corte */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpolygon points='100,15 175,50 150,150 40,170 20,70' fill='none' stroke='%23f43f5e' stroke-width='4'/%3E%3Ccircle cx='100' cy='100' r='55' fill='none' stroke='%23f4f4f5' stroke-width='3' stroke-dasharray='12 6'/%3E%3Cline x1='10' y1='100' x2='190' y2='100' stroke='%23f43f5e' stroke-width='3'/%3E%3Crect x='75' y='75' width='50' height='50' fill='%23f4f4f5' transform='rotate(45 100 100)' opacity='0.8'/%3E%3C/svg%3E") no-repeat center/contain;
+  filter: drop-shadow(-5px 0 15px #f43f5e) drop-shadow(5px 0 15px #06b6d4) drop-shadow(0 0 35px #ffffff);
+  animation: desconstrucaoVanguarda 4.0s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+/* 2. LINHAS DE RANGIDO / INTERFERÊNCIA VISUAL DE CINEMA EXPERIMENTAL */
+.efeito-vanguarda::after {
+  content: '';
+  position: absolute;
+  width: 140vw;
+  height: 140vh;
+  /* Gradiente em feixes diagonais simétricos que simulam distorção de lente */
+  background: repeating-linear-gradient(
+    45deg,
+    transparent 0px,
+    transparent 20px,
+    rgba(244, 63, 94, 0.1) 20px,
+    rgba(6, 182, 212, 0.1) 40px
+  );
+  animation: distorcaoLente 4.0s linear forwards;
+}
+
+/* --- KEYFRAMES VANGUARDA --- */
+
+/* Sumir automaticamente no final */
+@keyframes sumirOverlayAutoVanguarda {
+  0% { opacity: 0; visibility: visible; }
+  6% { opacity: 1; visibility: visible; }
+  88% { opacity: 1; visibility: visible; }
+  99% { opacity: 0; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* Flashes assincronos e variações de contraste do cinema experimental */
+@keyframes fickerVanguarda {
+  0%, 100% { filter: brightness(1) contrast(1.2); }
+  22% { filter: brightness(1.4) contrast(2); }
+  24% { filter: brightness(0.8) contrast(1); }
+  65% { filter: brightness(1.3) contrast(1.5); }
+}
+
+/* A forma abstrata desmorona, gira de maneira assimétrica e se expande */
+@keyframes desconstrucaoVanguarda {
+  0% { transform: scale(0.1) rotate(-180deg) skewX(30deg); opacity: 0; filter: blur(15px); }
+  20% { transform: scale(1.2) rotate(15deg) skewX(-10deg); opacity: 1; filter: blur(0px); }
+  35% { transform: scale(0.88) rotate(-8deg) skewX(5deg); }
+  50% { transform: scale(1.1) rotate(5deg) skewX(0deg); }
+  75% { transform: scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: scale(2.8) rotate(90deg) skewX(-20deg); opacity: 0; filter: blur(20px); }
+}
+
+/* Rotação e pulso das linhas de interferência ao fundo */
+@keyframes distorcaoLente {
+  0% { transform: scale(0.8) rotate(0deg); opacity: 0; }
+  15% { opacity: 0.8; }
+  80% { opacity: 0.8; }
+  100% { transform: scale(1.6) rotate(45deg); opacity: 0; }
+}
+/* ==========================================
+   CATEGORIA AVENTURA (Expedição & Descoberta - 4.0s)
+   ========================================== */
+.efeito-aventura {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 999999 !important;
+  pointer-events: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  /* Fundo Translucido de Aventura (Verde Musgo / Laranja Terracota / Escuro) */
+  background: radial-gradient(circle at center, rgba(20, 83, 45, 0.82) 0%, rgba(120, 53, 15, 0.88) 55%, rgba(15, 23, 42, 0.96) 90%) !important;
+  backdrop-filter: blur(8px) !important; /* Desfoca suavemente o site ao fundo */
+  animation: pulsoAventura 4.0s ease-in-out infinite, sumirOverlayAutoAventura 4.0s ease-in-out forwards !important;
+}
+
+/* 1. SILHUETA DE BÚSSOLA / ROSA DOS VENTOS NO CENTRO */
+.efeito-aventura::before {
+  content: '';
+  position: absolute;
+  width: 85vw;
+  max-width: 500px;
+  height: 500px;
+  /* SVG de Bússola de Aventura e Rosa dos Ventos Dourada */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='80' fill='none' stroke='%23facc15' stroke-width='6'/%3E%3Ccircle cx='100' cy='100' r='70' fill='none' stroke='%23facc15' stroke-width='2' stroke-dasharray='4 4'/%3E%3Cpolygon points='100,20 115,85 180,100 115,115 100,180 85,115 20,100 85,85' fill='none' stroke='%23fde047' stroke-width='4'/%3E%3Cpolygon points='100,20 115,85 100,100' fill='%23ef4444'/%3E%3Cpolygon points='100,180 85,115 100,100' fill='%23facc15'/%3E%3Cpolygon points='180,100 115,115 100,100' fill='%23facc15'/%3E%3Cpolygon points='20,100 85,85 100,100' fill='%23facc15'/%3E%3Ccircle cx='100' cy='100' r='8' fill='%23fef08a'/%3E%3C/svg%3E") no-repeat center/contain;
+  filter: drop-shadow(0 0 35px #facc15) drop-shadow(0 0 70px #15803d) drop-shadow(0 0 90px #ef4444);
+  animation: rotaçaoBussolaAventura 4.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 2. ANÉIS DE NAVEGAÇÃO E ONDA DE POEIRA DE EXPEDIÇÃO */
+.efeito-aventura::after {
+  content: '';
+  position: absolute;
+  width: 120vw;
+  height: 120vh;
+  /* Anéis de brilho em tons de Ouro e Verde */
+  background: radial-gradient(circle at center, transparent 20%, rgba(250, 204, 21, 0.3) 35%, transparent 50%, rgba(34, 197, 94, 0.25) 70%, transparent 85%);
+  animation: expansaoOndaAventura 4.0s ease-out forwards;
+}
+
+/* --- KEYFRAMES AVENTURA --- */
+
+/* Sumir automaticamente no final */
+@keyframes sumirOverlayAutoAventura {
+  0% { opacity: 0; visibility: visible; }
+  8% { opacity: 1; visibility: visible; }
+  85% { opacity: 1; visibility: visible; }
+  99% { opacity: 0; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* Oscilação e brilho selvagem no fundo */
+@keyframes pulsoAventura {
+  0%, 100% { filter: brightness(1) contrast(1.15); }
+  50% { filter: brightness(1.3) contrast(1.25); }
+}
+
+/* A Bússola entra em rotação rápida, encontra o Norte e expande */
+@keyframes rotaçaoBussolaAventura {
+  0% { transform: scale(0.2) rotate(-180deg); opacity: 0; filter: blur(12px); }
+  20% { transform: scale(1.25) rotate(25deg); opacity: 1; filter: blur(0px); }
+  35% { transform: scale(0.92) rotate(-10deg); }
+  50% { transform: scale(1.08) rotate(5deg); filter: drop-shadow(0 0 50px #fde047) drop-shadow(0 0 90px #22c55e); }
+  68% { transform: scale(0.98); }
+  80% { transform: scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: scale(2.4) rotate(45deg); opacity: 0; filter: blur(12px); }
+}
+
+/* Expansão dos anéis de descobrimento */
+@keyframes expansaoOndaAventura {
+  0% { transform: scale(0.4) rotate(0deg); opacity: 0; }
+  20% { opacity: 1; }
+  60% { transform: scale(1.5) rotate(15deg); opacity: 0.8; }
+  100% { transform: scale(2.6) rotate(30deg); opacity: 0; }
+}
+/* ==========================================
+   CATEGORIA FAROESTE / WESTERN (4.0s)
+   ========================================== */
+.efeito-faroeste {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 999999 !important;
+  pointer-events: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  /* Fundo Translucido de Pôr do Sol no Deserto (Terracota, Laranja Queimado e Areia Escura) */
+  background: radial-gradient(circle at center, rgba(194, 65, 12, 0.85) 0%, rgba(120, 53, 15, 0.9) 55%, rgba(24, 24, 27, 0.96) 90%) !important;
+  backdrop-filter: blur(8px) !important; /* Desfoca suavemente o site ao fundo */
+  animation: calorDeserto 4.0s ease-in-out infinite, sumirOverlayAutoFaroeste 4.0s ease-in-out forwards !important;
+}
+
+/* 1. SILHUETA DA ESTRELA DE XERIFE & ARMAS NO CENTRO */
+.efeito-faroeste::before {
+  content: '';
+  position: absolute;
+  width: 85vw;
+  max-width: 500px;
+  height: 500px;
+  /* SVG de Estrela de Xerife com Círculos de Duelo Western */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpolygon points='100,15 120,70 180,70 130,105 150,165 100,130 50,165 70,105 20,70 80,70' fill='none' stroke='%23facc15' stroke-width='6' stroke-linejoin='round'/%3E%3Ccircle cx='100' cy='15' r='5' fill='%23facc15'/%3E%3Ccircle cx='180' cy='70' r='5' fill='%23facc15'/%3E%3Ccircle cx='150' cy='165' r='5' fill='%23facc15'/%3E%3Ccircle cx='50' cy='165' r='5' fill='%23facc15'/%3E%3Ccircle cx='20' cy='70' r='5' fill='%23facc15'/%3E%3Ccircle cx='100' cy='100' r='30' fill='none' stroke='%23fde047' stroke-width='4' stroke-dasharray='8 4'/%3E%3Cpolygon points='100,80 106,94 120,94 108,102 112,116 100,108 88,116 92,102 80,94 94,94' fill='%23facc15'/%3E%3C/svg%3E") no-repeat center/contain;
+  filter: drop-shadow(0 0 35px #facc15) drop-shadow(0 0 70px #ea580c) drop-shadow(0 0 90px #7c2d12);
+  animation: dueloFaroeste 4.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 2. ONDA DE POEIRA DO DESERTO E FEIXES DO PÔR DO SOL */
+.efeito-faroeste::after {
+  content: '';
+  position: absolute;
+  width: 120vw;
+  height: 120vh;
+  /* Anéis radiantes de feixes alaranjados */
+  background: radial-gradient(circle at center, transparent 20%, rgba(250, 204, 21, 0.3) 35%, transparent 50%, rgba(234, 88, 12, 0.25) 70%, transparent 85%);
+  animation: expansaoPoeiraFaroeste 4.0s ease-out forwards;
+}
+
+/* --- KEYFRAMES FAROESTE --- */
+
+/* Sumir automaticamente no final */
+@keyframes sumirOverlayAutoFaroeste {
+  0% { opacity: 0; visibility: visible; }
+  8% { opacity: 1; visibility: visible; }
+  85% { opacity: 1; visibility: visible; }
+  99% { opacity: 0; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* Oscilação de iluminação que simula o mormaço/ondas de calor do deserto */
+@keyframes calorDeserto {
+  0%, 100% { filter: brightness(1) contrast(1.15); }
+  50% { filter: brightness(1.3) contrast(1.25); }
+}
+
+/* A estrela de xerife gira rapidamente como o tambor de um revólver e crava no centro */
+@keyframes dueloFaroeste {
+  0% { transform: scale(0.2) rotate(-210deg); opacity: 0; filter: blur(12px); }
+  18% { transform: scale(1.25) rotate(15deg); opacity: 1; filter: blur(0px); }
+  32% { transform: scale(0.92) rotate(-5deg); }
+  48% { transform: scale(1.08) rotate(3deg); filter: drop-shadow(0 0 50px #fde047) drop-shadow(0 0 90px #ea580c); }
+  65% { transform: scale(0.98); }
+  80% { transform: scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: scale(2.4) rotate(30deg); opacity: 0; filter: blur(12px); }
+}
+
+/* Expansão das ondas de poeira do Velho Oeste */
+@keyframes expansaoPoeiraFaroeste {
+  0% { transform: scale(0.4) rotate(0deg); opacity: 0; }
+  20% { opacity: 1; }
+  60% { transform: scale(1.5) rotate(-10deg); opacity: 0.8; }
+  100% { transform: scale(2.6) rotate(-20deg); opacity: 0; }
+}
+/* ==========================================
+   CATEGORIA ANIME / ONE PIECE (Haki & Chapéu de Palha - 4.2s)
+   ========================================== */
+.efeito-anime {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 999999 !important;
+  pointer-events: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  /* Fundo Translucido Estilo Haki Supremo (Vermelho Escuro, Escarlate e Preto) */
+  background: radial-gradient(circle at center, rgba(153, 27, 27, 0.82) 0%, rgba(69, 10, 10, 0.9) 55%, rgba(2, 6, 23, 0.96) 90%) !important;
+  backdrop-filter: blur(8px) !important; /* Desfoca suavemente a página por trás */
+  animation: pulsoHaki 4.2s ease-in-out infinite, sumirOverlayAutoAnime 4.2s ease-in-out forwards !important;
+}
+
+/* 1. SILHUETA DO CHAPÉU DE PALHA + RAIOS DE HAKI NO CENTRO */
+.efeito-anime::before {
+  content: '';
+  position: absolute;
+  width: 85vw;
+  max-width: 500px;
+  height: 500px;
+  /* SVG do Chapéu de Palha com Faixa Vermelha e Raios de Impacto */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath d='M30 110 C30 110 50 80 100 80 C150 80 170 110 170 110 C185 110 195 125 180 130 C150 140 50 140 20 130 C5 125 15 110 30 110 Z' fill='%23facc15' stroke='%237f1d1d' stroke-width='5'/%3E%3Cpath d='M60 102 C60 102 70 93 100 93 C130 93 140 102 140 102' fill='none' stroke='%23dc2626' stroke-width='9'/%3E%3Cpath d='M10 10 L45 45 M190 10 L155 45 M10 190 L50 150 M190 190 L150 150' stroke='%23ef4444' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center/contain;
+  filter: drop-shadow(0 0 35px #ef4444) drop-shadow(0 0 70px #facc15) drop-shadow(0 0 100px #7f1d1d);
+  animation: impactoHakiShonen 4.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 2. ONDA DE CHOQUE RADIAL DO HAKI DO CONQUISTADOR */
+.efeito-anime::after {
+  content: '';
+  position: absolute;
+  width: 120vw;
+  height: 120vh;
+  /* Anéis de choque energia e fogo */
+  background: radial-gradient(circle at center, transparent 20%, rgba(239, 68, 68, 0.4) 35%, transparent 50%, rgba(250, 204, 21, 0.35) 70%, transparent 85%);
+  animation: expansaoOndaAnime 4.2s ease-out forwards;
+}
+
+/* --- KEYFRAMES ANIME / ONE PIECE --- */
+
+/* Sumir automaticamente no final da animação */
+@keyframes sumirOverlayAutoAnime {
+  0% { opacity: 0; visibility: visible; }
+  8% { opacity: 1; visibility: visible; }
+  85% { opacity: 1; visibility: visible; }
+  99% { opacity: 0; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* Oscilação de raios e iluminação do Haki no fundo */
+@keyframes pulsoHaki {
+  0%, 100% { filter: brightness(1) contrast(1.2); }
+  10% { filter: brightness(2) contrast(2); }
+  25% { filter: brightness(1.2) contrast(1.3); }
+  40% { filter: brightness(2.2) contrast(2.2); }
+  60% { filter: brightness(1.1) contrast(1.2); }
+}
+
+/* O Chapéu surge com explosão de Haki, treme no ar e expande */
+@keyframes impactoHakiShonen {
+  0% { transform: scale(0.1) rotate(-45deg); opacity: 0; filter: blur(12px); }
+  15% { transform: scale(1.35) rotate(8deg); opacity: 1; filter: blur(0px); }
+  28% { transform: scale(0.92) rotate(-4deg); }
+  42% { transform: scale(1.12) rotate(3deg); filter: drop-shadow(0 0 50px #ef4444) drop-shadow(0 0 90px #facc15); }
+  65% { transform: scale(0.98); }
+  80% { transform: scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: scale(2.5) rotate(20deg); opacity: 0; filter: blur(15px); }
+}
+
+/* Expansão da mega onda de choque */
+@keyframes expansaoOndaAnime {
+  0% { transform: scale(0.3) rotate(0deg); opacity: 0; }
+  20% { opacity: 1; }
+  60% { transform: scale(1.6) rotate(15deg); opacity: 0.85; }
+  100% { transform: scale(2.8) rotate(30deg); opacity: 0; }
+}/* ==========================================
+   CATEGORIA ANIME / SHONEN (Dinâmica & Explosiva - 4.0s)
+   ========================================== */
+.efeito-anime {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 999999 !important;
+  pointer-events: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  /* Fundo Translucido de Energia Vermelha (Vermelho Rubro, Carmim e Escuro) */
+  background: radial-gradient(circle at center, rgba(225, 29, 72, 0.85) 0%, rgba(159, 18, 57, 0.9) 50%, rgba(2, 6, 23, 0.96) 90%) !important;
+  backdrop-filter: blur(8px) !important; /* Desfoca suavemente o site ao fundo */
+  animation: flashPoderAnime 4.0s ease-in-out infinite, sumirOverlayAutoAnime 4.0s ease-in-out forwards !important;
+}
+
+/* 1. SÍMBOLO DE IMPACTO SHONEN & RAIOS DE ENERGIA */
+.efeito-anime::before {
+  content: '';
+  position: absolute;
+  width: 85vw;
+  max-width: 500px;
+  height: 500px;
+  /* SVG de Estrelas de Impacto Anime / Raios e Expressão Pop */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpolygon points='100,10 120,70 185,40 140,95 195,135 130,130 135,195 95,145 50,190 70,125 10,120 70,90' fill='%23ef4444' stroke='%23facc15' stroke-width='6' stroke-linejoin='round'/%3E%3Cpolygon points='100,30 112,75 160,50 128,90 168,120 120,118 122,165 92,128 60,160 75,112 30,108 75,85' fill='%23facc15'/%3E%3Ccircle cx='100' cy='100' r='25' fill='%23ffffff' stroke='%23991b1b' stroke-width='4'/%3E%3Cpath d='M88 95 L112 105 M112 95 L88 105' stroke='%23991b1b' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center/contain;
+  filter: drop-shadow(0 0 35px #ef4444) drop-shadow(0 0 70px #facc15) drop-shadow(0 0 100px #991b1b);
+  animation: explosaoPoderAnime 4.0s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* 2. ONDA DE CHOQUE RADIAL & PARTÍCULAS POP */
+.efeito-anime::after {
+  content: '';
+  position: absolute;
+  width: 120vw;
+  height: 120vh;
+  /* Anéis radiantes em Vermelho Neon e Amarelo vibrante */
+  background: radial-gradient(circle at center, transparent 15%, rgba(250, 204, 21, 0.4) 30%, transparent 45%, rgba(239, 68, 68, 0.35) 65%, transparent 80%);
+  animation: ondaEnergiaAnime 4.0s ease-out forwards;
+}
+
+/* --- KEYFRAMES ANIME --- */
+
+/* Sumir automaticamente no final */
+@keyframes sumirOverlayAutoAnime {
+  0% { opacity: 0; visibility: visible; }
+  6% { opacity: 1; visibility: visible; }
+  85% { opacity: 1; visibility: visible; }
+  99% { opacity: 0; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* Oscilação de poder de fundo (Flashs rápidos de aura) */
+@keyframes flashPoderAnime {
+  0%, 100% { filter: brightness(1) contrast(1.2); }
+  15% { filter: brightness(1.4) contrast(1.5); }
+  30% { filter: brightness(0.9) contrast(1.1); }
+  45% { filter: brightness(1.3) contrast(1.4); }
+}
+
+/* O símbolo entra quicando com elasticidade, gira e explode no final */
+@keyframes explosaoPoderAnime {
+  0% { transform: scale(0.1) rotate(-90deg); opacity: 0; filter: blur(15px); }
+  18% { transform: scale(1.35) rotate(15deg); opacity: 1; filter: blur(0px); }
+  32% { transform: scale(0.85) rotate(-8deg); }
+  48% { transform: scale(1.12) rotate(5deg); filter: drop-shadow(0 0 50px #ef4444) drop-shadow(0 0 90px #facc15); }
+  65% { transform: scale(0.95) rotate(-2deg); }
+  80% { transform: scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: scale(2.6) rotate(45deg); opacity: 0; filter: blur(15px); }
+}
+
+/* Expansão rápida da onda de energia */
+@keyframes ondaEnergiaAnime {
+  0% { transform: scale(0.3) rotate(0deg); opacity: 0; }
+  20% { opacity: 1; }
+  60% { transform: scale(1.6) rotate(-15deg); opacity: 0.8; }
+  100% { transform: scale(2.8) rotate(-30deg); opacity: 0; }
+}
+/* ==========================================
+   CATEGORIA BRASIL (Tropical & Dinâmica - 4.0s)
+   ========================================== */
+.efeito-brasil {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 999999 !important;
+  pointer-events: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  /* Fundo Translucido Tropical (Verde Bandeira, Amarelo Ouro e Azul Noturno) */
+  background: radial-gradient(circle at center, rgba(22, 101, 52, 0.85) 0%, rgba(202, 138, 4, 0.88) 55%, rgba(30, 58, 138, 0.96) 90%) !important;
+  backdrop-filter: blur(8px) !important; /* Desfoca suavemente o site ao fundo */
+  animation: pulsoBrasil 4.0s ease-in-out infinite, sumirOverlayAutoBrasil 4.0s ease-in-out forwards !important;
+}
+
+/* 1. SILHUETA DE SÍMBOLO TROPICAL & LOSANGO DA BANDEIRA NO CENTRO */
+.efeito-brasil::before {
+  content: '';
+  position: absolute;
+  width: 85vw;
+  max-width: 500px;
+  height: 500px;
+  /* SVG do Losango da Bandeira, Círculo Azul e Sol Tropical */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpolygon points='100,20 180,100 100,180 20,100' fill='none' stroke='%23facc15' stroke-width='7' stroke-linejoin='round'/%3E%3Ccircle cx='100' cy='100' r='50' fill='none' stroke='%233b82f6' stroke-width='6'/%3E%3Cpath d='M52 105 Q100 80 148 105' stroke='%23ffffff' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M80 50 L100 25 L120 50' stroke='%2322c55e' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3Cpath d='M80 150 L100 175 L120 150' stroke='%2322c55e' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center/contain;
+  filter: drop-shadow(0 0 35px #facc15) drop-shadow(0 0 70px #22c55e) drop-shadow(0 0 90px #3b82f6);
+  animation: surgimentoBrasil 4.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 2. ONDAS DO CALÇADÃO & EXPANSÃO DE LUZ TROPICAL */
+.efeito-brasil::after {
+  content: '';
+  position: absolute;
+  width: 120vw;
+  height: 120vh;
+  /* Anéis radiantes em Verde e Amarelo Ouro */
+  background: radial-gradient(circle at center, transparent 20%, rgba(250, 204, 21, 0.35) 35%, transparent 50%, rgba(34, 197, 94, 0.3) 70%, transparent 85%);
+  animation: expansaoOndaBrasil 4.0s ease-out forwards;
+}
+
+/* --- KEYFRAMES BRASIL --- */
+
+/* Sumir automaticamente no final */
+@keyframes sumirOverlayAutoBrasil {
+  0% { opacity: 0; visibility: visible; }
+  8% { opacity: 1; visibility: visible; }
+  85% { opacity: 1; visibility: visible; }
+  99% { opacity: 0; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* Oscilação e brilho tropical do fundo */
+@keyframes pulsoBrasil {
+  0%, 100% { filter: brightness(1) contrast(1.15); }
+  50% { filter: brightness(1.3) contrast(1.25); }
+}
+
+/* O Losango e Esfera entram girando rápido, ganham brilho e desvanecem */
+@keyframes surgimentoBrasil {
+  0% { transform: scale(0.2) rotate(-180deg); opacity: 0; filter: blur(12px); }
+  20% { transform: scale(1.25) rotate(15deg); opacity: 1; filter: blur(0px); }
+  35% { transform: scale(0.92) rotate(-8deg); }
+  50% { transform: scale(1.08) rotate(4deg); filter: drop-shadow(0 0 50px #fde047) drop-shadow(0 0 90px #22c55e); }
+  68% { transform: scale(0.98); }
+  80% { transform: scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: scale(2.5) rotate(45deg); opacity: 0; filter: blur(12px); }
+}
+
+/* Expansão das ondas de energia verde e amarela */
+@keyframes expansaoOndaBrasil {
+  0% { transform: scale(0.4) rotate(0deg); opacity: 0; }
+  20% { opacity: 1; }
+  60% { transform: scale(1.5) rotate(15deg); opacity: 0.8; }
+  100% { transform: scale(2.6) rotate(30deg); opacity: 0; }
+}
+/* ==========================================
+   CATEGORIA ALEMANHA (Precisão & Tecnologia - 4.0s)
+   ========================================== */
+.efeito-alemanha {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 999999 !important;
+  pointer-events: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  /* Fundo Translucido Tecnológico (Preto Grafite, Vermelho Profundo e Ouro) */
+  background: radial-gradient(circle at center, rgba(185, 28, 28, 0.85) 0%, rgba(24, 24, 27, 0.92) 55%, rgba(9, 9, 11, 0.98) 90%) !important;
+  backdrop-filter: blur(8px) contrast(1.1) !important; /* Desfoca suavemente o site ao fundo */
+  animation: pulsoAlemanha 4.0s ease-in-out infinite, sumirOverlayAutoAlemanha 4.0s ease-in-out forwards !important;
+}
+
+/* 1. SILHUETA DA ÁGUIA & ENGRENAGEM DE PRECISÃO NO CENTRO */
+.efeito-alemanha::before {
+  content: '';
+  position: absolute;
+  width: 85vw;
+  max-width: 500px;
+  height: 500px;
+  /* SVG da Águia Estilizada e Engrenagem Industrial */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='75' fill='none' stroke='%23facc15' stroke-width='6' stroke-dasharray='16 8'/%3E%3Cpath d='M100 25 L120 70 L170 70 L130 100 L145 150 L100 125 L55 150 L70 100 L30 70 L80 70 Z' fill='none' stroke='%23dc2626' stroke-width='5' stroke-linejoin='round'/%3E%3Cpolygon points='100,45 110,80 145,80 115,100 125,135 100,115 75,135 85,100 55,80 90,80' fill='%2318181b' stroke='%23facc15' stroke-width='3'/%3E%3Ccircle cx='100' cy='100' r='10' fill='%23facc15'/%3E%3C/svg%3E") no-repeat center/contain;
+  filter: drop-shadow(0 0 35px #facc15) drop-shadow(0 0 70px #dc2626) drop-shadow(0 0 90px #000000);
+  animation: engrenagemAlemanha 4.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 2. LINHAS DE VELOCIDADE (AUTOBAHN) & EXPANSÃO DOURADA */
+.efeito-alemanha::after {
+  content: '';
+  position: absolute;
+  width: 120vw;
+  height: 120vh;
+  /* Anéis radiantes em Vermelho e Ouro */
+  background: radial-gradient(circle at center, transparent 20%, rgba(250, 204, 21, 0.3) 35%, transparent 50%, rgba(220, 38, 38, 0.3) 70%, transparent 85%);
+  animation: expansaoOndaAlemanha 4.0s ease-out forwards;
+}
+
+/* --- KEYFRAMES ALEMANHA --- */
+
+/* Sumir automaticamente no final */
+@keyframes sumirOverlayAutoAlemanha {
+  0% { opacity: 0; visibility: visible; }
+  8% { opacity: 1; visibility: visible; }
+  85% { opacity: 1; visibility: visible; }
+  99% { opacity: 0; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* Pulso de iluminação elegante do fundo */
+@keyframes pulsoAlemanha {
+  0%, 100% { filter: brightness(1) contrast(1.15); }
+  50% { filter: brightness(1.25) contrast(1.25); }
+}
+
+/* Entra com precisão geométrica, rotação travada e expansão potente */
+@keyframes engrenagemAlemanha {
+  0% { transform: scale(0.2) rotate(-180deg); opacity: 0; filter: blur(12px); }
+  20% { transform: scale(1.2) rotate(20deg); opacity: 1; filter: blur(0px); }
+  35% { transform: scale(0.95) rotate(-5deg); }
+  50% { transform: scale(1.05) rotate(2deg); filter: drop-shadow(0 0 50px #fde047) drop-shadow(0 0 90px #dc2626); }
+  68% { transform: scale(0.98); }
+  80% { transform: scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: scale(2.5) rotate(45deg); opacity: 0; filter: blur(12px); }
+}
+
+/* Expansão das ondas de energia */
+@keyframes expansaoOndaAlemanha {
+  0% { transform: scale(0.4) rotate(0deg); opacity: 0; }
+  20% { opacity: 1; }
+  60% { transform: scale(1.5) rotate(-15deg); opacity: 0.8; }
+  100% { transform: scale(2.6) rotate(-30deg); opacity: 0; }
+}
+/* ==========================================
+   CATEGORIA URSS / CONSTRUTIVISMO (4.0s)
+   ========================================== */
+.efeito-urss {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 999999 !important;
+  pointer-events: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  /* Fundo Translucido em Vermelho Carmim Profundo e Preto Grafite */
+  background: radial-gradient(circle at center, rgba(153, 27, 27, 0.88) 0%, rgba(69, 10, 10, 0.94) 55%, rgba(15, 23, 42, 0.98) 90%) !important;
+  backdrop-filter: blur(8px) contrast(1.1) !important; /* Desfoca suavemente o site ao fundo */
+  animation: pulsoURSS 4.0s ease-in-out infinite, sumirOverlayAutoURSS 4.0s ease-in-out forwards !important;
+}
+
+/* 1. ESTRELA DE CINCO PONTAS & GEOMETRIA INDUSTRIAL NO CENTRO */
+.efeito-urss::before {
+  content: '';
+  position: absolute;
+  width: 85vw;
+  max-width: 500px;
+  height: 500px;
+  /* SVG de Estrela Monumental e Anel Industrial em Dourado */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='75' fill='none' stroke='%23facc15' stroke-width='5' stroke-dasharray='12 6'/%3E%3Cpolygon points='100,15 125,80 190,80 140,120 160,185 100,145 40,185 60,120 10,80 75,80' fill='%23dc2626' stroke='%23facc15' stroke-width='6' stroke-linejoin='round'/%3E%3Cpolygon points='100,35 118,80 160,80 126,108 140,150 100,125 60,150 74,108 40,80 82,80' fill='%23facc15'/%3E%3C/svg%3E") no-repeat center/contain;
+  filter: drop-shadow(0 0 35px #facc15) drop-shadow(0 0 70px #dc2626) drop-shadow(0 0 100px #991b1b);
+  animation: impactoMonumentalURSS 4.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 2. FEIXES CONSTRUTIVISTAS & EXPANSÃO DE ENERGIA */
+.efeito-urss::after {
+  content: '';
+  position: absolute;
+  width: 120vw;
+  height: 120vh;
+  /* Anéis radiantes em Dourado e Vermelho */
+  background: radial-gradient(circle at center, transparent 20%, rgba(250, 204, 21, 0.35) 35%, transparent 50%, rgba(220, 38, 38, 0.3) 70%, transparent 85%);
+  animation: expansaoOndaURSS 4.0s ease-out forwards;
+}
+
+/* --- KEYFRAMES URSS --- */
+
+/* Sumir automaticamente no final */
+@keyframes sumirOverlayAutoURSS {
+  0% { opacity: 0; visibility: visible; }
+  8% { opacity: 1; visibility: visible; }
+  85% { opacity: 1; visibility: visible; }
+  99% { opacity: 0; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* Oscilação e brilho contínuo no fundo */
+@keyframes pulsoURSS {
+  0%, 100% { filter: brightness(1) contrast(1.15); }
+  50% { filter: brightness(1.25) contrast(1.25); }
+}
+
+/* A estrela entra com impacto direto e firme, gira e expande no final */
+@keyframes impactoMonumentalURSS {
+  0% { transform: scale(0.2) rotate(-180deg); opacity: 0; filter: blur(12px); }
+  20% { transform: scale(1.25) rotate(15deg); opacity: 1; filter: blur(0px); }
+  35% { transform: scale(0.95) rotate(-5deg); }
+  50% { transform: scale(1.05) rotate(2deg); filter: drop-shadow(0 0 50px #fde047) drop-shadow(0 0 90px #dc2626); }
+  68% { transform: scale(0.98); }
+  80% { transform: scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: scale(2.5) rotate(45deg); opacity: 0; filter: blur(12px); }
+}
+
+/* Expansão rápida das ondas radiantes */
+@keyframes expansaoOndaURSS {
+  0% { transform: scale(0.4) rotate(0deg); opacity: 0; }
+  20% { opacity: 1; }
+  60% { transform: scale(1.5) rotate(-15deg); opacity: 0.8; }
+  100% { transform: scale(2.6) rotate(-30deg); opacity: 0; }
+}
+/* ==========================================
+   CATEGORIA FRANÇA (Elegância & Luz - 4.0s)
+   ========================================== */
+.efeito-franca {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 999999 !important;
+  pointer-events: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  /* Fundo Translucido de Luzes de Paris (Azul Profundo, Carmim e Branco Iluminado) */
+  background: radial-gradient(circle at center, rgba(30, 58, 138, 0.85) 0%, rgba(159, 18, 57, 0.9) 55%, rgba(15, 23, 42, 0.96) 90%) !important;
+  backdrop-filter: blur(8px) !important; /* Desfoca suavemente o site ao fundo */
+  animation: pulsoFranca 4.0s ease-in-out infinite, sumirOverlayAutoFranca 4.0s ease-in-out forwards !important;
+}
+
+/* 1. SILHUETA DA TORRE EIFFEL & FLOR DE LIS NO CENTRO */
+.efeito-franca::before {
+  content: '';
+  position: absolute;
+  width: 85vw;
+  max-width: 500px;
+  height: 500px;
+  /* SVG Estilizado da Torre Eiffel com a Flor de Lis e Círculo Tricolor */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='75' fill='none' stroke='%23ffffff' stroke-width='4' stroke-dasharray='10 5'/%3E%3Cpolygon points='100,20 125,170 75,170' fill='none' stroke='%233b82f6' stroke-width='6' stroke-linejoin='round'/%3E%3Cline x1='100' y1='20' x2='100' y2='170' stroke='%23ef4444' stroke-width='4'/%3E%3Cline x1='85' y1='120' x2='115' y2='120' stroke='%23ffffff' stroke-width='5'/%3E%3Cline x1='90' y1='80' x2='110' y2='80' stroke='%23ffffff' stroke-width='4'/%3E%3Cpath d='M100 20 C90 5 70 20 80 40 C90 30 100 20 100 20 Z' fill='%233b82f6'/%3E%3Cpath d='M100 20 C110 5 130 20 120 40 C110 30 100 20 100 20 Z' fill='%23ef4444'/%3E%3C/svg%3E") no-repeat center/contain;
+  filter: drop-shadow(0 0 35px #ffffff) drop-shadow(0 0 70px #3b82f6) drop-shadow(0 0 90px #ef4444);
+  animation: surgimentoFranca 4.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 2. FEIXES DE LUZ (CIDADE LUZ) & EXPANSÃO TRICOLOR */
+.efeito-franca::after {
+  content: '';
+  position: absolute;
+  width: 120vw;
+  height: 120vh;
+  /* Anéis de brilho radiante em Azul, Branco e Vermelho */
+  background: radial-gradient(circle at center, transparent 20%, rgba(255, 255, 255, 0.35) 35%, transparent 50%, rgba(59, 130, 246, 0.3) 70%, transparent 85%);
+  animation: expansaoOndaFranca 4.0s ease-out forwards;
+}
+
+/* --- KEYFRAMES FRANÇA --- */
+
+/* Sumir automaticamente no final */
+@keyframes sumirOverlayAutoFranca {
+  0% { opacity: 0; visibility: visible; }
+  8% { opacity: 1; visibility: visible; }
+  85% { opacity: 1; visibility: visible; }
+  99% { opacity: 0; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* Brilho suave e fluido das luzes de fundo */
+@keyframes pulsoFranca {
+  0%, 100% { filter: brightness(1) contrast(1.15); }
+  50% { filter: brightness(1.3) contrast(1.25); }
+}
+
+/* Entra girando suavemente com elegância, ganha luz forte e expande no final */
+@keyframes surgimentoFranca {
+  0% { transform: scale(0.2) rotate(-180deg); opacity: 0; filter: blur(12px); }
+  20% { transform: scale(1.2) rotate(15deg); opacity: 1; filter: blur(0px); }
+  35% { transform: scale(0.95) rotate(-5deg); }
+  50% { transform: scale(1.05) rotate(2deg); filter: drop-shadow(0 0 50px #ffffff) drop-shadow(0 0 90px #ef4444); }
+  68% { transform: scale(0.98); }
+  80% { transform: scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: scale(2.5) rotate(45deg); opacity: 0; filter: blur(12px); }
+}
+
+/* Expansão das ondas radiantes de iluminação */
+@keyframes expansaoOndaFranca {
+  0% { transform: scale(0.4) rotate(0deg); opacity: 0; }
+  20% { opacity: 1; }
+  60% { transform: scale(1.5) rotate(15deg); opacity: 0.8; }
+  100% { transform: scale(2.6) rotate(30deg); opacity: 0; }
+}
+/* ==========================================
+   CATEGORIA ITÁLIA (Elegância & Arte - 4.0s)
+   ========================================== */
+.efeito-italia {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 999999 !important;
+  pointer-events: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  /* Fundo Translucido Mediterrâneo (Verde Intenso, Carmim e Branco Iluminado) */
+  background: radial-gradient(circle at center, rgba(22, 101, 52, 0.85) 0%, rgba(153, 27, 27, 0.9) 55%, rgba(15, 23, 42, 0.96) 90%) !important;
+  backdrop-filter: blur(8px) !important; /* Desfoca suavemente o site ao fundo */
+  animation: pulsoItalia 4.0s ease-in-out infinite, sumirOverlayAutoItalia 4.0s ease-in-out forwards !important;
+}
+
+/* 1. SILHUETA ARQUITETÔNICA & EMBLEMA TRICOLOR NO CENTRO */
+.efeito-italia::before {
+  content: '';
+  position: absolute;
+  width: 85vw;
+  max-width: 500px;
+  height: 500px;
+  /* SVG do Arco Clássico / Sol do Mediterrâneo e Anel Tricolor */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='75' fill='none' stroke='%23ffffff' stroke-width='4' stroke-dasharray='12 6'/%3E%3Cpath d='M40 150 C40 80 160 80 160 150' fill='none' stroke='%2316a34a' stroke-width='6' stroke-linecap='round'/%3E%3Cpath d='M55 150 C55 95 145 95 145 150' fill='none' stroke='%23ffffff' stroke-width='5' stroke-linecap='round'/%3E%3Cpath d='M70 150 C70 110 130 110 130 150' fill='none' stroke='%23dc2626' stroke-width='6' stroke-linecap='round'/%3E%3Cpolygon points='100,25 108,45 130,45 112,58 118,78 100,65 82,78 88,58 70,45 92,45' fill='%23ffffff'/%3E%3C/svg%3E") no-repeat center/contain;
+  filter: drop-shadow(0 0 35px #ffffff) drop-shadow(0 0 70px #16a34a) drop-shadow(0 0 90px #dc2626);
+  animation: surgimentoItalia 4.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 2. ONDA RADIANTE DO MEDITERRÂNEO & EXPANSÃO TRICOLOR */
+.efeito-italia::after {
+  content: '';
+  position: absolute;
+  width: 120vw;
+  height: 120vh;
+  /* Anéis radiantes em Verde, Branco e Vermelho */
+  background: radial-gradient(circle at center, transparent 20%, rgba(255, 255, 255, 0.35) 35%, transparent 50%, rgba(22, 163, 74, 0.3) 70%, transparent 85%);
+  animation: expansaoOndaItalia 4.0s ease-out forwards;
+}
+
+/* --- KEYFRAMES ITÁLIA --- */
+
+/* Sumir automaticamente no final */
+@keyframes sumirOverlayAutoItalia {
+  0% { opacity: 0; visibility: visible; }
+  8% { opacity: 1; visibility: visible; }
+  85% { opacity: 1; visibility: visible; }
+  99% { opacity: 0; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* Brilho quente e fluido do fundo */
+@keyframes pulsoItalia {
+  0%, 100% { filter: brightness(1) contrast(1.15); }
+  50% { filter: brightness(1.3) contrast(1.25); }
+}
+
+/* Entra girando com fluidez clássica, ganha brilho radiante e expande no final */
+@keyframes surgimentoItalia {
+  0% { transform: scale(0.2) rotate(-180deg); opacity: 0; filter: blur(12px); }
+  20% { transform: scale(1.2) rotate(15deg); opacity: 1; filter: blur(0px); }
+  35% { transform: scale(0.95) rotate(-5deg); }
+  50% { transform: scale(1.05) rotate(2deg); filter: drop-shadow(0 0 50px #ffffff) drop-shadow(0 0 90px #dc2626); }
+  68% { transform: scale(0.98); }
+  80% { transform: scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: scale(2.5) rotate(45deg); opacity: 0; filter: blur(12px); }
+}
+
+/* Expansão das ondas de iluminação */
+@keyframes expansaoOndaItalia {
+  0% { transform: scale(0.4) rotate(0deg); opacity: 0; }
+  20% { opacity: 1; }
+  60% { transform: scale(1.5) rotate(15deg); opacity: 0.8; }
+  100% { transform: scale(2.6) rotate(30deg); opacity: 0; }
+}
+/* ==========================================
+   CATEGORIA REINO UNIDO (Tradição & Realeza - 4.0s)
+   ========================================== */
+.efeito-reino-unido {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 999999 !important;
+  pointer-events: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  /* Fundo Translucido Britânico (Azul Profundo, Vermelho Carmim e Branco) */
+  background: radial-gradient(circle at center, rgba(30, 58, 138, 0.88) 0%, rgba(185, 28, 28, 0.9) 55%, rgba(15, 23, 42, 0.96) 90%) !important;
+  backdrop-filter: blur(8px) !important; /* Desfoca suavemente o site ao fundo */
+  animation: pulsoReinoUnido 4.0s ease-in-out infinite, sumirOverlayAutoReinoUnido 4.0s ease-in-out forwards !important;
+}
+
+/* 1. SILHUETA DA COROA REAL & PONTEIROS DE RELÓGIO NO CENTRO */
+.efeito-reino-unido::before {
+  content: '';
+  position: absolute;
+  width: 85vw;
+  max-width: 500px;
+  height: 500px;
+  /* SVG da Coroa Britânica, Mostrador de Relógio e Cruz Tricolor */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='75' fill='none' stroke='%23ffffff' stroke-width='4' stroke-dasharray='12 6'/%3E%3Cpath d='M40 140 L50 70 L80 100 L100 50 L120 100 L150 70 L160 140 Z' fill='none' stroke='%233b82f6' stroke-width='6' stroke-linejoin='round'/%3E%3Cpath d='M40 140 L160 140' stroke='%23ef4444' stroke-width='6' stroke-linecap='round'/%3E%3Ccircle cx='50' cy='70' r='6' fill='%23ef4444'/%3E%3Ccircle cx='100' cy='50' r='7' fill='%23ffffff'/%3E%3Ccircle cx='150' cy='70' r='6' fill='%23ef4444'/%3E%3Cline x1='100' y1='100' x2='100' y2='75' stroke='%23ffffff' stroke-width='4' stroke-linecap='round'/%3E%3Cline x1='100' y1='100' x2='120' y2='100' stroke='%23ffffff' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center/contain;
+  filter: drop-shadow(0 0 35px #ffffff) drop-shadow(0 0 70px #3b82f6) drop-shadow(0 0 90px #ef4444);
+  animation: surgimentoReinoUnido 4.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 2. ONDA DE ENERGIA TRICOLOR & EXPANSÃO IMPERIAL */
+.efeito-reino-unido::after {
+  content: '';
+  position: absolute;
+  width: 120vw;
+  height: 120vh;
+  /* Anéis radiantes em Azul, Branco e Vermelho */
+  background: radial-gradient(circle at center, transparent 20%, rgba(255, 255, 255, 0.35) 35%, transparent 50%, rgba(59, 130, 246, 0.3) 70%, transparent 85%);
+  animation: expansaoOndaReinoUnido 4.0s ease-out forwards;
+}
+
+/* --- KEYFRAMES REINO UNIDO --- */
+
+/* Sumir automaticamente no final */
+@keyframes sumirOverlayAutoReinoUnido {
+  0% { opacity: 0; visibility: visible; }
+  8% { opacity: 1; visibility: visible; }
+  85% { opacity: 1; visibility: visible; }
+  99% { opacity: 0; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* Oscilação e brilho contínuo no fundo */
+@keyframes pulsoReinoUnido {
+  0%, 100% { filter: brightness(1) contrast(1.15); }
+  50% { filter: brightness(1.3) contrast(1.25); }
+}
+
+/* Entra girando com imponência, ganha brilho intenso e expande no final */
+@keyframes surgimentoReinoUnido {
+  0% { transform: scale(0.2) rotate(-180deg); opacity: 0; filter: blur(12px); }
+  20% { transform: scale(1.2) rotate(15deg); opacity: 1; filter: blur(0px); }
+  35% { transform: scale(0.95) rotate(-5deg); }
+  50% { transform: scale(1.05) rotate(2deg); filter: drop-shadow(0 0 50px #ffffff) drop-shadow(0 0 90px #ef4444); }
+  68% { transform: scale(0.98); }
+  80% { transform: scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: scale(2.5) rotate(45deg); opacity: 0; filter: blur(12px); }
+}
+
+/* Expansão das ondas de iluminação */
+@keyframes expansaoOndaReinoUnido {
+  0% { transform: scale(0.4) rotate(0deg); opacity: 0; }
+  20% { opacity: 1; }
+  60% { transform: scale(1.5) rotate(15deg); opacity: 0.8; }
+  100% { transform: scale(2.6) rotate(30deg); opacity: 0; }
+}
+/* ==========================================
+   CATEGORIA SUÉCIA (Design Nórdico & Aurora - 4.0s)
+   ========================================== */
+.efeito-suecia {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 999999 !important;
+  pointer-events: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  /* Fundo Translucido Escandinavo (Azul Real Profundo, Amarelo Ouro e Aurora) */
+  background: radial-gradient(circle at center, rgba(3, 105, 161, 0.88) 0%, rgba(30, 58, 138, 0.92) 55%, rgba(15, 23, 42, 0.96) 90%) !important;
+  backdrop-filter: blur(8px) contrast(1.1) !important; /* Desfoca suavemente o site ao fundo */
+  animation: pulsoSuecia 4.0s ease-in-out infinite, sumirOverlayAutoSuecia 4.0s ease-in-out forwards !important;
+}
+
+/* 1. SILHUETA DA CRUZ ESCANDINAVA & BRILHO DE AURORA NO CENTRO */
+.efeito-suecia::before {
+  content: '';
+  position: absolute;
+  width: 85vw;
+  max-width: 500px;
+  height: 500px;
+  /* SVG Minimalista Nórdico da Cruz Sueca e Geometria Radial */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='75' fill='none' stroke='%23facc15' stroke-width='4' stroke-dasharray='10 5'/%3E%3Crect x='20' y='85' width='160' height='30' fill='%23facc15' rx='4'/%3E%3Crect x='70' y='20' width='30' height='160' fill='%23facc15' rx='4'/%3E%3Cpolygon points='100,30 115,70 160,70 125,95 140,135 100,110 60,135 75,95 40,70 85,70' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linejoin='round'/%3E%3Ccircle cx='85' cy='100' r='6' fill='%230284c7'/%3E%3C/svg%3E") no-repeat center/contain;
+  filter: drop-shadow(0 0 35px #facc15) drop-shadow(0 0 70px #38bdf8) drop-shadow(0 0 90px #0284c7);
+  animation: surgimentoSuecia 4.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 2. ONDA DE LUZ DE AURORA BOREAL & EXPANSÃO */
+.efeito-suecia::after {
+  content: '';
+  position: absolute;
+  width: 120vw;
+  height: 120vh;
+  /* Anéis radiantes em Amarelo Ouro e Azul Gelado */
+  background: radial-gradient(circle at center, transparent 20%, rgba(250, 204, 21, 0.35) 35%, transparent 50%, rgba(56, 189, 248, 0.3) 70%, transparent 85%);
+  animation: expansaoOndaSuecia 4.0s ease-out forwards;
+}
+
+/* --- KEYFRAMES SUÉCIA --- */
+
+/* Sumir automaticamente no final */
+@keyframes sumirOverlayAutoSuecia {
+  0% { opacity: 0; visibility: visible; }
+  8% { opacity: 1; visibility: visible; }
+  85% { opacity: 1; visibility: visible; }
+  99% { opacity: 0; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* Pulso suave e contínuo da iluminação nórdica */
+@keyframes pulsoSuecia {
+  0%, 100% { filter: brightness(1) contrast(1.15); }
+  50% { filter: brightness(1.3) contrast(1.25); }
+}
+
+/* Entra com precisão, gira suavemente e expande no final */
+@keyframes surgimentoSuecia {
+  0% { transform: scale(0.2) rotate(-180deg); opacity: 0; filter: blur(12px); }
+  20% { transform: scale(1.2) rotate(15deg); opacity: 1; filter: blur(0px); }
+  35% { transform: scale(0.95) rotate(-5deg); }
+  50% { transform: scale(1.05) rotate(2deg); filter: drop-shadow(0 0 50px #fde047) drop-shadow(0 0 90px #38bdf8); }
+  68% { transform: scale(0.98); }
+  80% { transform: scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: scale(2.5) rotate(45deg); opacity: 0; filter: blur(12px); }
+}
+
+/* Expansão das ondas de iluminação */
+@keyframes expansaoOndaSuecia {
+  0% { transform: scale(0.4) rotate(0deg); opacity: 0; }
+  20% { opacity: 1; }
+  60% { transform: scale(1.5) rotate(15deg); opacity: 0.8; }
+  100% { transform: scale(2.6) rotate(30deg); opacity: 0; }
+}
+/* ==========================================
+   2. MUSICAL (Holofotes + Notas Musicais - 4.0s)
+   ========================================== */
+.efeito-musical {
+  background: radial-gradient(circle at center, #6b21a8 0%, #3b0764 50%, #030712 90%) !important;
+  animation: holofotesPalco 4.0s ease-in-out forwards, animarOverlayGeral 4.0s ease-in-out forwards !important;
+}
+
+/* Explosão de Notas Musicais */
+.efeito-musical::before {
+  content: '';
+  position: absolute;
+  width: 85vw;
+  max-width: 480px;
+  height: 480px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath d='M105 30 C105 30 115 10 95 10 C75 10 70 35 90 55 C110 75 115 105 95 125 C80 140 65 130 65 115 C65 100 85 95 85 110 C85 120 75 125 75 115 C75 90 125 60 100 30 Z M95 15 L95 170 C95 185 70 185 70 170 C70 155 95 155 95 170' fill='none' stroke='%23facc15' stroke-width='7' stroke-linecap='round'/%3E%3Ccircle cx='40' cy='60' r='9' fill='%23facc15'/%3E%3Cpath d='M49 60 L49 28 L72 23 L72 55' fill='none' stroke='%23facc15' stroke-width='5'/%3E%3Ccircle cx='160' cy='140' r='9' fill='%23facc15'/%3E%3Cpath d='M169 140 L169 98' stroke='%23facc15' stroke-width='5'/%3E%3C/svg%3E") no-repeat center/contain;
+  filter: drop-shadow(0 0 30px #facc15) drop-shadow(0 0 60px #c084fc);
+  animation: explosaoNotasMusicais 4.0s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Holofote e Luzes de Fundo */
+.efeito-musical::after {
+  content: '';
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at center, transparent 20%, rgba(250, 204, 21, 0.35) 30%, transparent 45%, rgba(192, 132, 252, 0.35) 60%, transparent 75%);
+  animation: ondaSonoraMusical 4.0s ease-out forwards;
+}
+
+/* ==========================================
+   ANIMAÇÕES (KEYFRAMES)
+   ========================================== */
+
+/* Animação Suave para Aparição e Desaparecimento */
+@keyframes animarOverlayGeral {
+  0% { opacity: 0; }
+  8% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Keyframes - Anime */
+@keyframes flashHakiAnime {
+  0% { filter: brightness(1); }
+  4% { filter: brightness(3.5) contrast(2); }
+  8% { filter: brightness(1); }
+  14% { filter: brightness(3) contrast(2.5); }
+  20% { filter: brightness(1.2); }
+}
+
+@keyframes impactoHakiEChapeu {
+  0% { transform: scale(0.1) rotate(-45deg); opacity: 0; }
+  15% { transform: scale(1.3) rotate(5deg); opacity: 1; }
+  30% { transform: scale(0.95) rotate(-2deg); }
+  45% { transform: scale(1.08) rotate(2deg); }
+  75% { transform: scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: scale(2.2) rotate(15deg); opacity: 0; }
+}
+
+@keyframes megaOndaAnime {
+  0% { transform: scale(0.2); opacity: 0; }
+  20% { opacity: 1; }
+  60% { transform: scale(1.8); opacity: 0.8; }
+  100% { transform: scale(3.5); opacity: 0; }
+}
+
+/* Keyframes - Musical */
+@keyframes holofotesPalco {
+  0% { filter: hue-rotate(0deg); }
+  50% { filter: hue-rotate(30deg) brightness(1.2); }
+  100% { filter: hue-rotate(0deg); }
+}
+
+@keyframes explosaoNotasMusicais {
+  0% { transform: scale(0) rotate(-60deg); opacity: 0; }
+  22% { transform: scale(1.35) rotate(10deg); opacity: 1; }
+  38% { transform: scale(0.9) rotate(-5deg); }
+  52% { transform: scale(1.1) rotate(5deg); }
+  78% { transform: scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: scale(2.2) rotate(25deg); opacity: 0; }
+}
+
+@keyframes ondaSonoraMusical {
+  0% { transform: scale(0.1); opacity: 0; }
+  25% { opacity: 1; }
+  65% { transform: scale(1.6); opacity: 0.7; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+/* --- ANIMAÇÕES EXCLUSIVAS DE MUSICAL --- */
+
+@keyframes animarOverlayMusical {
+  0% { opacity: 0; }
+  8% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Fundo mudando de tom como holofotes de show */
+@keyframes holofotesPalco {
+  0% { filter: hue-rotate(0deg) brightness(1); }
+  50% { filter: hue-rotate(40deg) brightness(1.3); }
+  100% { filter: hue-rotate(0deg) brightness(1); }
+}
+
+/* As notas saltam girando com efeito de pulso musical */
+@keyframes explosaoNotasMusicais {
+  0% { 
+    transform: scale(0) rotate(-60deg); 
+    opacity: 0; 
+  }
+  20% { 
+    transform: scale(1.35) rotate(10deg); 
+    opacity: 1; 
+  }
+  35% { 
+    transform: scale(0.9) rotate(-5deg); 
+  }
+  50% { 
+    transform: scale(1.1) rotate(5deg); 
+    filter: drop-shadow(0 0 40px #facc15) drop-shadow(0 0 70px #c084fc);
+  }
+  75% { 
+    transform: scale(1) rotate(0deg); 
+    opacity: 1; 
+  }
+  100% { 
+    transform: scale(2.2) rotate(25deg); 
+    opacity: 0; 
+  }
+}
+
+/* Expansão das ondas de som do centro para as bordas da tela */
+@keyframes ondaSonoraMusical {
+  0% { transform: scale(0.1); opacity: 0; }
+  20% { opacity: 1; }
+  60% { transform: scale(1.6); opacity: 0.7; }
+  100% { transform: scale(3); opacity: 0; }
+}
+/* ==========================================
    2. TERROR (Mantido - Excelente)
    ========================================== */
 .efeito-terror {
@@ -408,4 +2198,76 @@
   0% { transform: scale(0.8); opacity: 0; }
   50% { opacity: 1; }
   100% { transform: scale(1.3); opacity: 0; }
+}
+/* ==========================================
+   CATEGORIA URSS / INVERNO RUSSO (4.5s)
+   ========================================== */
+.efeito-urss-inverno {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 999999 !important;
+  pointer-events: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  /* Fundo Translucido em Vermelho Carmim Profundo com Geada Branca */
+  background: radial-gradient(circle at center, rgba(153, 27, 27, 0.9) 0%, rgba(69, 10, 10, 0.95) 60%, rgba(15, 23, 42, 0.98) 100%) !important;
+  backdrop-filter: blur(10px) contrast(1.1) !important; /* Desfoca e esfria o site ao fundo */
+  animation: nevascaFundo 4.5s ease-in-out infinite, sumirOverlayAutoURSSInverno 4.5s ease-in-out forwards !important;
+}
+
+/* 1. ESTRELA MONUMENTAL, ENGRENAGEM E FOCOS DE NEVE NO CENTRO */
+.efeito-urss-inverno::before {
+  content: '';
+  position: absolute;
+  width: 85vw;
+  max-width: 500px;
+  height: 500px;
+  /* SVG de Estrela de Cinco Pontas com Floco de Neve Construtivista e Anel Industrial */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='80' fill='none' stroke='%23ffffff' stroke-width='3' stroke-dasharray='10 5' opacity='0.3'/%3E%3Cpolygon points='100,10 125,75 190,75 140,115 160,180 100,140 40,180 60,115 10,75 75,75' fill='%23dc2626' stroke='%23facc15' stroke-width='6' stroke-linejoin='round'/%3E%3Cpath d='M100 40 L100 130 M100 85 L65 65 M100 85 L135 65 M100 115 L65 135 M100 115 L135 135' stroke='%23ffffff' stroke-width='4' stroke-linecap='round' opacity='0.7'/%3E%3Ccircle cx='100' cy='100' r='12' fill='%23facc15' stroke='%23dc2626' stroke-width='3'/%3E%3C/svg%3E") no-repeat center/contain;
+  filter: drop-shadow(0 0 35px #ffffff) drop-shadow(0 0 70px #dc2626) drop-shadow(0 0 100px #facc15);
+  animation: impactoInvernoURSS 4.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 2. CAMADA DE NEVASCA DINÂMICA (FLocos caindo) */
+.efeito-urss-inverno::after {
+  content: '';
+  position: absolute;
+  width: 200vw;
+  height: 200vh;
+  /* Padrão de bolinhas brancas simulando neve densa */
+  background-image: radial-gradient(#ffffff 10%, transparent 10%), radial-gradient(#ffffff 10%, transparent 10%);
+  background-position: 0 0, 50px 50px;
+  background-size: 20px 20px;
+  opacity: 0.15;
+  animation: moverNevascaURSS 4.5s linear infinite;
+}
+
+/* --- KEYFRAMES URSS / INVERNO --- */
+
+/* Sumir automaticamente no final */
+@keyframes sumirOverlayAutoURSSInverno {
+  0% { opacity: 0; visibility: visible; }
+  6% { opacity: 1; visibility: visible; }
+  88% { opacity: 1; visibility: visible; }
+  99% { opacity: 0; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* Oscilação de iluminação simulando o reflexo da neve e névoa gelada */
+@keyframes nevascaFundo {
+  0%, 100% { filter: brightness(1) contrast(1.15) saturate(1); }
+  50% { filter: brightness(1.25) contrast(1.25) saturate(0.8); }
+}
+
+/* A Estrela Monumental entra com impacto pesado e frio, gira e expande com congelamento */
+@keyframes impactoInvernoURSS {
+  0% { transform: scale(0.2) rotate(-200deg); opacity: 0; filter: blur(20px); }
+  15% { transform: scale(1.3) rotate(20deg); opacity: 1; filter: blur(0px); }
+  28% { transform: scale(0.92) rotate(-8deg); }
+  45% { transform: scale(1.08) rotate(3deg); filter: drop-shadow(0 0 50px #ffffff) drop-shadow(0 0 90px #dc2626); }
 }
