@@ -738,3 +738,121 @@ h1, h2, h3, .logo {
   color: inherit;
   display: block;
 }
+
+/* =========================================================
+   RODAPÉ COMPLETO (logo, navegação, contato, apoio)
+   ========================================================= */
+.rodape-completo {
+  padding: 56px 48px 28px;
+}
+
+.rodape-grade {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 36px;
+}
+
+.rodape-logo {
+  font-family: var(--fonte-titulo);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ambar);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.rodape-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 12px;
+  max-width: 280px;
+  color: var(--texto-fraco);
+}
+
+.rodape-titulo-coluna {
+  font-family: var(--fonte-titulo);
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.rodape-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rodape-links a,
+.rodape-contato-email {
+  font-size: 14px;
+  color: var(--texto-fraco);
+  transition: color 0.2s;
+}
+
+.rodape-links a:hover,
+.rodape-contato-email:hover {
+  color: var(--ambar);
+}
+
+.rodape-apoio-texto {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  max-width: 240px;
+  color: var(--texto-fraco);
+}
+
+.btn-apoiar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--ambar);
+  color: #121214;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 14px;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn-apoiar:hover {
+  background-color: var(--ambar-forte);
+  transform: translateY(-2px);
+}
+
+.rodape-baixo {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--borda);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 13px;
+}
+
+@media (max-width: 900px) {
+  .rodape-grade {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .rodape-completo {
+    padding: 40px 20px 24px;
+  }
+  .rodape-grade {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .rodape-baixo {
+    flex-direction: column;
+    text-align: center;
+  }
+}
