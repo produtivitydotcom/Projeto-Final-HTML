@@ -513,3 +513,228 @@ img {
   padding: 20px;
   margin-bottom: 32px;
 }
+/* ===== VARIÁVEIS DE CORES E FONTES ===== */
+:root {
+  --fundo-principal: #121214;
+  --superficie: #1D1E22;
+  --ouro-velho: #C5A059;
+  --ouro-brilho: #D4AF37;
+  --vinho-profundo: #6B1D2F;
+  --texto-principal: #EDEDED;
+  --texto-secundario: #A1A1AA;
+  --borda-sutil: rgba(255, 255, 255, 0.1);
+  --fonte-titulo: 'Cinzel', serif;
+  --fonte-corpo: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Base Geral */
+body {
+  background-color: var(--fundo-principal);
+  color: var(--texto-principal);
+  font-family: var(--fonte-corpo);
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, .logo {
+  font-family: var(--fonte-titulo);
+}
+
+/* ===== PAINEL DE FILTROS ===== */
+.painel-filtros {
+  background-color: var(--superficie);
+  border: 1px solid var(--borda-sutil);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.filtro-label {
+  color: var(--texto-secundario);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+/* Botões dos Filtros (Pills Visual) */
+.filtro-botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.btn-filtro {
+  background-color: transparent;
+  color: var(--texto-principal);
+  border: 1px solid var(--borda-sutil);
+  padding: 6px 16px;
+  border-radius: 20px; /* Formato Pill/Tag */
+  cursor: pointer;
+  font-family: var(--fonte-corpo);
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.btn-filtro:hover {
+  background-color: var(--vinho-profundo);
+  border-color: var(--vinho-profundo);
+  color: #ffffff;
+}
+
+.btn-filtro.ativo {
+  background-color: var(--ouro-velho);
+  border-color: var(--ouro-velho);
+  color: #121214;
+  font-weight: 600;
+}
+
+/* ===== GRADE DE FILMES ===== */
+.grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 24px;
+}
+
+/* Cards de Filme */
+.card-filme {
+  background-color: var(--superficie);
+  border: 1px solid var(--borda-sutil);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-filme:hover {
+  transform: translateY(-5px);
+  border-color: var(--ouro-velho);
+}
+
+/* Tratamento dos Pôsteres */
+.card-filme img {
+  width: 100%;
+  height: 270px;
+  object-fit: cover; /* Garante que capas de tamanhos diferentes se ajustem uniformemente */
+  background-color: #000;
+}
+
+.card-filme-info {
+  padding: 12px;
+}
+
+.card-filme h3 {
+  font-size: 1rem;
+  margin: 0 0 6px 0;
+  color: var(--texto-principal);
+}
+
+.card-filme .meta {
+  font-size: 0.8rem;
+  color: var(--texto-secundario);
+}
+/* ===== ANIMAÇÕES DOS GÊNEROS ===== */
+
+/* 1. Terror: Tremor fantasmagórico com sombra vermelha */
+.btn-filtro[data-genero="Terror"]:hover {
+  animation: tremor 0.3s infinite ease-in-out;
+  background-color: #3d0000;
+  border-color: #ff0000;
+  box-shadow: 0 0 12px rgba(255, 0, 0, 0.6);
+  color: #ff8080;
+}
+
+@keyframes tremor {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-2px, 1px) rotate(-1deg); }
+  50% { transform: translate(2px, -1px) rotate(1deg); }
+  75% { transform: translate(-1px, -1px) rotate(0deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+/* 2. Ficção Científica: Brilho Neon Cyberpunk */
+.btn-filtro[data-genero="Ficção Científica"]:hover {
+  background-color: #002b36;
+  border-color: #00f0ff;
+  box-shadow: 0 0 15px #00f0ff;
+  color: #00f0ff;
+  transform: scale(1.05);
+}
+
+/* 3. Comédia: Quique divertido */
+.btn-filtro[data-genero="Comédia"]:hover {
+  animation: quique 0.4s ease infinite alternate;
+  background-color: #4a3b00;
+  border-color: #ffd700;
+  color: #ffd700;
+}
+
+@keyframes quique {
+  from { transform: translateY(0); }
+  to { transform: translateY(-6px); }
+}
+
+/* 4. Suspense: Pulso Sombrio */
+.btn-filtro[data-genero="Suspense"]:hover {
+  animation: pulso 1.2s infinite;
+  background-color: #1a1a24;
+  border-color: #a855f7;
+  color: #c084fc;
+}
+
+@keyframes pulso {
+  0% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(168, 85, 247, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0); }
+}
+
+/* 5. Animação: Flutuação mágica */
+.btn-filtro[data-genero="Animação"]:hover {
+  background-color: #022c22;
+  border-color: #34d399;
+  color: #34d399;
+  transform: rotate(-3deg) scale(1.08);
+}
+/* Animação rápida de transição para a grade de filmes */
+.grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 24px;
+}
+
+/* Efeito suave ao atualizar a lista */
+.card-filme {
+  animation: surgimentoRapido 0.3s ease-out forwards;
+}
+
+@keyframes surgimentoRapido {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.card-filme {
+  animation: surgimentoRapido 0.3s ease-out forwards;
+}
+
+@keyframes surgimentoRapido {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.card-filme-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
