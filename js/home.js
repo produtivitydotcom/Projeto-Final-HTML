@@ -32,6 +32,7 @@ function montarDestaque(filmes) {
   // monta o HTML interno do destaque
   destaque.innerHTML = `
     <div class="destaque-conteudo">
+    
       <p class="destaque-eyebrow">${filme.pais} · ${filme.ano} · ${filme.generos.join(", ")}</p>
       <h1 class="destaque-titulo">${filme.titulo}</h1>
       <p class="destaque-sinopse">${filme.sinopse}</p>
