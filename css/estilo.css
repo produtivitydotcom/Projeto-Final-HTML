@@ -856,3 +856,82 @@ h1, h2, h3, .logo {
     text-align: center;
   }
 }
+
+/* =========================================================
+   SUGESTÕES PARA O CATÁLOGO (home)
+   ========================================================= */
+.sugestoes-secao {
+  padding: 8px 48px 48px;
+}
+
+.sugestoes-cabecalho {
+  max-width: 620px;
+  margin-bottom: 24px;
+}
+
+.sugestoes-texto {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--texto-fraco);
+}
+
+.sugestoes-link {
+  color: var(--ambar);
+  font-weight: 600;
+}
+
+.sugestoes-link:hover {
+  color: var(--ambar-forte);
+}
+
+.sugestoes-lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.sugestao-card {
+  background-color: var(--superficie);
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  padding: 18px 20px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.sugestao-card:hover {
+  border-color: var(--ambar);
+  transform: translateY(-3px);
+}
+
+.sugestao-selo {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--texto-fraco);
+  background-color: var(--superficie-2);
+  border: 1px solid var(--borda);
+  border-radius: 999px;
+  padding: 4px 10px;
+  margin-bottom: 12px;
+}
+
+.sugestao-titulo {
+  font-family: var(--fonte-titulo);
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.sugestao-meta {
+  font-size: 13px;
+  color: var(--texto-fraco);
+}
+
+@media (max-width: 640px) {
+  .sugestoes-secao {
+    padding: 8px 20px 40px;
+  }
+}

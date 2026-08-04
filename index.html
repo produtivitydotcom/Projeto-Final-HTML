@@ -33,6 +33,50 @@
   <!--  FILEIRAS — preenchidas pelo JavaScript  -->
   <main id="fileiras" class="fileiras"></main>
 
+  <!--  SUGESTÕES — filmes que ainda não estão no catálogo  -->
+  <section class="sugestoes-secao">
+    <div class="sugestoes-cabecalho">
+      <h2 class="fileira-titulo">Sugestões para o catálogo</h2>
+      <p class="sugestoes-texto">
+        Obras que estamos avaliando incluir no acervo. Tem uma indicação de filme que ajude a aproximar culturas e idiomas?
+        Escreva para <a href="mailto:contato@arcade.com" class="sugestoes-link">contato@arcade.com</a>.
+      </p>
+    </div>
+
+    <div class="sugestoes-lista">
+      <div class="sugestao-card">
+        <span class="sugestao-selo">Em avaliação</span>
+        <p class="sugestao-titulo">Orfeu Negro</p>
+        <p class="sugestao-meta">Brasil / França · 1959 · Drama</p>
+      </div>
+      <div class="sugestao-card">
+        <span class="sugestao-selo">Em avaliação</span>
+        <p class="sugestao-titulo">Roma, Cidade Aberta</p>
+        <p class="sugestao-meta">Itália · 1945 · Drama de guerra</p>
+      </div>
+      <div class="sugestao-card">
+        <span class="sugestao-selo">Em avaliação</span>
+        <p class="sugestao-titulo">Pather Panchali</p>
+        <p class="sugestao-meta">Índia · 1955 · Drama</p>
+      </div>
+      <div class="sugestao-card">
+        <span class="sugestao-selo">Em avaliação</span>
+        <p class="sugestao-titulo">Morangos Silvestres</p>
+        <p class="sugestao-meta">Suécia · 1957 · Drama</p>
+      </div>
+      <div class="sugestao-card">
+        <span class="sugestao-selo">Em avaliação</span>
+        <p class="sugestao-titulo">Ugetsu Monogatari</p>
+        <p class="sugestao-meta">Japão · 1953 · Drama fantástico</p>
+      </div>
+      <div class="sugestao-card">
+        <span class="sugestao-selo">Em avaliação</span>
+        <p class="sugestao-titulo">Andrei Rublev</p>
+        <p class="sugestao-meta">União Soviética · 1966 · Drama histórico</p>
+      </div>
+    </div>
+  </section>
+
   <!--  RODAPÉ  -->
   <footer class="rodape rodape-completo">
     <div class="rodape-grade">
@@ -106,6 +150,18 @@
     // FILEIRAS: cria várias linhas de filmes por país e gênero
     function montarFileiras(filmes) {
       const container = document.getElementById('fileiras');
+
+      // Continuar assistindo: histórico salvo pelo player, do mais recente para o mais antigo
+      const historico = JSON.parse(localStorage.getItem('arcade_historico')) || [];
+      if (historico.length > 0) {
+        container.appendChild(criarFileira('Continuar assistindo', historico.slice(0, 8)));
+      }
+
+      // Últimas adições: os filmes mais recentes do catálogo
+      const ultimasAdicoes = filmes.slice(-8).reverse();
+      if (ultimasAdicoes.length > 0) {
+        container.appendChild(criarFileira('Últimas adições', ultimasAdicoes));
+      }
 
       const fileiras = [
         { titulo: 'Cinema alemão',     filtro: f => f.pais === 'Alemanha' },
