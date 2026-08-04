@@ -1,12 +1,12 @@
 // =========================================================
 //  HOME.JS — monta a página inicial a partir do dados.json
-// =========================================================
+// 
 
 // Ponto de partida: busca o arquivo de dados e, quando ele
 // chega, chama as funções que desenham a página.
 async function iniciar() {
   try {
-    const resposta = await fetch("dados/dados.json");
+    const resposta = await fetch("dados/filmes.json");
     const filmes = await resposta.json();   // vira uma lista (array) de filmes
 
     montarDestaque(filmes);
