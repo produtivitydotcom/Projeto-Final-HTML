@@ -1,22 +1,43 @@
+/* =========================================================
+   IMPORTAÇÃO DAS FONTES (Playfair Display + Montserrat)
+   ========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
 
 :root {
-  --fundo:        #121214;  /* Dark Mode Base (cinza quase preto) */
-  --superficie:   #1D1E22;  /* Superfícies e cards */
-  --superficie-2: #27282D;  /* Variação sutil para hovers */
-  --ambar:        #D4AF37;  /* Accent principal (Ouro Velho / Latão) */
-  --ambar-forte:  #C5A059;  /* Variação tom suave/ouro clássico */
-  --texto:        #E1E1E6;  /* Texto principal legível e confortável */
-  --texto-fraco:  #A8A8B3;  /* Texto secundário */
-  --borda:        rgba(212, 175, 55, 0.15); /* Borda sutil em tom dourado */
+  /* Fundo & Superfícies */
+  --fundo: #09090D;
+  --fundo-principal: #09090D;
+  --superficie: #141419;
+  --superficie-2: #1D1D24;
+  
+  /* HIERARQUIA DE ROXOS */
+  --roxo-principal: #B000FF;  
+  --roxo-secundario: #7200B8;  
+  --roxo-discreto: #3B1854;    
 
-  --fonte-titulo: "Cinzel", "Playfair Display", Georgia, serif;
-  --fonte-texto:  "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+  /* Aliases para compatibilidade */
+  --ambar: var(--roxo-principal);
+  --ambar-forte: var(--roxo-secundario);
+  --vinho-profundo: var(--roxo-discreto);
+  
+  /* Tipografia & Bordas */
+  --texto: #E1E1E6;
+  --texto-principal: #EDEDED;
+  --texto-fraco: #A8A8B3;
+  --texto-secundario: #A1A1AA;
+  --borda: rgba(176, 0, 255, 0.25);
+  --borda-sutil: rgba(176, 0, 255, 0.15);
+
+  /* Fontes */
+  --fonte-titulo: "Playfair Display", Georgia, serif;
+  --fonte-texto: "Montserrat", system-ui, sans-serif;
+  --fonte-corpo: "Montserrat", system-ui, sans-serif;
 }
 
 /* =========================================================
-   RESET BÁSICO
+   RESET BÁSICO & FUNDO COM NÉVOA ROXA SOFISTICADA
    ========================================================= */
-* {
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -24,10 +45,20 @@
 
 body {
   font-family: var(--fonte-texto);
-  background-color: var(--fundo);
+  background: 
+    radial-gradient(circle at 15% 10%, rgba(59, 24, 84, 0.35), transparent 30%),
+    radial-gradient(circle at 85% 80%, rgba(59, 24, 84, 0.25), transparent 30%),
+    var(--fundo);
+  background-attachment: fixed;
   color: var(--texto);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--fonte-titulo);
 }
 
 a {
@@ -37,89 +68,156 @@ a {
 
 img {
   display: block;
-  width: 100%;
+  max-width: 100%;
+  height: auto;
 }
 
 /* =========================================================
-   BARRA DE NAVEGAÇÃO (topo)
+   BARRA DE NAVEGAÇÃO PREMIUM (ATUALIZADA)
    ========================================================= */
-.topo {
+.topo,
+header {
   position: sticky;
   top: 0;
   z-index: 100;
   display: flex;
   align-items: center;
-  gap: 32px;
   padding: 16px 48px;
-  background-color: rgba(29, 30, 34, 0.85); /* Tom da superfície translúcido */
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--borda);
+  background-color: rgba(9, 9, 13, 0.90);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--borda-sutil);
 }
 
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.logo-img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(176, 0, 255, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo-container:hover .logo-img {
+  transform: scale(1.08);
+  box-shadow: 0 0 16px rgba(176, 0, 255, 0.6);
+}
+
+.logo-texto,
 .logo {
   font-family: var(--fonte-titulo);
   font-size: 26px;
   font-weight: 700;
-  color: var(--ambar);
+  color: var(--roxo-principal);
   letter-spacing: 1px;
   text-transform: uppercase;
 }
 
+/* Links de Navegação com Espaçamento Premium */
+nav {
+  display: flex;
+  align-items: center;
+}
+
 .menu {
   display: flex;
-  gap: 24px;
+  align-items: center;
 }
 
+nav a,
 .menu a {
-  color: var(--texto-fraco);
+  color: #aaa;
+  text-decoration: none;
+  margin: 0 14px;
   font-weight: 500;
-  transition: color 0.2s;
+  transition: color 0.3s ease;
 }
 
-.menu a:hover,
+nav a:hover,
+.menu a:hover {
+  color: #B000FF;
+}
+
+nav a.active,
+nav a.ativo,
+.menu a.active,
 .menu a.ativo {
-  color: var(--ambar);
+  color: #B000FF;
+  font-weight: 600;
 }
 
 .botao-busca {
   margin-left: auto;
   padding: 9px 18px;
-  border: 1px solid var(--ambar);
+  border: 1px solid var(--borda);
   border-radius: 999px;
-  color: var(--ambar);
+  color: var(--texto-principal);
   font-weight: 600;
   font-size: 14px;
-  transition: all 0.2s;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .botao-busca:hover {
-  background-color: var(--ambar);
-  color: #121214;
+  border-color: var(--roxo-principal);
+  color: var(--roxo-principal);
 }
 
 /* =========================================================
-   DESTAQUE (hero) — O filme grande do topo
+   DESTAQUE CINEMATOGRÁFICO (HERO)
    ========================================================= */
-.destaque {
+.destaque,
+.hero {
   position: relative;
-  min-height: 78vh;
+  min-height: 70vh;
   display: flex;
-  align-items: flex-end;
-  padding: 48px;
+  align-items: center;
+  padding: 48px 64px;
   background-size: cover;
   background-position: center;
+  transition: background-image 0.8s ease-in-out;
 }
 
-.destaque::before {
+/* Máscara Lateral (Esquerda para Direita) */
+.destaque::before,
+.hero::before {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    to top,
-    var(--fundo) 5%,
-    rgba(18, 18, 20, 0.6) 50%,
-    rgba(18, 18, 20, 0.2) 100%
+    90deg,
+    #09090d 0%,
+    rgba(9, 9, 13, 0.85) 30%,
+    rgba(9, 9, 13, 0.25) 70%,
+    rgba(9, 9, 13, 0.1) 100%
   );
+  z-index: 1;
+}
+
+/* Máscara Inferior (Transição suave com o resto do site) */
+.destaque::after,
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 35%;
+  background: linear-gradient(
+    transparent,
+    #09090d
+  );
+  z-index: 1;
+  pointer-events: none;
 }
 
 .destaque-conteudo {
@@ -132,7 +230,7 @@ img {
   font-size: 13px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--ambar);
+  color: var(--roxo-principal);
   margin-bottom: 12px;
   font-weight: 600;
 }
@@ -158,23 +256,32 @@ img {
 }
 
 .btn {
-  display: inline-block;
-  padding: 12px 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
   border-radius: 6px;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 14px;
   cursor: pointer;
-  transition: transform 0.15s, background 0.2s;
+  border: none;
+  white-space: nowrap;
+  transition: transform 0.15s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.btn:hover { transform: translateY(-2px); }
+.btn:hover {
+  transform: translateY(-2px);
+}
 
 .btn-principal {
-  background-color: var(--ambar);
-  color: #121214;
+  background-color: var(--roxo-principal);
+  color: #FFFFFF;
 }
 
-.btn-principal:hover { background-color: var(--ambar-forte); }
+.btn-principal:hover {
+  background-color: var(--roxo-secundario);
+  box-shadow: 0 4px 14px rgba(176, 0, 255, 0.4);
+}
 
 .btn-secundario {
   background-color: var(--superficie);
@@ -182,13 +289,46 @@ img {
   border: 1px solid var(--borda);
 }
 
-.btn-secundario:hover { background-color: var(--superficie-2); }
+.btn-secundario:hover {
+  background-color: var(--superficie-2);
+  border-color: var(--roxo-secundario);
+}
+
+/* Controles do Carrossel */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(9, 9, 13, 0.6);
+  color: #fff;
+  border: 1px solid var(--borda-sutil);
+  font-size: 24px;
+  padding: 12px 18px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.carousel-btn:hover {
+  background: var(--roxo-discreto);
+  border-color: var(--roxo-principal);
+}
+
+.prev-btn { left: 24px; }
+.next-btn { right: 24px; }
 
 /* =========================================================
    FILEIRAS DE FILMES
    ========================================================= */
 .fileiras {
-  padding: 40px 48px 20px;
+  padding: 0 64px 40px;
+  margin-top: 32px;
+  position: relative;
+  z-index: 5;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .fileira {
@@ -199,90 +339,125 @@ img {
   font-family: var(--fonte-titulo);
   font-size: 24px;
   font-weight: 600;
-  margin-bottom: 16px;
+  margin-top: 24px;
+  margin-bottom: 20px;
   color: #FFFFFF;
 }
 
 .fileira-lista {
   display: flex;
-  gap: 16px;
+  gap: 20px;
   overflow-x: auto;
-  padding-bottom: 8px;
+  padding: 12px 4px 24px 4px;
   scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.fileira-lista::-webkit-scrollbar {
+  display: none;
 }
 
 /* =========================================================
-   CARD DE FILME
+   CARDS DE FILME ESTILO STREAMING (.card e .card-filme)
    ========================================================= */
-.card {
+.card,
+.card-filme,
+.movie-card {
   flex: 0 0 200px;
-  border-radius: 8px;
+  border-radius: 10px;
   overflow: hidden;
   background-color: var(--superficie);
-  border: 1px solid var(--borda);
-  transition: transform 0.2s, background-color 0.2s;
+  border: 1px solid rgba(176, 0, 255, 0.25);
   position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: 
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    background-color 0.3s ease;
+  animation: surgimentoRapido 0.3s ease-out forwards;
 }
 
-.card:hover {
-  transform: translateY(-4px);
+.card:hover,
+.card-filme:hover,
+.movie-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(176, 0, 255, 0.8);
+  box-shadow: 0 15px 40px rgba(176, 0, 255, 0.18);
   background-color: var(--superficie-2);
 }
 
-.card-capa {
+/* Container de imagem do Card com Zoom suave */
+.card-capa-wrapper,
+.card-capa-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+}
+
+.card-capa,
+.card-filme img,
+.movie-card img {
+  width: 100%;
   aspect-ratio: 2 / 3;
   object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
 }
 
-.card-info {
-  padding: 12px;
+.card:hover .card-capa,
+.card-filme:hover img,
+.movie-card:hover img {
+  transform: scale(1.05);
 }
 
-.card-titulo {
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 4px;
+.card-info,
+.card-filme-info {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  min-height: 95px;
+  background-color: var(--superficie);
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  transition: background-color 0.3s ease;
+}
+
+.card:hover .card-info,
+.card-filme:hover .card-filme-info {
+  background-color: var(--superficie-2);
+}
+
+.card-titulo,
+.card-filme h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  color: var(--texto-principal);
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-meta,
+.card-filme .meta {
+  font-size: 0.8rem;
+  color: var(--texto-secundario);
+  margin: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.card-meta {
-  font-size: 12px;
-  color: var(--texto-fraco);
-}
-
 /* =========================================================
-   RODAPÉ
-   ========================================================= */
-.rodape {
-  padding: 40px 48px;
-  background-color: var(--superficie);
-  border-top: 1px solid var(--borda);
-  color: var(--texto-fraco);
-  font-size: 14px;
-}
-
-.rodape-fraco {
-  margin-top: 4px;
-  font-size: 13px;
-  opacity: 0.7;
-}
-
-/* =========================================================
-   RESPONSIVO
-   ========================================================= */
-@media (max-width: 640px) {
-  .topo      { padding: 12px 20px; gap: 16px; }
-  .destaque  { padding: 24px; min-height: 70vh; }
-  .destaque-titulo { font-size: 40px; }
-  .fileiras  { padding: 24px 20px; }
-  .card      { flex-basis: 150px; }
-  .menu      { display: none; }
-}
-
-/* =========================================================
-   PÁGINA DO FILME (detalhes)
+   PÁGINA DO FILME (Detalhes)
    ========================================================= */
 .detalhe-banner {
   position: relative;
@@ -300,9 +475,8 @@ img {
 
 .detalhe-conteudo {
   max-width: 900px;
-  margin: 0 auto;
+  margin: -120px auto 0;
   padding: 0 48px 60px;
-  margin-top: -120px;
   position: relative;
   z-index: 2;
 }
@@ -313,17 +487,27 @@ img {
   font-weight: 700;
   line-height: 1.05;
   margin-bottom: 12px;
+  color: var(--texto);
 }
 
 .detalhe-meta {
-  color: var(--ambar);
+  color: var(--roxo-principal);
   font-size: 15px;
   letter-spacing: 1px;
   margin-bottom: 24px;
 }
 
 .detalhe-botoes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 12px;
+  width: 100%;
   margin-bottom: 40px;
+}
+
+.detalhe-botoes .btn {
+  flex: 1;
 }
 
 .detalhe-secao-titulo {
@@ -331,6 +515,7 @@ img {
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 10px;
+  color: var(--texto);
 }
 
 .detalhe-texto {
@@ -338,11 +523,12 @@ img {
   font-size: 16px;
   margin-bottom: 32px;
   max-width: 680px;
+  line-height: 1.6;
 }
 
 .contexto-box {
   background-color: var(--superficie);
-  border-left: 3px solid var(--ambar);
+  border-left: 3px solid var(--roxo-principal);
   border-radius: 6px;
   padding: 20px 24px;
   margin-bottom: 32px;
@@ -350,7 +536,7 @@ img {
 }
 
 .contexto-box .detalhe-secao-titulo {
-  color: var(--ambar);
+  color: var(--roxo-principal);
   margin-bottom: 8px;
 }
 
@@ -364,33 +550,136 @@ img {
   padding: 20px 48px 0;
   color: var(--texto-fraco);
   font-size: 14px;
+  transition: color 0.2s ease;
 }
 .voltar:hover { color: var(--texto); }
 
 /* =========================================================
-   PÁGINA DE CATÁLOGO
+   MODAL FLUTUANTE DE TRAILER
+   ========================================================= */
+.modal-trailer {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-conteudo {
+  position: relative;
+  width: 90%;
+  max-width: 800px;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--borda);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+}
+
+.btn-fechar-modal {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 3;
+  transition: color 0.2s ease;
+}
+
+.btn-fechar-modal:hover {
+  color: var(--roxo-principal);
+}
+
+.iframe-trailer {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* =========================================================
+   PÁGINA DE CATÁLOGO & FILTROS (PAINEL CINEMATOGRÁFICO)
    ========================================================= */
 .catalogo {
-  padding: 40px 48px 60px;
+  padding: 40px 64px 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.catalogo-cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 28px;
 }
 
 .catalogo-titulo {
   font-family: var(--fonte-titulo);
   font-size: 34px;
   font-weight: 700;
-  margin-bottom: 28px;
+}
+
+.campo-busca {
+  background: rgba(20, 20, 25, 0.6);
+  border: 1px solid var(--borda-sutil);
+  color: var(--texto);
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-family: var(--fonte-texto);
+  font-size: 14px;
+  width: 260px;
+  outline: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.campo-busca:focus {
+  border-color: var(--roxo-principal);
+  box-shadow: 0 0 12px rgba(176, 0, 255, 0.35);
+}
+
+/* Painel de Controle de Vidro Escuro */
+.painel-filtros,
+.filters {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.035),
+    rgba(255, 255, 255, 0.015)
+  );
+  border: 1px solid rgba(176, 0, 255, 0.25);
+  border-radius: 14px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 24px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
 .filtro-grupo {
-  margin-bottom: 18px;
+  margin-bottom: 20px;
+}
+
+.filtro-grupo:last-child {
+  margin-bottom: 0;
 }
 
 .filtro-label {
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--texto-fraco);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  font-weight: 600;
 }
 
 .filtro-botoes {
@@ -399,41 +688,201 @@ img {
   gap: 8px;
 }
 
-.filtro-botao {
-  padding: 7px 16px;
-  border: 1px solid var(--borda);
+.filtro-botao,
+.btn-filtro {
+  padding: 8px 18px;
+  border: 1px solid rgba(176, 0, 255, 0.18);
   border-radius: 999px;
-  background-color: var(--superficie);
-  color: var(--texto-fraco);
-  font-size: 14px;
-  font-family: var(--fonte-texto);
+  background-color: rgba(20, 20, 25, 0.4);
+  color: var(--texto-principal);
+  font-size: 13px;
+  font-family: var(--fonte-corpo);
   cursor: pointer;
-  transition: all 0.2s;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.filtro-botao:hover {
-  color: var(--texto);
-  border-color: var(--ambar);
+.filtro-botao:hover,
+.btn-filtro:hover {
+  background-color: rgba(59, 24, 84, 0.6);
+  border-color: rgba(176, 0, 255, 0.6);
+  color: #FFFFFF;
+  box-shadow: 0 4px 15px rgba(176, 0, 255, 0.2);
 }
 
-.filtro-botao.ativo {
-  background-color: var(--ambar);
-  border-color: var(--ambar);
-  color: #121214;
+.filtro-botao.ativo,
+.btn-filtro.ativo {
+  background-color: var(--roxo-principal);
+  border-color: var(--roxo-principal);
+  color: #FFFFFF;
   font-weight: 600;
+  box-shadow: 0 0 15px rgba(176, 0, 255, 0.45);
 }
 
 .grade {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 20px;
+  gap: 24px;
   margin-top: 32px;
+  padding: 8px 4px 24px 4px;
 }
 
 .sem-resultado {
   color: var(--texto-fraco);
   margin-top: 32px;
   font-size: 16px;
+}
+
+.card-filme-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+}
+
+/* ===== ANIMAÇÕES INTERATIVAS POR GÊNERO ===== */
+.btn-filtro[data-genero="Terror"]:hover {
+  animation: tremor 0.3s infinite ease-in-out;
+  background-color: rgba(61, 0, 0, 0.8);
+  border-color: #ff0000;
+  box-shadow: 0 0 14px rgba(255, 0, 0, 0.6);
+  color: #ff8080;
+}
+
+.btn-filtro[data-genero="Ficção Científica"]:hover {
+  background-color: rgba(0, 43, 54, 0.8);
+  border-color: #00f0ff;
+  box-shadow: 0 0 15px #00f0ff;
+  color: #00f0ff;
+  transform: scale(1.05);
+}
+
+.btn-filtro[data-genero="Comédia"]:hover {
+  animation: quique 0.4s ease infinite alternate;
+  background-color: rgba(74, 59, 0, 0.8);
+  border-color: #ffd700;
+  color: #ffd700;
+}
+
+.btn-filtro[data-genero="Suspense"]:hover {
+  animation: pulso 1.2s infinite;
+  background-color: rgba(59, 24, 84, 0.8);
+  border-color: var(--roxo-principal);
+  color: #c084fc;
+}
+
+.btn-filtro[data-genero="Animação"]:hover {
+  background-color: rgba(2, 44, 34, 0.8);
+  border-color: #34d399;
+  color: #34d399;
+  transform: rotate(-3deg) scale(1.08);
+}
+
+@keyframes tremor {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-2px, 1px) rotate(-1deg); }
+  50% { transform: translate(2px, -1px) rotate(1deg); }
+  75% { transform: translate(-1px, -1px) rotate(0deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes quique {
+  from { transform: translateY(0); }
+  to { transform: translateY(-6px); }
+}
+
+@keyframes pulso {
+  0% { box-shadow: 0 0 0 0 rgba(176, 0, 255, 0.5); }
+  70% { box-shadow: 0 0 0 10px rgba(176, 0, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(176, 0, 255, 0); }
+}
+
+@keyframes surgimentoRapido {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   SUGESTÕES NA HOME
+   ========================================================= */
+.sugestoes-secao {
+  padding: 8px 64px 48px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.sugestoes-cabecalho {
+  max-width: 620px;
+  margin-bottom: 24px;
+}
+
+.sugestoes-texto {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--texto-fraco);
+}
+
+.sugestoes-link {
+  color: var(--roxo-principal);
+  font-weight: 600;
+}
+
+.sugestoes-link:hover {
+  color: var(--roxo-secundario);
+}
+
+.sugestoes-lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.sugestao-card {
+  background-color: var(--superficie);
+  border: 1px solid var(--borda-sutil);
+  border-radius: 10px;
+  padding: 18px 20px;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sugestao-card:hover {
+  border-color: rgba(176, 0, 255, 0.8);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(176, 0, 255, 0.15);
+}
+
+.sugestao-selo {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--texto-fraco);
+  background-color: var(--superficie-2);
+  border: 1px solid var(--borda-sutil);
+  border-radius: 999px;
+  padding: 4px 10px;
+  margin-bottom: 12px;
+}
+
+.sugestao-titulo {
+  font-family: var(--fonte-titulo);
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.sugestao-meta {
+  font-size: 13px;
+  color: var(--texto-fraco);
 }
 
 /* =========================================================
@@ -471,279 +920,22 @@ img {
 }
 
 .player-voltar {
-  color: var(--ambar);
+  color: var(--roxo-principal);
   font-size: 14px;
+  transition: color 0.2s ease;
 }
-.player-voltar:hover { color: var(--ambar-forte); }
-/* =========================================================
-   MELHORIAS ESPECÍFICAS DO CATÁLOGO
-   ========================================================= */
-
-.catalogo-cabecalho {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-bottom: 28px;
-}
-
-.campo-busca {
-  background-color: var(--superficie);
-  border: 1px solid var(--borda);
-  color: var(--texto);
-  padding: 10px 18px;
-  border-radius: 999px;
-  font-family: var(--fonte-texto);
-  font-size: 14px;
-  width: 260px;
-  outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.campo-busca:focus {
-  border-color: var(--ambar);
-  box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
-}
-
-.painel-filtros {
-  background-color: var(--superficie);
-  border: 1px solid var(--borda);
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 32px;
-}
-/* ===== VARIÁVEIS DE CORES E FONTES ===== */
-:root {
-  --fundo-principal: #121214;
-  --superficie: #1D1E22;
-  --ouro-velho: #C5A059;
-  --ouro-brilho: #D4AF37;
-  --vinho-profundo: #6B1D2F;
-  --texto-principal: #EDEDED;
-  --texto-secundario: #A1A1AA;
-  --borda-sutil: rgba(255, 255, 255, 0.1);
-  --fonte-titulo: 'Cinzel', serif;
-  --fonte-corpo: 'Plus Jakarta Sans', sans-serif;
-}
-
-/* Base Geral */
-body {
-  background-color: var(--fundo-principal);
-  color: var(--texto-principal);
-  font-family: var(--fonte-corpo);
-  margin: 0;
-  padding: 0;
-}
-
-h1, h2, h3, .logo {
-  font-family: var(--fonte-titulo);
-}
-
-/* ===== PAINEL DE FILTROS ===== */
-.painel-filtros {
-  background-color: var(--superficie);
-  border: 1px solid var(--borda-sutil);
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 30px;
-}
-
-.filtro-label {
-  color: var(--texto-secundario);
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 10px;
-}
-
-/* Botões dos Filtros (Pills Visual) */
-.filtro-botoes {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 15px;
-}
-
-.btn-filtro {
-  background-color: transparent;
-  color: var(--texto-principal);
-  border: 1px solid var(--borda-sutil);
-  padding: 6px 16px;
-  border-radius: 20px; /* Formato Pill/Tag */
-  cursor: pointer;
-  font-family: var(--fonte-corpo);
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-}
-
-.btn-filtro:hover {
-  background-color: var(--vinho-profundo);
-  border-color: var(--vinho-profundo);
-  color: #ffffff;
-}
-
-.btn-filtro.ativo {
-  background-color: var(--ouro-velho);
-  border-color: var(--ouro-velho);
-  color: #121214;
-  font-weight: 600;
-}
-
-/* ===== GRADE DE FILMES ===== */
-.grade {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 24px;
-}
-
-/* Cards de Filme */
-.card-filme {
-  background-color: var(--superficie);
-  border: 1px solid var(--borda-sutil);
-  border-radius: 8px;
-  overflow: hidden;
-  transition: transform 0.3s ease, border-color 0.3s ease;
-  display: flex;
-  flex-direction: column;
-}
-
-.card-filme:hover {
-  transform: translateY(-5px);
-  border-color: var(--ouro-velho);
-}
-
-/* Tratamento dos Pôsteres */
-.card-filme img {
-  width: 100%;
-  height: 270px;
-  object-fit: cover; /* Garante que capas de tamanhos diferentes se ajustem uniformemente */
-  background-color: #000;
-}
-
-.card-filme-info {
-  padding: 12px;
-}
-
-.card-filme h3 {
-  font-size: 1rem;
-  margin: 0 0 6px 0;
-  color: var(--texto-principal);
-}
-
-.card-filme .meta {
-  font-size: 0.8rem;
-  color: var(--texto-secundario);
-}
-/* ===== ANIMAÇÕES DOS GÊNEROS ===== */
-
-/* 1. Terror: Tremor fantasmagórico com sombra vermelha */
-.btn-filtro[data-genero="Terror"]:hover {
-  animation: tremor 0.3s infinite ease-in-out;
-  background-color: #3d0000;
-  border-color: #ff0000;
-  box-shadow: 0 0 12px rgba(255, 0, 0, 0.6);
-  color: #ff8080;
-}
-
-@keyframes tremor {
-  0% { transform: translate(0, 0) rotate(0deg); }
-  25% { transform: translate(-2px, 1px) rotate(-1deg); }
-  50% { transform: translate(2px, -1px) rotate(1deg); }
-  75% { transform: translate(-1px, -1px) rotate(0deg); }
-  100% { transform: translate(0, 0) rotate(0deg); }
-}
-
-/* 2. Ficção Científica: Brilho Neon Cyberpunk */
-.btn-filtro[data-genero="Ficção Científica"]:hover {
-  background-color: #002b36;
-  border-color: #00f0ff;
-  box-shadow: 0 0 15px #00f0ff;
-  color: #00f0ff;
-  transform: scale(1.05);
-}
-
-/* 3. Comédia: Quique divertido */
-.btn-filtro[data-genero="Comédia"]:hover {
-  animation: quique 0.4s ease infinite alternate;
-  background-color: #4a3b00;
-  border-color: #ffd700;
-  color: #ffd700;
-}
-
-@keyframes quique {
-  from { transform: translateY(0); }
-  to { transform: translateY(-6px); }
-}
-
-/* 4. Suspense: Pulso Sombrio */
-.btn-filtro[data-genero="Suspense"]:hover {
-  animation: pulso 1.2s infinite;
-  background-color: #1a1a24;
-  border-color: #a855f7;
-  color: #c084fc;
-}
-
-@keyframes pulso {
-  0% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.7); }
-  70% { box-shadow: 0 0 0 10px rgba(168, 85, 247, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0); }
-}
-
-/* 5. Animação: Flutuação mágica */
-.btn-filtro[data-genero="Animação"]:hover {
-  background-color: #022c22;
-  border-color: #34d399;
-  color: #34d399;
-  transform: rotate(-3deg) scale(1.08);
-}
-/* Animação rápida de transição para a grade de filmes */
-.grade {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 24px;
-}
-
-/* Efeito suave ao atualizar a lista */
-.card-filme {
-  animation: surgimentoRapido 0.3s ease-out forwards;
-}
-
-@keyframes surgimentoRapido {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.card-filme {
-  animation: surgimentoRapido 0.3s ease-out forwards;
-}
-
-@keyframes surgimentoRapido {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.card-filme-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
+.player-voltar:hover { color: var(--roxo-secundario); }
 
 /* =========================================================
-   RODAPÉ COMPLETO (logo, navegação, contato, apoio)
+   RODAPÉ
    ========================================================= */
+.rodape,
 .rodape-completo {
-  padding: 56px 48px 28px;
+  padding: 56px 64px 28px;
+  background-color: var(--superficie);
+  border-top: 1px solid var(--borda-sutil);
+  color: var(--texto-fraco);
+  font-size: 14px;
 }
 
 .rodape-grade {
@@ -759,7 +951,7 @@ h1, h2, h3, .logo {
   font-family: var(--fonte-titulo);
   font-size: 22px;
   font-weight: 700;
-  color: var(--ambar);
+  color: var(--roxo-principal);
   letter-spacing: 1px;
   text-transform: uppercase;
 }
@@ -791,12 +983,12 @@ h1, h2, h3, .logo {
 .rodape-contato-email {
   font-size: 14px;
   color: var(--texto-fraco);
-  transition: color 0.2s;
+  transition: color 0.2s ease;
 }
 
 .rodape-links a:hover,
 .rodape-contato-email:hover {
-  color: var(--ambar);
+  color: var(--roxo-principal);
 }
 
 .rodape-apoio-texto {
@@ -811,25 +1003,26 @@ h1, h2, h3, .logo {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background-color: var(--ambar);
-  color: #121214;
+  background-color: var(--roxo-principal);
+  color: #FFFFFF;
   padding: 10px 20px;
   border-radius: 999px;
   font-weight: 700;
   font-size: 14px;
-  transition: background-color 0.2s, transform 0.2s;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn-apoiar:hover {
-  background-color: var(--ambar-forte);
+  background-color: var(--roxo-secundario);
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(176, 0, 255, 0.35);
 }
 
 .rodape-baixo {
   max-width: 1200px;
   margin: 0 auto;
   padding-top: 24px;
-  border-top: 1px solid var(--borda);
+  border-top: 1px solid var(--borda-sutil);
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -837,101 +1030,8 @@ h1, h2, h3, .logo {
   font-size: 13px;
 }
 
-@media (max-width: 900px) {
-  .rodape-grade {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 560px) {
-  .rodape-completo {
-    padding: 40px 20px 24px;
-  }
-  .rodape-grade {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-  .rodape-baixo {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-/* =========================================================
-   SUGESTÕES PARA O CATÁLOGO (home)
-   ========================================================= */
-.sugestoes-secao {
-  padding: 8px 48px 48px;
-}
-
-.sugestoes-cabecalho {
-  max-width: 620px;
-  margin-bottom: 24px;
-}
-
-.sugestoes-texto {
-  margin-top: 8px;
-  font-size: 14px;
-  line-height: 1.7;
-  color: var(--texto-fraco);
-}
-
-.sugestoes-link {
-  color: var(--ambar);
-  font-weight: 600;
-}
-
-.sugestoes-link:hover {
-  color: var(--ambar-forte);
-}
-
-.sugestoes-lista {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 16px;
-}
-
-.sugestao-card {
-  background-color: var(--superficie);
-  border: 1px solid var(--borda);
-  border-radius: 8px;
-  padding: 18px 20px;
-  transition: border-color 0.2s, transform 0.2s;
-}
-
-.sugestao-card:hover {
-  border-color: var(--ambar);
-  transform: translateY(-3px);
-}
-
-.sugestao-selo {
-  display: inline-block;
-  font-size: 11px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--texto-fraco);
-  background-color: var(--superficie-2);
-  border: 1px solid var(--borda);
-  border-radius: 999px;
-  padding: 4px 10px;
-  margin-bottom: 12px;
-}
-
-.sugestao-titulo {
-  font-family: var(--fonte-titulo);
-  font-size: 16px;
-  font-weight: 600;
-  color: #fff;
-  margin-bottom: 4px;
-}
-
-.sugestao-meta {
+.rodape-fraco {
+  margin-top: 4px;
   font-size: 13px;
-  color: var(--texto-fraco);
-}
-
-@media (max-width: 640px) {
-  .sugestoes-secao {
-    padding: 8px 20px 40px;
-  }
+  opacity: 0.7;
 }

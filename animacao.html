@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Chuva de Confetes</title>
+<style>
+  /* ==========================================
+     ESTILO BASE DO CONFETE
+     ========================================== */
+  body {
+    margin: 0;
+    overflow: hidden; /* Evita barra de rolagem lateral */
+    background-color: #222; /* Fundo escuro para destacar as cores */
+  }
+
+  .confete {
+    position: fixed !important;
+    top: -20px !important;
+    z-index: 999999 !important;
+    pointer-events: none !important;
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 2px !important;
+    opacity: 0.9 !important;
+    /* A animação agora tem uma duração base, mas o JS vai bagunçar os tempos */
+    animation: cairConfete 3s linear forwards !important;
+  }
+
+  .confete:nth-child(even) {
+    border-radius: 50% !important;
+    width: 10px !important;
+    height: 10px !important;
+  }
+
+  /* ==========================================
+     A ANIMAÇÃO QUE FALTAVA (O movimento de queda)
+     ========================================== */
+  @keyframes cairConfete {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(110vh) rotate(720deg); /* Desce 110% da tela e gira */
+      opacity: 0;
+    }
+  }
+
+  /* ==========================================
+     CORES DOS CONFETES POR PAÍS (Seu código)
+     ========================================== */
+  .confete-brasil:nth-child(odd) { background-color: #009b3a !important; }
+  .confete-brasil:nth-child(even) { background-color: #fedf00 !important; }
+
+  .confete-alemanha:nth-child(3n+1) { background-color: #000000 !important; }
+  .confete-alemanha:nth-child(3n+2) { background-color: #dd0000 !important; }
+  .confete-alemanha:nth-child(3n+3) { background-color: #ffce00 !important; }
+  
+  /* (Você pode colar o resto das suas cores aqui) */
+
+</style>
+</head>
+<body>
+
+  <!-- Botões para testar -->
+  <button onclick="gerarConfetes('brasil')" style="margin: 20px; padding: 10px;">Confetes Brasil</button>
+  <button onclick="gerarConfetes('alemanha')" style="margin: 20px; padding: 10px;">Confetes Alemanha</button>
+
+<script>
+  // ==========================================
+  // JAVASCRIPT PARA CRIAR OS CONFETES NA TELA
+  // ==========================================
+  function gerarConfetes(pais) {
+    const quantidade = 100; // Quantidade de confetes por clique
+    const container = document.body;
+
+    for (let i = 0; i < quantidade; i++) {
+      // Cria uma nova div
+      const confete = document.createElement('div');
+      
+      // Adiciona a classe base e a classe do país (ex: 'confete' e 'confete-brasil')
+      confete.classList.add('confete', `confete-${pais}`);
+      
+      // Posição horizontal aleatória (0 a 100% da largura da tela)
+      confete.style.left = Math.random() * 100 + 'vw';
+      
+      // Atraso aleatório para não caírem todos exatamente juntos
+      confete.style.animationDelay = Math.random() * 2 + 's';
+      
+      // Duração da queda aleatória (entre 2.5s e 4.5s)
+      confete.style.animationDuration = (Math.random() * 2 + 2.5) + 's';
+
+      // Adiciona o confete na tela
+      container.appendChild(confete);
+
+      // Remove o confete do código depois que a animação acaba para não pesar a página
+      setTimeout(() => {
+        confete.remove();
+      }, 5000); 
+    }
+  }
+</script>
+
+</body>
+</html>

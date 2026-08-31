@@ -66,7 +66,10 @@
 <body>
 
   <header class="topo">
-    <a href="index.html" class="logo">Arcade</a>
+    <a href="index.html" class="logo-container">
+      <img src="img/img.png" alt="Logo Arcade" class="logo-img">
+      <span class="logo-texto">ARCADE</span>
+    </a>
     <nav class="menu">
       <a href="index.html">Início</a>
       <a href="catalogo.html">Catálogo</a>
@@ -225,7 +228,7 @@
 
       if (ehFavorito) {
         btnFav.classList.add('ativo');
-        btnFav.innerText = '❤️ Nos Favoritos';
+        btnFav.innerText = '❤️ Favoritar';
       } else {
         btnFav.classList.remove('ativo');
         btnFav.innerText = '❤️ Favorito';

@@ -5,13 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Arcade — Detalhes do Filme</title>
 
+  <!-- Importação das Fontes: Playfair Display + Montserrat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/estilo.css">
 
   <style>
+    /* Aplicação global da fonte Montserrat */
+    body, nav, button, p, input, textarea, a, span {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* Aplicação da Playfair Display para os títulos */
+    h1, h2, h3, .titulo-filme, .secao-comentarios h2, .logo-texto, .rodape-logo {
+      font-family: 'Playfair Display', serif;
+    }
+
     .filme-detalhe-container {
       max-width: 1100px;
       margin: 40px auto;
@@ -22,7 +33,7 @@
       display: flex;
       gap: 40px;
       background: #18181b;
-      border: 1px solid #27272a;
+      border: 1px solid rgba(148, 0, 211, 0.25);
       border-radius: 16px;
       padding: 30px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
@@ -45,10 +56,49 @@
     }
 
     .titulo-filme {
-      font-family: 'Cinzel', serif;
-      font-size: 2.4rem;
-      margin: 0 0 10px 0;
+      font-size: 2.5rem;
+      margin: 0 0 6px 0;
       color: #fff;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    /* ESTILOS DA AVALIAÇÃO COM PREENCHIMENTO EM ROXO */
+    .avaliacao-estrelas {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 16px;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .estrelas-wrapper {
+      position: relative;
+      display: inline-block;
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    .estrelas-base {
+      color: #3f3f46;
+    }
+
+    .estrelas-preenchidas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      color: #9400D3; /* Roxo ativo */
+      width: 0%;
+    }
+
+    .nota-texto {
+      color: #a1a1aa;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-left: 6px;
     }
 
     .meta-tags {
@@ -61,6 +111,7 @@
     .tag {
       background: #27272a;
       color: #e4e4e7;
+      border: 1px solid rgba(148, 0, 211, 0.25);
       padding: 6px 14px;
       border-radius: 20px;
       font-size: 0.85rem;
@@ -74,49 +125,179 @@
       margin-bottom: 30px;
     }
 
+    /* ÁREA DOS BOTÕES DE AÇÃO REESTILIZADA E ALINHADA */
     .acoes-filme {
       display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
       align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: auto;
     }
 
-    .btn-play {
-      background: #eab308;
-      color: #000;
-      font-weight: 700;
-      padding: 14px 28px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 1.05rem;
+    /* Base padronizada para todos os botões da ação */
+    .btn-acao {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
-      transition: transform 0.2s, background-color 0.2s;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      border: none;
+      box-sizing: border-box;
+      height: 46px;
     }
 
-    .btn-play:hover {
-      background: #facc15;
+    /* 1. Botão Principal (Assistir Agora) - Roxo Neon Vibrante */
+    .btn-destaque-acao {
+      background-color: #9400D3;
+      color: #FFFFFF;
+      box-shadow: 0 4px 15px rgba(148, 0, 211, 0.4);
+    }
+
+    .btn-destaque-acao:hover {
+      background-color: #a812ed;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(148, 0, 211, 0.6);
+    }
+
+    /* 2. Botões Secundários (Trailer, Favoritos, Assistir Depois) */
+    .btn-secundario-acao {
+      background-color: rgba(255, 255, 255, 0.08);
+      color: #E4E4E7;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(4px);
+    }
+
+    .btn-secundario-acao:hover {
+      background-color: rgba(255, 255, 255, 0.18);
+      color: #FFFFFF;
+      border-color: rgba(255, 255, 255, 0.3);
       transform: translateY(-2px);
     }
 
-    .btn-acao {
-      background: #27272a;
-      color: #fff;
-      border: 1px solid #3f3f46;
-      padding: 12px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: all 0.2s;
+    /* ESTILOS DA SEÇÃO DE COMENTÁRIOS */
+    .secao-comentarios {
+      margin-top: 40px;
+      background: #18181b;
+      border: 1px solid rgba(148, 0, 211, 0.25);
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
-    /* Estado visual quando o filme está salvo nos favoritos/assistir depois */
-    .btn-acao.ativo {
-      background: #eab308 !important;
-      border-color: #eab308 !important;
-      color: #000 !important;
+    .secao-comentarios h2 {
+      color: #fff;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    .form-comentario {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 30px;
+    }
+
+    .form-comentario input,
+    .form-comentario textarea {
+      background: #27272a;
+      border: 1px solid #3f3f46;
+      border-radius: 8px;
+      padding: 14px;
+      color: #fff;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-comentario input:focus,
+    .form-comentario textarea:focus {
+      border-color: #9400D3;
+    }
+
+    .form-comentario button {
+      align-self: flex-start;
+    }
+
+    .lista-comentarios {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .card-comentario {
+      background: #27272a;
+      padding: 16px 20px;
+      border-radius: 8px;
+      border-left: 4px solid #9400D3;
+    }
+
+    .card-comentario .autor-comentario {
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+
+    .card-comentario .texto-comentario {
+      color: #a1a1aa;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    /* ESTILOS DO MODAL DE TRAILER */
+    .modal-trailer {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(4px);
+      z-index: 99999;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-conteudo {
+      position: relative;
+      width: 90%;
+      max-width: 800px;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(148, 0, 211, 0.25);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    }
+
+    .btn-fechar-modal {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      z-index: 2;
+      transition: color 0.2s;
+    }
+
+    .btn-fechar-modal:hover {
+      color: #9400D3;
+    }
+
+    .iframe-trailer {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
 
     @media (max-width: 768px) {
@@ -125,8 +306,11 @@
         align-items: center;
         text-align: center;
       }
-      .meta-tags, .acoes-filme {
+      .meta-tags, .acoes-filme, .avaliacao-estrelas {
         justify-content: center;
+      }
+      .btn-acao {
+        width: 100%;
       }
     }
   </style>
@@ -134,7 +318,10 @@
 <body>
 
   <header class="topo">
-    <a href="index.html" class="logo">Arcade</a>
+    <a href="index.html" class="logo-container">
+      <img src="img/img.png" alt="Logo Arcade" class="logo-img">
+      <span class="logo-texto">ARCADE</span>
+    </a>
     <nav class="menu">
       <a href="index.html">Início</a>
       <a href="catalogo.html">Catálogo</a>
@@ -151,6 +338,15 @@
         <div>
           <h1 id="filme-titulo" class="titulo-filme">Carregando...</h1>
           
+          <!-- Classificação em Estrelas Preenchidas -->
+          <div class="avaliacao-estrelas">
+            <div class="estrelas-wrapper">
+              <div class="estrelas-base">★★★★★</div>
+              <div id="estrelas-preenchimento" class="estrelas-preenchidas">★★★★★</div>
+            </div>
+            <span id="nota-texto" class="nota-texto">0.0 / 5</span>
+          </div>
+
           <div class="meta-tags">
             <span id="filme-genero" class="tag">Gênero</span>
             <span id="filme-pais" class="tag">País</span>
@@ -163,21 +359,48 @@
         </div>
 
         <div class="acoes-filme">
-          <a id="btn-assistir-agora" href="#" class="btn-play">
-            ▶️ Assistir Agora
+          <a id="btn-assistir-agora" href="#" class="btn-acao btn-destaque-acao">
+            ▶ Assistir Agora
           </a>
 
-          <button id="btn-favorito" class="btn-acao">
+          <button id="btn-trailer" class="btn-acao btn-secundario-acao" style="display: none;">
+            🎬 Ver Trailer
+          </button>
+
+          <button id="btn-favorito" class="btn-acao btn-secundario-acao">
             ❤️ Favoritos
           </button>
 
-          <button id="btn-depois" class="btn-acao">
+          <button id="btn-depois" class="btn-acao btn-secundario-acao">
             🔖 Assistir Depois
           </button>
         </div>
       </div>
     </div>
+
+    <!-- Seção de Comentários -->
+    <section class="secao-comentarios">
+      <h2>Comentários</h2>
+
+      <form id="form-comentario" class="form-comentario">
+        <input type="text" id="autor-nome" placeholder="Seu nome" required />
+        <textarea id="texto-comentario" placeholder="Escreva o seu comentário sobre este filme..." rows="3" required></textarea>
+        <button type="submit" class="btn-acao btn-destaque-acao">💬 Publicar Comentário</button>
+      </form>
+
+      <div id="lista-comentarios" class="lista-comentarios">
+        <!-- Comentários serão inseridos dinamicamente aqui -->
+      </div>
+    </section>
   </main>
+
+  <!-- Estrutura do Modal do Trailer -->
+  <div id="modal-trailer" class="modal-trailer">
+    <div class="modal-conteudo">
+      <button id="btn-fechar-modal" class="btn-fechar-modal">&times;</button>
+      <iframe id="iframe-trailer" class="iframe-trailer" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+  </div>
 
   <footer class="rodape rodape-completo">
     <div class="rodape-grade">
@@ -217,8 +440,19 @@
   <script>
     let filmeAtual = null;
 
+    function formatarUrlEmbed(url) {
+      if (!url) return '';
+      if (url.includes('youtube.com/watch?v=')) {
+        return url.replace('watch?v=', 'embed/') + '?autoplay=1';
+      }
+      if (url.includes('youtu.be/')) {
+        const id = url.split('youtu.be/')[1].split('?')[0];
+        return `https://www.youtube.com/embed/${id}?autoplay=1`;
+      }
+      return url;
+    }
+
     async function carregarDetalhesFilme() {
-      // 1. Pega o ID da URL
       const urlParams = new URLSearchParams(window.location.search);
       const idFilme = urlParams.get('id');
 
@@ -226,12 +460,10 @@
         const resposta = await fetch('dados/filmes.json');
         const filmes = await resposta.json();
 
-        // 2. Procura pelo ID (comparando como String e Number para evitar divergências de tipo)
         filmeAtual = filmes.find(f => String(f.id) === String(idFilme)) || filmes[0];
 
         if (!filmeAtual) return;
 
-        // 3. Preenche na interface
         document.getElementById('filme-capa').src = filmeAtual.capa || '';
         document.getElementById('filme-capa').alt = filmeAtual.titulo || 'Filme';
         document.getElementById('filme-titulo').innerText = filmeAtual.titulo || 'Sem Título';
@@ -242,21 +474,52 @@
         document.getElementById('filme-sinopse').innerText = filmeAtual.sinopse || 
           `Acompanhe a obra clássica "${filmeAtual.titulo}", um importante marco do cinema.`;
 
-        // Link do Player
+        const nota = parseFloat(filmeAtual.avaliacao || filmeAtual.nota || 5.0);
+        const porcentagemPreenchimento = Math.min(Math.max((nota / 5) * 100, 0), 100);
+
+        document.getElementById('estrelas-preenchimento').style.width = `${porcentagemPreenchimento}%`;
+        document.getElementById('nota-texto').innerText = `${nota.toFixed(1)} / 5`;
+
         document.getElementById('btn-assistir-agora').href = `player.html?id=${filmeAtual.id}`;
 
-        // 4. Salva no histórico de "Continuar Assistindo"
-        registrarNoHistorico(filmeAtual);
+        const linkTrailer = filmeAtual.link || filmeAtual.trailer || filmeAtual.linkTrailer;
+        const btnTrailer = document.getElementById('btn-trailer');
 
-        // 5. Atualiza as cores dos botões de Favorito e Assistir Depois
+        if (linkTrailer) {
+          btnTrailer.style.display = 'inline-flex';
+          btnTrailer.onclick = () => abrirTrailer(linkTrailer);
+        } else {
+          btnTrailer.style.display = 'none';
+        }
+
+        registrarNoHistorico(filmeAtual);
         atualizarEstadoBotoes();
+        carregarComentarios();
 
       } catch (erro) {
         console.error("Erro ao carregar dados do filme:", erro);
       }
     }
 
-    // Registra no histórico para a página de perfil
+    function abrirTrailer(link) {
+      const modal = document.getElementById('modal-trailer');
+      const iframe = document.getElementById('iframe-trailer');
+      iframe.src = formatarUrlEmbed(link);
+      modal.style.display = 'flex';
+    }
+
+    function fecharTrailer() {
+      const modal = document.getElementById('modal-trailer');
+      const iframe = document.getElementById('iframe-trailer');
+      iframe.src = '';
+      modal.style.display = 'none';
+    }
+
+    document.getElementById('btn-fechar-modal').addEventListener('click', fecharTrailer);
+    document.getElementById('modal-trailer').addEventListener('click', (e) => {
+      if (e.target.id === 'modal-trailer') fecharTrailer();
+    });
+
     function registrarNoHistorico(filme) {
       if (!filme || !filme.id) return;
       let historico = JSON.parse(localStorage.getItem('arcade_historico')) || [];
@@ -265,7 +528,6 @@
       localStorage.setItem('arcade_historico', JSON.stringify(historico));
     }
 
-    // Alterna a inclusão do filme no LocalStorage
     function alternarLista(chave) {
       if (!filmeAtual || !filmeAtual.id) return;
 
@@ -273,16 +535,15 @@
       const existeIndex = lista.findIndex(f => String(f.id) === String(filmeAtual.id));
 
       if (existeIndex !== -1) {
-        lista.splice(existeIndex, 1); // Remove se já existir
+        lista.splice(existeIndex, 1);
       } else {
-        lista.push(filmeAtual); // Adiciona
+        lista.push(filmeAtual);
       }
 
       localStorage.setItem('arcade_' + chave, JSON.stringify(lista));
       atualizarEstadoBotoes();
     }
 
-    // Atualiza o visual dos botões
     function atualizarEstadoBotoes() {
       if (!filmeAtual) return;
 
@@ -296,27 +557,65 @@
       const btnDep = document.getElementById('btn-depois');
 
       if (ehFavorito) {
-        btnFav.classList.add('ativo');
-        btnFav.innerText = '❤️ Nos Favoritos';
+        btnFav.innerText = '❤️ Favoritar';
       } else {
-        btnFav.classList.remove('ativo');
         btnFav.innerText = '❤️ Favoritos';
       }
 
       if (ehDepois) {
-        btnDep.classList.add('ativo');
         btnDep.innerText = '🔖 Salvo p/ Depois';
       } else {
-        btnDep.classList.remove('ativo');
         btnDep.innerText = '🔖 Assistir Depois';
       }
     }
 
-    // Eventos de clique nos botões
+    function carregarComentarios() {
+      if (!filmeAtual || !filmeAtual.id) return;
+
+      const listaContainer = document.getElementById('lista-comentarios');
+      const chaveStorage = `arcade_comentarios_${filmeAtual.id}`;
+      const comentarios = JSON.parse(localStorage.getItem(chaveStorage)) || [];
+
+      if (comentarios.length === 0) {
+        listaContainer.innerHTML = '<p style="color: #a1a1aa;">Nenhum comentário ainda. Seja o primeiro a comentar!</p>';
+        return;
+      }
+
+      listaContainer.innerHTML = comentarios.map(c => `
+        <div class="card-comentario">
+          <div class="autor-comentario">${c.nome}</div>
+          <div class="texto-comentario">${c.texto}</div>
+        </div>
+      `).join('');
+    }
+
+    document.getElementById('form-comentario').addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!filmeAtual || !filmeAtual.id) return;
+
+      const inputNome = document.getElementById('autor-nome');
+      const inputTexto = document.getElementById('texto-comentario');
+
+      const novoComentario = {
+        nome: inputNome.value.trim(),
+        texto: inputTexto.value.trim()
+      };
+
+      const chaveStorage = `arcade_comentarios_${filmeAtual.id}`;
+      const comentarios = JSON.parse(localStorage.getItem(chaveStorage)) || [];
+
+      comentarios.unshift(novoComentario);
+      localStorage.setItem(chaveStorage, JSON.stringify(comentarios));
+
+      inputNome.value = '';
+      inputTexto.value = '';
+
+      carregarComentarios();
+    });
+
     document.getElementById('btn-favorito').addEventListener('click', () => alternarLista('favoritos'));
     document.getElementById('btn-depois').addEventListener('click', () => alternarLista('assistirDepois'));
 
-    // Inicia o carregamento ao abrir a página
     carregarDetalhesFilme();
   </script>
   <script src="js/auth.js"></script>
