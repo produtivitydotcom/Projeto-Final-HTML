@@ -10,3 +10,10 @@ node_modules/
 
 # Logs
 *.log
+# vídeos locais — não vão para o Git
+*.mp4
+*.mkv
+*.avi
+*.mov
+*.webm
+/assets/videos/
