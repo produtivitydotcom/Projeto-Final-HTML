@@ -14,6 +14,32 @@
   <link rel="stylesheet" href="css/estilo.css">
 
   <style>
+    /* ESTILOS DA TELA DE INTRODUÇÃO (VÍDEO EM TELA CHEIA) */
+    #intro-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #000;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.8s ease;
+    }
+
+    #intro-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #intro-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
     /* ESTILOS DO CARROSSEL HERO (DESTAQUE) */
     .destaque {
       position: relative;
@@ -116,6 +142,14 @@
 </head>
 <body>
 
+  <!-- TELA DE INTRODUÇÃO EM VÍDEO -->
+  <div id="intro-overlay">
+    <video id="intro-video" autoplay playsinline preload="auto">
+      <source src="video/video_intro.mp4" type="video/mp4">
+      Seu navegador não suporta a exibição deste vídeo.
+    </video>
+  </div>
+
   <!-- MENU -->
   <header class="topo">
     <a href="index.html" class="logo-container">
@@ -128,7 +162,7 @@
       <a href="sobre.html">Missão</a>
       <a href="perfil.html" class="link-conta">Minha Conta</a>
     </nav>
-    <a href="catalogo.html" class="botao-busca">Explorar filmes</a>
+    <a href="catalogo.html" class="botao-busca">Procurar por país</a>
   </header>
 
   <!-- DESTAQUE (HERO) — Carrossel rotativo -->
@@ -231,11 +265,60 @@
   </footer>
 
   <script>
-    // Configuração dos filmes do Banner Destaque: Cole a URL da imagem no campo 'banner'
+    // CONTROLADOR DA INTRO EM VÍDEO (SEM BOTÃO E COM ÁUDIO - APENAS PRIMEIRA VISITA)
+const introVideo = document.getElementById('intro-video');
+const introOverlay = document.getElementById('intro-overlay');
+
+if (introVideo && introOverlay) {
+  // Verifica se o usuário já assistiu à intro anteriormente
+  const jaViuIntro = localStorage.getItem('jaViuIntro');
+
+  if (jaViuIntro) {
+    // Se já viu, esconde a overlay imediatamente sem tocar o vídeo
+    introOverlay.style.display = 'none';
+  } else {
+    // Primeira vez acessando: configura e tenta tocar o vídeo
+    introVideo.muted = false;
+    introVideo.volume = 1.0;
+
+    const promessaPlay = introVideo.play();
+
+    if (promessaPlay !== undefined) {
+      promessaPlay.catch(() => {
+        // Fallback caso o navegador proíba som sem interação
+        introVideo.muted = true;
+        introVideo.play();
+
+        const ativarSom = () => {
+          introVideo.muted = false;
+          document.removeEventListener('click', ativarSom);
+          document.removeEventListener('touchstart', ativarSom);
+          document.removeEventListener('keydown', ativarSom);
+        };
+
+        document.addEventListener('click', ativarSom);
+        document.addEventListener('touchstart', ativarSom);
+        document.addEventListener('keydown', ativarSom);
+      });
+    }
+
+    // Ao finalizar o vídeo, salva a marcação, faz a transição e remove a overlay
+    introVideo.addEventListener('ended', () => {
+      localStorage.setItem('jaViuIntro', 'true'); // Marca que o vídeo já foi exibido
+
+      introOverlay.classList.add('hidden');
+      setTimeout(() => {
+        introOverlay.style.display = 'none';
+      }, 800);
+    });
+  }
+}
+
+    // Configuração dos filmes do Banner Destaque
     const titulosDestaque = [
       {
         titulo: "La La Land",
-        banner: "https://images7.alphacoders.com/111/1111669.jpg" // Cole a URL da imagem aqui se desejar (ex: "https://link-imagem.jpg")
+        banner: "https://images7.alphacoders.com/111/1111669.jpg"
       },
       {
         titulo: "Transformers: O Último Cavaleiro",
@@ -243,19 +326,19 @@
       },
       {
         titulo: "Cinderela",
-        banner: "https://wallpaper.dog/large/5551721.jpg" // Cole a URL da imagem aqui
+        banner: "https://wallpaper.dog/large/5551721.jpg"
       },
       {
         titulo: "Jogos Vorazes: EM Chamas",
-        banner: "https://images5.alphacoders.com/688/thumb-1920-688145.jpg" // Cole a URL da imagem aqui
+        banner: "https://images5.alphacoders.com/688/thumb-1920-688145.jpg"
       },
       {
         titulo: "Crepusculo - Eclipse",
-        banner: "" // Cole a URL da imagem aqui
+        banner: ""
       },
       {
         titulo: "Harry Potter e as Relíquias da Morte: Parte 1",
-        banner: "https://wallpapercave.com/wp/wp2141444.jpg" // Cole a URL da imagem aqui
+        banner: "https://wallpapercave.com/wp/wp2141444.jpg"
       }
     ];
 
@@ -286,7 +369,6 @@
           pais: encontrado ? encontrado.pais : "Internacional",
           genero: encontrado ? encontrado.genero : "Cinema",
           capa: encontrado ? encontrado.capa : "img/img.png",
-          // Prioriza o link do banner customizado inserido acima
           banner: item.banner || (encontrado ? (encontrado.banner || encontrado.capa) : "img/img.png"),
           descricao: encontrado ? encontrado.descricao : `Acompanhe a obra incrível "${item.titulo}", disponível no acervo Arcade.`
         };
