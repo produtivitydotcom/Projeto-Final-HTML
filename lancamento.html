@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARCADE — Próximos Lançamentos</title>
+
+  <!-- fontes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- estilo -->
+  <link rel="stylesheet" href="css/estilo.css">
+
+  <style>
+    .lancamentos-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .lancamentos-titulo-pagina {
+      font-family: 'Fraunces', serif;
+      font-size: 2.5rem;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .lancamentos-subtitulo {
+      color: #a1a1aa;
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+    }
+
+    .lancamento-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      background: #18181b;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 30px;
+      align-items: center;
+    }
+
+    .lancamento-video-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* Proporção 16:9 */
+      border-radius: 8px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .lancamento-video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .lancamento-badge-data {
+      display: inline-block;
+      background: rgba(148, 0, 211, 0.2);
+      color: #c084fc;
+      border: 1px solid #9400D3;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .lancamento-titulo {
+      font-family: 'Fraunces', serif;
+      font-size: 1.8rem;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .lancamento-meta {
+      color: #a1a1aa;
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+
+    .lancamento-sinopse {
+      color: #d4d4d8;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    /* SEÇÃO DE FORMULÁRIO DE SUGESTÕES */
+    .sugestoes-form-secao {
+      background: #18181b;
+      border: 1px solid #9400D3;
+      border-radius: 16px;
+      padding: 40px 30px;
+      margin-top: 60px;
+      box-shadow: 0 0 20px rgba(148, 0, 211, 0.15);
+    }
+
+    .sugestoes-form-titulo {
+      font-family: 'Fraunces', serif;
+      font-size: 2rem;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .sugestoes-form-desc {
+      color: #a1a1aa;
+      font-size: 1rem;
+      margin-bottom: 24px;
+    }
+
+    .form-grupo {
+      margin-bottom: 20px;
+    }
+
+    .form-grupo label {
+      display: block;
+      color: #e4e4e7;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 16px;
+      background-color: #09090b;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      color: #ffffff;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-control:focus {
+      border-color: #9400D3;
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .btn-enviar-sugestao {
+      background-color: #9400D3;
+      color: #ffffff;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-enviar-sugestao:hover {
+      background-color: #7a00b3;
+      box-shadow: 0 0 15px rgba(148, 0, 211, 0.6);
+    }
+
+    .mensagem-sucesso {
+      display: none;
+      margin-top: 15px;
+      color: #4ade80;
+      font-weight: 500;
+    }
+
+    @media (max-width: 850px) {
+      .lancamento-card {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MENU -->
+  <header class="topo">
+    <a href="index.html" class="logo-container">
+      <img src="img/img.png" alt="Logo Arcade" class="logo-img">
+      <span class="logo-texto">ARCADE</span>
+    </a>
+    <nav class="menu">
+      <a href="index.html">Início</a>
+      <a href="catalogo.html">Catálogo</a>
+      <a href="lancamento.html" class="ativo">Lançamentos</a>
+      <a href="sobre.html">Missão</a>
+      <a href="perfil.html" class="link-conta">Minha Conta</a>
+    </nav>
+    <a href="catalogo.html" class="botao-busca">Procurar por país</a>
+  </header>
+
+  <!-- CONTEÚDO DE LANÇAMENTOS -->
+  <main class="lancamentos-container">
+    <h1 class="lancamentos-titulo-pagina">Próximas Adições</h1>
+    <p class="lancamentos-subtitulo">Assista aos trailers das obras de diversos países e gêneros que estarão disponíveis no acervo em breve.</p>
+
+    <!-- ITEM 1: JAPÃO (ANIME) -->
+    <article class="lancamento-card">
+      <div class="lancamento-video-wrapper">
+        <iframe src="https://www.youtube.com/embed/4cajBzu_N-g" title="Trailer Suzume" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="lancamento-detalhes">
+        <span class="lancamento-badge-data">Estreia em: 15 de Outubro, 2026</span>
+        <h2 class="lancamento-titulo">Suzume (Suzume no Tojimari)</h2>
+        <p class="lancamento-meta">Japão · Anime / Fantasia / Aventura</p>
+        <p class="lancamento-sinopse">Uma jovem de 17 anos chamada Suzume ajuda um estranho misterioso a fechar portas mágicas por todo o Japão para evitar desastres naturais devastadores em uma jornada poética e emocionante.</p>
+      </div>
+    </article>
+
+    <!-- ITEM 2: EUA (DISNEY / ANIMAÇÃO) -->
+    <article class="lancamento-card">
+      <div class="lancamento-video-wrapper">
+        <iframe src="https://www.youtube.com/embed/yAZxx8t9zig" title="Trailer Divertida Mente 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="lancamento-detalhes">
+        <span class="lancamento-badge-data">Estreia em: 22 de Outubro, 2026</span>
+        <h2 class="lancamento-titulo">Divertida Mente 2</h2>
+        <p class="lancamento-meta">Estados Unidos (Disney/Pixar) · Animação / Comédia / Família</p>
+        <p class="lancamento-sinopse">Na sequência da aclamada animação, Riley atinge a adolescência e a central de controle das suas emoções passa por uma reforma para dar lugar a novos sentimentos, como a Ansiedade.</p>
+      </div>
+    </article>
+
+    <!-- ITEM 3: BRASIL (DRAMA HISTÓRICO) -->
+    <article class="lancamento-card">
+      <div class="lancamento-video-wrapper">
+        <iframe src="https://www.youtube.com/embed/_NzqP0jmk3o" title="Trailer Ainda Estou Aqui" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="lancamento-detalhes">
+        <span class="lancamento-badge-data">Estreia em: 05 de Novembro, 2026</span>
+        <h2 class="lancamento-titulo">Ainda Estou Aqui</h2>
+        <p class="lancamento-meta">Brasil · Drama Histórico</p>
+        <p class="lancamento-sinopse">Dirigido por Walter Salles e baseado no livro autobiográfico de Marcelo Rubens Paiva, o filme retrata a luta de Eunice Paiva após o desaparecimento forçado de seu marido durante a ditadura militar no Brasil.</p>
+      </div>
+    </article>
+
+    <!-- ITEM 4: FRANÇA (SUSPENSE / DRAMA) -->
+    <article class="lancamento-card">
+      <div class="lancamento-video-wrapper">
+        <iframe src="https://www.youtube.com/embed/Bc85GhTsCaQ" title="Trailer Anatomia de uma Queda" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="lancamento-detalhes">
+        <span class="lancamento-badge-data">Estreia em: 12 de Novembro, 2026</span>
+        <h2 class="lancamento-titulo">Anatomia de uma Queda</h2>
+        <p class="lancamento-meta">França · Drama / Suspense Jurídico</p>
+        <p class="lancamento-sinopse">Vencedor da Palma de Ouro em Cannes, o filme acompanha o julgamento de uma escritora alemã acusada do assassinato de seu marido nos Alpes franceses, onde seu filho deficiente visual é a única testemunha.</p>
+      </div>
+    </article>
+
+    <!-- ITEM 5: COREIA DO SUL (TERROR / FOLCLORE) -->
+    <article class="lancamento-card">
+      <div class="lancamento-video-wrapper">
+        <iframe src="https://www.youtube.com/embed/98MjozNFvLA" title="Trailer Exhuma" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="lancamento-detalhes">
+        <span class="lancamento-badge-data">Estreia em: 20 de Novembro, 2026</span>
+        <h2 class="lancamento-titulo">Exhuma (Pamyo)</h2>
+        <p class="lancamento-meta">Coreia do Sul · Terror / Mistério</p>
+        <p class="lancamento-sinopse">Dois xamãs renomados e uma equipe de especialistas são contratados para mover um túmulo ancestral misterioso na Coreia, mas libertam uma força maligna e secreta enterrada há décadas.</p>
+      </div>
+    </article>
+
+    <!-- ITEM 6: REINO UNIDO (GUERRA / DRAMA HISTÓRICO) -->
+    <article class="lancamento-card">
+      <div class="lancamento-video-wrapper">
+        <iframe src="https://www.youtube.com/embed/bdGPi0HvTEY" title="Trailer A Zona de Interesse" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="lancamento-detalhes">
+        <span class="lancamento-badge-data">Estreia em: 02 de Dezembro, 2026</span>
+        <h2 class="lancamento-titulo">A Zona de Interesse</h2>
+        <p class="lancamento-meta">Reino Unido / Polônia · Drama Histórico / Guerra</p>
+        <p class="lancamento-sinopse">O comandante de Auschwitz e sua esposa tentam construir uma vida idílica e dos sonhos com sua família em uma casa idílica situada logo ao lado do campo de concentração.</p>
+      </div>
+    </article>
+
+    <!-- ITEM 7: ITÁLIA (DRAMA) -->
+    <article class="lancamento-card">
+      <div class="lancamento-video-wrapper">
+        <iframe src="https://www.youtube.com/embed/6Ob2W_PpDSE" title="Trailer Ainda Temos o Amanhã" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="lancamento-detalhes">
+        <span class="lancamento-badge-data">Estreia em: 10 de Dezembro, 2026</span>
+        <h2 class="lancamento-titulo">Ainda Temos o Amanhã</h2>
+        <p class="lancamento-meta">Itália · Drama / Histórico</p>
+        <p class="lancamento-sinopse">Fenômeno do cinema italiano no pós-guerra, o filme conta a história de Delia em Roma nos anos 1940 enquanto lida com as dificuldades diárias e encontra força ao receber uma carta misteriosa.</p>
+      </div>
+    </article>
+
+    <!-- ITEM 8: MÉXICO (INSPIRADOR / DRAMA) -->
+    <article class="lancamento-card">
+      <div class="lancamento-video-wrapper">
+        <iframe src="https://www.youtube.com/embed/L4DvL0UBZPQ" title="Trailer Radical" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="lancamento-detalhes">
+        <span class="lancamento-badge-data">Estreia em: 18 de Dezembro, 2026</span>
+        <h2 class="lancamento-titulo">Radical</h2>
+        <p class="lancamento-meta">México · Drama Educacional</p>
+        <p class="lancamento-sinopse">Em uma cidade fronteiriça do México esquecida e marcada pela violência, um professor com métodos nada convencionais desafia as regras para desbloquear o potencial brilhante de seus alunos.</p>
+      </div>
+    </article>
+
+    <!-- ITEM 9: ESPANHA (FICÇÃO CIENTÍFICA / SUSPENSE) -->
+    <article class="lancamento-card">
+      <div class="lancamento-video-wrapper">
+        <iframe src="https://www.youtube.com/embed/PusopU6FjpA" title="Trailer O Poço 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="lancamento-detalhes">
+        <span class="lancamento-badge-data">Estreia em: 08 de Janeiro, 2027</span>
+        <h2 class="lancamento-titulo">O Poço 2</h2>
+        <p class="lancamento-meta">Espanha · Ficção Científica / Suspense</p>
+        <p class="lancamento-sinopse">De volta à misteriosa prisão vertical onde a comida desce por uma plataforma e cria lutas desesperadas entre os níveis, novas regras e líderes impõem ordem e caos aos detentos.</p>
+      </div>
+    </article>
+
+    <!-- ITEM 10: ÍNDIA (DRAMA / INDEPENDENTE) -->
+    <article class="lancamento-card">
+      <div class="lancamento-video-wrapper">
+        <iframe src="https://www.youtube.com/embed/2mgQcpmYr_A" title="Trailer All We Imagine as Light" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="lancamento-detalhes">
+        <span class="lancamento-badge-data">Estreia em: 15 de Janeiro, 2027</span>
+        <h2 class="lancamento-titulo">All We Imagine as Light</h2>
+        <p class="lancamento-meta">Índia · Drama</p>
+        <p class="lancamento-sinopse">Grande Prêmio do Festival de Cannes, o filme acompanha duas enfermeiras em Mumbai navegando por desejos, medos e conexões humanas no ritmo vibrante e desafiador da Índia contemporânea.</p>
+      </div>
+    </article>
+
+    <!-- SEÇÃO DE SUGESTÕES DE LANÇAMENTOS -->
+    <section class="sugestoes-form-secao">
+      <h2 class="sugestoes-form-titulo">Indique um Lançamento</h2>
+      <p class="sugestoes-form-desc">Sentiu falta de algum filme, anime ou desenho do seu país favorito? Escreva sua sugestão abaixo para avaliarmos a inclusão no catálogo!</p>
+
+      <form id="form-sugestao" onsubmit="enviarSugestao(event)">
+        <div class="form-grupo">
+          <label for="nome">Seu Nome:</label>
+          <input type="text" id="nome" class="form-control" placeholder="Digite seu nome" required>
+        </div>
+
+        <div class="form-grupo">
+          <label for="titulo-filme">Título do Filme / Anime / Desenho:</label>
+          <input type="text" id="titulo-filme" class="form-control" placeholder="Ex: Meu Amigo Totoro, O Espetacular Homem-Aranha..." required>
+        </div>
+
+        <div class="form-grupo">
+          <label for="pais-genero">País de Origem / Gênero:</label>
+          <input type="text" id="pais-genero" class="form-control" placeholder="Ex: Japão / Anime, EUA / Disney, França / Drama..." required>
+        </div>
+
+        <div class="form-grupo">
+          <label for="comentario">Por que devemos incluir este título? (Opcional):</label>
+          <textarea id="comentario" class="form-control" placeholder="Escreva uma breve mensagem sobre o filme..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-enviar-sugestao">Enviar Sugestão</button>
+        <p id="mensagem-sucesso" class="mensagem-sucesso">✓ Sua sugestão foi enviada com sucesso! Obrigado por colaborar com o ARCADE.</p>
+      </form>
+    </section>
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer class="rodape rodape-completo">
+    <div class="rodape-baixo">
+      <p>&copy; 2026 ARCADE — cinema clássico e cult em domínio público.</p>
+    </div>
+  </footer>
+
+  <script>
+    function enviarSugestao(event) {
+      event.preventDefault();
+
+      // Captura os valores digitados
+      const titulo = document.getElementById('titulo-filme').value;
+      const paisGenero = document.getElementById('pais-genero').value;
+
+      // Cria a nova sugestão
+      const novaSugestao = {
+        titulo: titulo,
+        info: paisGenero
+      };
+
+      // Lista padrão inicial caso o localStorage esteja vazio
+      const sugestoesPadrao = [
+        { titulo: 'Orfeu Negro', info: 'Brasil/França · 1959 · Drama' },
+        { titulo: 'Roma, Cidade Aberta', info: 'Itália · 1945 · Drama de guerra' },
+        { titulo: 'Pather Panchali', info: 'Índia · 1955 · Drama' },
+        { titulo: 'Morangos Silvestres', info: 'Suécia · 1957 · Drama' },
+        { titulo: 'Ugetsu Monogatari', info: 'Japão · 1953 · Drama fantástico' },
+        { titulo: 'Andrei Rublev', info: 'União Soviética · 1966 · Drama histórico' }
+      ];
+
+      // Busca as sugestões armazenadas ou inicializa com as padrão
+      let sugestoes = JSON.parse(localStorage.getItem('arcade_sugestoes')) || sugestoesPadrao;
+
+      // Adiciona o novo item no topo
+      sugestoes.unshift(novaSugestao);
+
+      // Limita em no máximo 10 itens
+      if (sugestoes.length > 10) {
+        sugestoes = sugestoes.slice(0, 10);
+      }
+
+      // Salva de volta no localStorage
+      localStorage.setItem('arcade_sugestoes', JSON.stringify(sugestoes));
+
+      // Exibe mensagem de confirmação
+      const msgSucesso = document.getElementById('mensagem-sucesso');
+      msgSucesso.style.display = 'block';
+      document.getElementById('form-sugestao').reset();
+
+      setTimeout(() => {
+        msgSucesso.style.display = 'none';
+      }, 4000);
+    }
+  </script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

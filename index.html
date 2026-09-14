@@ -40,7 +40,7 @@
       pointer-events: none;
     }
 
-    /* ESTILOS DO CARROSSEL HERO (DESTAQUE) */
+    /* ESTILOS DO CARROSSEL HERO (DESTAQUE COM TRAILER) */
     .destaque {
       position: relative;
       transition: background-image 0.8s ease-in-out;
@@ -49,6 +49,48 @@
       min-height: 70vh;
       display: flex;
       align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .destaque-conteudo {
+      position: relative;
+      z-index: 2;
+      transition: opacity 0.5s ease;
+    }
+
+    /* CONTAINER DO TRAILER NO HERO (AJUSTADO PARA PREENCHER O ESPAÇO TOTAL) */
+    .trailer-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.8s ease-in-out;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .trailer-container iframe {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.8); /* Ampliação ajustada para cobrir as bordas pretas */
+      border: none;
+    }
+
+    /* ESTADOS DURANTE A EXIBIÇÃO DO TRAILER */
+    .destaque.exibindo-trailer .trailer-container {
+      opacity: 1;
+    }
+
+    .destaque.exibindo-trailer .destaque-conteudo {
+      opacity: 1; 
+    }
+
+    .destaque.exibindo-trailer .destaque-conteudo:hover {
+      opacity: 1; 
     }
 
     .btn-seta-hero {
@@ -63,11 +105,11 @@
       border-radius: 50%;
       font-size: 1.5rem;
       cursor: pointer;
-      z-index: 10;
+      z-index: 20; /* Prioriza o clique sobre a camada do vídeo */
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.2s ease-in-out;
+      transition: all 0.4s ease-in-out;
       backdrop-filter: blur(4px);
     }
 
@@ -87,16 +129,15 @@
       gap: 16px;
       overflow-x: auto;
       scroll-behavior: smooth;
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* IE / Edge */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
       padding: 8px 0;
     }
 
     .fileira-lista::-webkit-scrollbar {
-      display: none; /* Chrome, Safari, Opera */
+      display: none;
     }
 
-    /* ENVOLTÓRIO COM BOTOES DE SETA */
     .fileira-container-wrapper {
       position: relative;
       display: flex;
@@ -132,7 +173,6 @@
     .btn-seta-carrossel.esquerda { left: -12px; }
     .btn-seta-carrossel.direita { right: -12px; }
 
-    /* Ajuste para telas pequenas */
     @media (max-width: 768px) {
       .btn-seta-carrossel, .btn-seta-hero {
         display: none;
@@ -141,14 +181,6 @@
   </style>
 </head>
 <body>
-
-  <!-- TELA DE INTRODUÇÃO EM VÍDEO -->
-  <div id="intro-overlay">
-    <video id="intro-video" autoplay playsinline preload="auto">
-      <source src="video/video_intro.mp4" type="video/mp4">
-      Seu navegador não suporta a exibição deste vídeo.
-    </video>
-  </div>
 
   <!-- MENU -->
   <header class="topo">
@@ -159,16 +191,18 @@
     <nav class="menu">
       <a href="index.html" class="ativo">Início</a>
       <a href="catalogo.html">Catálogo</a>
+      <a href="lancamento.html">Lançamentos</a>
       <a href="sobre.html">Missão</a>
       <a href="perfil.html" class="link-conta">Minha Conta</a>
     </nav>
     <a href="catalogo.html" class="botao-busca">Procurar por país</a>
   </header>
 
-  <!-- DESTAQUE (HERO) — Carrossel rotativo -->
+  <!-- DESTAQUE (HERO) -->
   <section id="destaque" class="destaque">
-    <button class="btn-seta-hero esquerda" onclick="mudarBanner(-1)" aria-label="Filme anterior">❮</button>
-    <button class="btn-seta-hero direita" onclick="mudarBanner(1)" aria-label="Próximo filme">❯</button>
+    <div class="trailer-container" id="destaque-trailer-container">
+      <iframe id="destaque-iframe-trailer" src="" allow="autoplay; encrypted-media"></iframe>
+    </div>
 
     <div class="destaque-conteudo" id="destaque-conteudo">
       <p class="destaque-eyebrow" id="destaque-eyebrow"></p>
@@ -179,52 +213,27 @@
         <a href="#" id="destaque-btn-detalhes" class="btn btn-secundario">Mais detalhes</a>
       </div>
     </div>
+
+    <!-- Botões posicionados ao final da section para garantir a sobreposição correta -->
+    <button class="btn-seta-hero esquerda" onclick="mudarBanner(-1)" aria-label="Filme anterior">❮</button>
+    <button class="btn-seta-hero direita" onclick="mudarBanner(1)" aria-label="Próximo filme">❯</button>
   </section>
 
-  <!-- FILEIRAS — preenchidas pelo JavaScript -->
+  <!-- FILEIRAS -->
   <main id="fileiras" class="fileiras"></main>
 
-  <!-- SUGESTÕES — filmes que ainda não estão no catálogo -->
+  <!-- SUGESTÕES -->
   <section class="sugestoes-secao">
     <div class="sugestoes-cabecalho">
       <h2 class="fileira-titulo">Sugestões para o catálogo</h2>
       <p class="sugestoes-texto">
         Obras que estamos avaliando incluir no acervo. Tem uma indicação de filme que ajude a aproximar culturas e idiomas?
-        Escreva para <a href="mailto:contato@arcade.com" class="sugestoes-link">contato@arcade.com</a>.
+        Escreva para <a href="mailto:contato@arcade.com" class="sugestoes-link">contato@arcade.com</a> ou envie pela página de Lançamentos.
       </p>
     </div>
 
-    <div class="sugestoes-lista">
-      <div class="sugestao-card">
-        <span class="sugestao-selo">Em avaliação</span>
-        <p class="sugestao-titulo">Orfeu Negro</p>
-        <p class="sugestao-meta">Brasil / França · 1959 · Drama</p>
-      </div>
-      <div class="sugestao-card">
-        <span class="sugestao-selo">Em avaliação</span>
-        <p class="sugestao-titulo">Roma, Cidade Aberta</p>
-        <p class="sugestao-meta">Itália · 1945 · Drama de guerra</p>
-      </div>
-      <div class="sugestao-card">
-        <span class="sugestao-selo">Em avaliação</span>
-        <p class="sugestao-titulo">Pather Panchali</p>
-        <p class="sugestao-meta">Índia · 1955 · Drama</p>
-      </div>
-      <div class="sugestao-card">
-        <span class="sugestao-selo">Em avaliação</span>
-        <p class="sugestao-titulo">Morangos Silvestres</p>
-        <p class="sugestao-meta">Suécia · 1957 · Drama</p>
-      </div>
-      <div class="sugestao-card">
-        <span class="sugestao-selo">Em avaliação</span>
-        <p class="sugestao-titulo">Ugetsu Monogatari</p>
-        <p class="sugestao-meta">Japão · 1953 · Drama fantástico</p>
-      </div>
-      <div class="sugestao-card">
-        <span class="sugestao-selo">Em avaliação</span>
-        <p class="sugestao-titulo">Andrei Rublev</p>
-        <p class="sugestao-meta">União Soviética · 1966 · Drama histórico</p>
-      </div>
+    <div class="sugestoes-lista" id="sugestoes-lista">
+      <!-- As sugestões do localStorage serão renderizadas dinamicamente aqui -->
     </div>
   </section>
 
@@ -265,86 +274,68 @@
   </footer>
 
   <script>
-    // CONTROLADOR DA INTRO EM VÍDEO (SEM BOTÃO E COM ÁUDIO - APENAS PRIMEIRA VISITA)
-const introVideo = document.getElementById('intro-video');
-const introOverlay = document.getElementById('intro-overlay');
+    // CONTROLE SIMPLIFICADO DO VÍDEO DE INTRO
+    const introVideo = document.getElementById('intro-video');
+    const introOverlay = document.getElementById('intro-overlay');
 
-if (introVideo && introOverlay) {
-  // Verifica se o usuário já assistiu à intro anteriormente
-  const jaViuIntro = localStorage.getItem('jaViuIntro');
+    if (introVideo && introOverlay) {
+      introVideo.play().catch(() => {
+        console.log('Autoplay do vídeo foi bloqueado pelo navegador.');
+      });
 
-  if (jaViuIntro) {
-    // Se já viu, esconde a overlay imediatamente sem tocar o vídeo
-    introOverlay.style.display = 'none';
-  } else {
-    // Primeira vez acessando: configura e tenta tocar o vídeo
-    introVideo.muted = false;
-    introVideo.volume = 1.0;
-
-    const promessaPlay = introVideo.play();
-
-    if (promessaPlay !== undefined) {
-      promessaPlay.catch(() => {
-        // Fallback caso o navegador proíba som sem interação
-        introVideo.muted = true;
-        introVideo.play();
-
-        const ativarSom = () => {
-          introVideo.muted = false;
-          document.removeEventListener('click', ativarSom);
-          document.removeEventListener('touchstart', ativarSom);
-          document.removeEventListener('keydown', ativarSom);
-        };
-
-        document.addEventListener('click', ativarSom);
-        document.addEventListener('touchstart', ativarSom);
-        document.addEventListener('keydown', ativarSom);
+      introVideo.addEventListener('ended', () => {
+        introOverlay.classList.add('hidden');
+        setTimeout(() => {
+          introOverlay.style.display = 'none';
+        }, 800);
       });
     }
 
-    // Ao finalizar o vídeo, salva a marcação, faz a transição e remove a overlay
-    introVideo.addEventListener('ended', () => {
-      localStorage.setItem('jaViuIntro', 'true'); // Marca que o vídeo já foi exibido
-
-      introOverlay.classList.add('hidden');
-      setTimeout(() => {
-        introOverlay.style.display = 'none';
-      }, 800);
-    });
-  }
-}
-
-    // Configuração dos filmes do Banner Destaque
+    // CONTROLE DOS DESTAQUES E CARROSSEL
     const titulosDestaque = [
       {
         titulo: "La La Land",
-        banner: "https://images7.alphacoders.com/111/1111669.jpg"
+        banner: "https://images7.alphacoders.com/111/1111669.jpg",
+        trailer: "https://youtu.be/0pdqf4P9MB8?si=1SaTJaTCm3nBX8RJ"
       },
       {
         titulo: "Transformers: O Último Cavaleiro",
-        banner: "https://wallpaperbat.com/img/8622752-transformers-hd-wallpaper-and-background.jpg"
+        banner: "https://wallpaperbat.com/img/8622752-transformers-hd-wallpaper-and-background.jpg",
+        trailer: "https://youtu.be/y_lH2w17-qA?si=6ITaxkK1f6U3fXCw"
       },
       {
         titulo: "Cinderela",
-        banner: "https://wallpaper.dog/large/5551721.jpg"
+        banner: "https://wallpaper.dog/large/5551721.jpg",
+        trailer: "https://youtu.be/KsnlU2y-Lz0?si=lmUek7fkanam4bjK"
       },
       {
-        titulo: "Jogos Vorazes: EM Chamas",
-        banner: "https://images5.alphacoders.com/688/thumb-1920-688145.jpg"
+        titulo: "Jogos Vorazes: Em Chamas",
+        banner: "https://images5.alphacoders.com/688/thumb-1920-688145.jpg",
+        trailer: "https://youtu.be/NXsYRdudSqA?si=gNbos9CpOK6WAE35"
       },
       {
         titulo: "Crepusculo - Eclipse",
-        banner: ""
+        banner: "",
+        trailer: "https://youtu.be/7svbINkjPiU?si=_5tmkakXn2oVMpnL"
       },
       {
         titulo: "Harry Potter e as Relíquias da Morte: Parte 1",
-        banner: "https://wallpapercave.com/wp/wp2141444.jpg"
+        banner: "https://wallpapercave.com/wp/wp2141444.jpg",
+        trailer: "https://youtu.be/kmXjPbN-rYU?si=VxtRcpqzycY0vln0"
       }
     ];
 
     let filmesDestaque = [];
     let indiceDestaque = 0;
     let temporizadorDestaque = null;
+    let temporizadorHover = null;
+
+    function extrairIDYouTube(url) {
+      if (!url) return '';
+      const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+      const match = url.match(regExp);
+      return (match && match[2].length === 11) ? match[2] : url;
+    }
 
     async function iniciarHome() {
       try {
@@ -353,12 +344,13 @@ if (introVideo && introOverlay) {
 
         configurarDestaques(filmes);
         montarFileiras(filmes);
+        configurarHoverTrailer();
+        carregarSugestoes();
       } catch (erro) {
         console.error('Não consegui carregar os filmes:', erro);
       }
     }
 
-    // Filtra e organiza os filmes do carrossel principal
     function configurarDestaques(todosFilmes) {
       filmesDestaque = titulosDestaque.map(item => {
         const encontrado = todosFilmes.find(f => f.titulo.toLowerCase().includes(item.titulo.toLowerCase()));
@@ -370,7 +362,8 @@ if (introVideo && introOverlay) {
           genero: encontrado ? encontrado.genero : "Cinema",
           capa: encontrado ? encontrado.capa : "img/img.png",
           banner: item.banner || (encontrado ? (encontrado.banner || encontrado.capa) : "img/img.png"),
-          descricao: encontrado ? encontrado.descricao : `Acompanhe a obra incrível "${item.titulo}", disponível no acervo Arcade.`
+          descricao: encontrado ? encontrado.descricao : `Acompanhe a obra incrível "${item.titulo}", disponível no acervo Arcade.`,
+          trailerId: extrairIDYouTube(item.trailer)
         };
       });
 
@@ -378,8 +371,8 @@ if (introVideo && introOverlay) {
       iniciarTemporizador();
     }
 
-    // Renderiza os dados do filme atualmente selecionado no Banner
     function exibirDestaqueAtual() {
+      pararTrailer();
       const filme = filmesDestaque[indiceDestaque];
       const destaque = document.getElementById('destaque');
 
@@ -393,7 +386,35 @@ if (introVideo && introOverlay) {
       document.getElementById('destaque-btn-detalhes').href = `filme.html?id=${filme.id}`;
     }
 
-    // Função de alternância via setas ou tempo
+    function configurarHoverTrailer() {
+      const destaque = document.getElementById('destaque');
+      const iframeTrailer = document.getElementById('destaque-iframe-trailer');
+
+      destaque.addEventListener('mouseenter', () => {
+        temporizadorHover = setTimeout(() => {
+          const filme = filmesDestaque[indiceDestaque];
+          if (filme && filme.trailerId) {
+            iframeTrailer.src = `https://www.youtube.com/embed/${filme.trailerId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${filme.trailerId}&enablejsapi=1`;
+            destaque.classList.add('exibindo-trailer');
+            clearInterval(temporizadorDestaque);
+          }
+        }, 600);
+      });
+
+      destaque.addEventListener('mouseleave', () => {
+        clearTimeout(temporizadorHover);
+        pararTrailer();
+        reiniciarTemporizador();
+      });
+    }
+
+    function pararTrailer() {
+      const destaque = document.getElementById('destaque');
+      const iframeTrailer = document.getElementById('destaque-iframe-trailer');
+      destaque.classList.remove('exibindo-trailer');
+      iframeTrailer.src = '';
+    }
+
     function mudarBanner(direcao) {
       indiceDestaque += direcao;
       if (indiceDestaque < 0) {
@@ -405,11 +426,10 @@ if (introVideo && introOverlay) {
       reiniciarTemporizador();
     }
 
-    // Cronômetro de 10 segundos
     function iniciarTemporizador() {
       temporizadorDestaque = setInterval(() => {
         mudarBanner(1);
-      }, 10000);
+      }, 3000);
     }
 
     function reiniciarTemporizador() {
@@ -417,7 +437,6 @@ if (introVideo && introOverlay) {
       iniciarTemporizador();
     }
 
-    // FILEIRAS: cria várias linhas de filmes por país e gênero
     function montarFileiras(filmes) {
       const container = document.getElementById('fileiras');
 
@@ -489,7 +508,36 @@ if (introVideo && introOverlay) {
       `;
     }
 
-    // Tornando a função acessível globalmente
+    // CARREGA E RENDERIZA AS SUGESTÕES DO LOCALSTORAGE
+    function carregarSugestoes() {
+      const sugestoesContainer = document.getElementById('sugestoes-lista');
+      if (!sugestoesContainer) return;
+
+      const sugestoesPadrao = [
+        { titulo: 'Orfeu Negro', info: 'Brasil / França · 1959 · Drama' },
+        { titulo: 'Roma, Cidade Aberta', info: 'Itália · 1945 · Drama de guerra' },
+        { titulo: 'Pather Panchali', info: 'Índia · 1955 · Drama' },
+        { titulo: 'Morangos Silvestres', info: 'Suécia · 1957 · Drama' },
+        { titulo: 'Ugetsu Monogatari', info: 'Japão · 1953 · Drama fantástico' },
+        { titulo: 'Andrei Rublev', info: 'União Soviética · 1966 · Drama histórico' }
+      ];
+
+      let sugestoes = JSON.parse(localStorage.getItem('arcade_sugestoes'));
+
+      if (!sugestoes || sugestoes.length === 0) {
+        sugestoes = sugestoesPadrao;
+        localStorage.setItem('arcade_sugestoes', JSON.stringify(sugestoes));
+      }
+
+      sugestoesContainer.innerHTML = sugestoes.slice(0, 10).map(item => `
+        <div class="sugestao-card">
+          <span class="sugestao-selo">Em avaliação</span>
+          <p class="sugestao-titulo">${item.titulo}</p>
+          <p class="sugestao-meta">${item.info}</p>
+        </div>
+      `).join('');
+    }
+
     window.mudarBanner = mudarBanner;
 
     iniciarHome();
