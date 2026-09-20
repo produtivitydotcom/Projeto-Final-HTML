@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ARCADE — Filmes para todos</title>
 
+  <!-- REDIRECIONAMENTO PARA O LOGIN SE NÃO ESTIVER AUTENTICADO -->
+  <script>
+    if (localStorage.getItem('arcade_logado') !== 'true') {
+      window.location.href = 'login.html';
+    }
+  </script>
+
   <!-- fontes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
